@@ -7,7 +7,6 @@ export const OnboardingOverviewItems: FunctionComponent = ({children}) => {
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
     marginVertical: Dimensions.get('window').height < 800 ? 20 : 40,
   },
 });

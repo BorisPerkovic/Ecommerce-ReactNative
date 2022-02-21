@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react';
-import {StyleSheet, View, Text, Dimensions} from 'react-native';
+import {StyleSheet, View, Dimensions} from 'react-native';
+import {ECText} from '../../components/ECText';
 
 interface OnboardingOverviewItemProps {
   itemOverviewCount: number;
@@ -10,20 +11,20 @@ export const OnboardingOverviewItem: FunctionComponent<
 > = ({itemOverviewCount, children}) => {
   return (
     <View style={styles.container}>
-      <Text
+      <ECText
         bold
-        fontSize={BREAKPOINTS.SMALL_DEVICE ? 30 : 40}
-        textColor={activePrimary}
+        fontSize={Dimensions.get('window').height < 800 ? 30 : 40}
+        textColor="#004666"
         textAlign="center"
         style={styles.count}>
         {formatNumber(itemOverviewCount)}+
-      </Text>
-      <Text
-        fontSize={BREAKPOINTS.SMALL_DEVICE ? 16 : 18}
+      </ECText>
+      <ECText
+        fontSize={Dimensions.get('window').height < 800 ? 16 : 18}
         textAlign="center"
-        style={[...styles.description, text]}>
+        style={styles.description}>
         {children}
-      </Text>
+      </ECText>
     </View>
   );
 };
@@ -41,9 +42,5 @@ const styles = StyleSheet.create({
     lineHeight: Dimensions.get('window').height < 800 ? 24 : 28,
     width: '85%',
     alignSelf: 'center',
-  },
-  text: {
-    fontSize: Dimensions.get('window').height < 800 ? 16 : 18,
-    textAlign: 'center',
   },
 });

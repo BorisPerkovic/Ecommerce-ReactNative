@@ -1,22 +1,13 @@
 import React from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {OnboardingOverviewAction} from './OnboardingOverviewAction';
 import {OnboardingOverviewIntro} from './OnboardingOverviewIntro';
 import {OnboardingOverviewItem} from './OnboardingOverviewItem';
 import {OnboardingOverviewItems} from './OnboardingOverviewItems';
 
 export const OnboardingOverviewScreen = () => {
-  const {top: topInset} = useSafeAreaInsets();
   return (
-    <View
-      style={[
-        styles.root,
-        // eslint-disable-next-line react-native/no-inline-styles
-        {
-          paddingTop: topInset,
-          backgroundColor: '#ffffff',
-        },
-      ]}>
+    <View style={styles.root}>
       <StatusBar
         translucent
         backgroundColor="transparent"
@@ -25,13 +16,19 @@ export const OnboardingOverviewScreen = () => {
       <OnboardingOverviewIntro />
       <View style={styles.content}>
         <OnboardingOverviewItems>
-          <OnboardingOverviewItem />
+          <OnboardingOverviewItem itemOverviewCount={18000}>
+            Some New Text
+          </OnboardingOverviewItem>
           {/* <Divider /> */}
-          <OnboardingOverviewItem />
+          <OnboardingOverviewItem itemOverviewCount={5000}>
+            Some New Text
+          </OnboardingOverviewItem>
           {/* <Divider /> */}
-          <OnboardingOverviewItem />
+          <OnboardingOverviewItem itemOverviewCount={2500}>
+            Some New Text
+          </OnboardingOverviewItem>
         </OnboardingOverviewItems>
-        {/* <OnboardingOverviewAction /> */}
+        <OnboardingOverviewAction />
       </View>
     </View>
   );

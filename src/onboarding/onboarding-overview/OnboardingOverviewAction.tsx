@@ -1,11 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import { ECButton } from '../../components/ECButton';
 
 export const OnboardingOverviewAction = () => {
   return (
-    <View>
-      <Text>OnBoardingOverviewAction</Text>
-    </View>
+    <ECButton buttonMode="conatined" onPress={() => {console.log("clicked")}} >
+      Next
+    </ECButton>
   );
 };
 

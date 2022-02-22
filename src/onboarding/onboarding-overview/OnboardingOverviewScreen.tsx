@@ -4,6 +4,7 @@ import {OnboardingOverviewAction} from './OnboardingOverviewAction';
 import {OnboardingOverviewIntro} from './OnboardingOverviewIntro';
 import {OnboardingOverviewItem} from './OnboardingOverviewItem';
 import {OnboardingOverviewItems} from './OnboardingOverviewItems';
+import {Divider} from '../../components/Divider';
 
 export const OnboardingOverviewScreen = () => {
   return (
@@ -19,16 +20,19 @@ export const OnboardingOverviewScreen = () => {
           <OnboardingOverviewItem itemOverviewCount={18000}>
             Some New Text
           </OnboardingOverviewItem>
-          {/* <Divider /> */}
+          <Divider />
           <OnboardingOverviewItem itemOverviewCount={5000}>
             Some New Text
           </OnboardingOverviewItem>
-          {/* <Divider /> */}
+          <Divider />
           <OnboardingOverviewItem itemOverviewCount={2500}>
             Some New Text
           </OnboardingOverviewItem>
         </OnboardingOverviewItems>
-        <OnboardingOverviewAction />
+        <OnboardingOverviewAction
+          replaceTo="OnboardingShop"
+          title="Products Overview"
+        />
       </View>
     </View>
   );

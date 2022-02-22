@@ -1,17 +1,26 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import React, {FunctionComponent} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ECButton} from '../../components/ECButton';
 
-export const OnboardingOverviewAction = () => {
+interface ButtonsProps {
+  replaceTo: string;
+  title: string;
+}
+
+export const OnboardingOverviewAction: FunctionComponent<ButtonsProps> = ({
+  replaceTo,
+  title,
+}) => {
+  const {replace} = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <ECButton
       buttonMode="contained"
+      contentColor="#004666"
       onPress={() => {
-        console.log('clicked');
+        replace(replaceTo);
       }}>
-      Next
+      {title}
     </ECButton>
   );
 };
-
-const styles = StyleSheet.create({});

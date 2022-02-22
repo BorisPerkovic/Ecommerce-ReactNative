@@ -42,5 +42,6 @@ const styles = StyleSheet.create({
     lineHeight: Dimensions.get('window').height < 800 ? 24 : 28,
     width: '85%',
     alignSelf: 'center',
+    color: '#004666',
   },
 });

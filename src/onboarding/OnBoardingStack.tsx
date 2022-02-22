@@ -1,8 +1,8 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {AppTrackingPermissionScreen} from './AppTrackingPermissionScreen';
+import {OnboardingPaymantScreen} from './onboarding-overview/OnboardingPaymantScreen';
 import {OnboardingOverviewScreen} from './onboarding-overview/OnboardingOverviewScreen';
-import {OnboardingFeaturesScreen} from './onboarding-overview/OnboardingFeaturesScreen';
+import {OnboardingShopScreen} from './onboarding-overview/OnboardingShopScreen';
 //import {useFinishOnboarding} from './useFinishOnboarding';
 
 const Stack = createNativeStackNavigator();
@@ -16,13 +16,10 @@ export const OnboardingStack = () => {
         name="OnboardingOverview"
         component={OnboardingOverviewScreen}
       />
+      <Stack.Screen name="OnboardingShop" component={OnboardingShopScreen} />
       <Stack.Screen
-        name="OnboardingFeatures"
-        component={OnboardingFeaturesScreen}
-      />
-      <Stack.Screen
-        name="OnboardingAppTrackingPermission"
-        component={AppTrackingPermissionScreen}
+        name="OnboardingPaymant"
+        component={OnboardingPaymantScreen}
       />
     </Stack.Navigator>
   );

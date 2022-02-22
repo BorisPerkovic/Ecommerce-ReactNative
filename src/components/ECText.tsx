@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
 import React, {FunctionComponent, PropsWithChildren} from 'react';
 import {Text, TextProps} from 'react-native';
 
@@ -24,7 +22,6 @@ export const ECText: FunctionComponent<ECText> = (
     textAlign,
   } = props;
 
-  // eslint-disable-next-line quotes
   const fontWeight = bold ? '700' : '400';
 
   return (

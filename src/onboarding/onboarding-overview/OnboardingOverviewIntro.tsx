@@ -15,9 +15,7 @@ export const OnboardingOverviewIntro = () => {
     <ImageBackground
       resizeMode="cover"
       style={styles.image}
-      source={{
-        uri: 'https://previews.123rf.com/images/wolfcub29/wolfcub291604/wolfcub29160400271/56160952-podgorica-montenegro-april-19-2016-interior-of-a-modern-shopping-center-delta-city.jpg',
-      }}>
+      source={require('../../../assets/images/overview_intro.png')}>
       <View
         style={[
           styles.textBox,

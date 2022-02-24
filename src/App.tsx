@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Platform, UIManager} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
-import SplashScreen from 'react-native-splash-screen';
+import {Provider as PaperProvider} from 'react-native-paper';
 import {RootStack} from './RootStack';
 
 enableScreens();
@@ -15,14 +15,12 @@ if (
 }
 
 const App = () => {
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
 

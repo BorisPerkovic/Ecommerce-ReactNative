@@ -3,13 +3,10 @@ import React from 'react';
 import {OnboardingPaymantScreen} from './onboarding-overview/OnboardingPaymantScreen';
 import {OnboardingOverviewScreen} from './onboarding-overview/OnboardingOverviewScreen';
 import {OnboardingShopScreen} from './onboarding-overview/OnboardingShopScreen';
-//import {useFinishOnboarding} from './useFinishOnboarding';
 
 const Stack = createNativeStackNavigator();
 
 export const OnboardingStack = () => {
-  //useFinishOnboarding();
-
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen

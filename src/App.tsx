@@ -1,16 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
+import React from 'react';
+import {Platform, UIManager} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {enableScreens} from 'react-native-screens';
+import {Provider as PaperProvider} from 'react-native-paper';
+import {RootStack} from './RootStack';
+
+enableScreens();
+
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 const App = () => {
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
   return (
-    <SafeAreaView>
-      <Text>Loaded</Text>
-    </SafeAreaView>
+    <PaperProvider>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
 

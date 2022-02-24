@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {FunctionComponent, PropsWithChildren} from 'react';
 import {Text, TextProps} from 'react-native';
 
@@ -19,12 +18,11 @@ export const ECText: FunctionComponent<ECText> = (
     bold,
     children,
     fontSize,
-    textColor = '#ffffff',
+    textColor,
     textAlign,
-    passive,
   } = props;
 
-  const fontFamily: string = bold ? 'bold' : 'regular';
+  const fontWeight = bold ? '700' : '400';
 
   return (
     <Text
@@ -32,9 +30,9 @@ export const ECText: FunctionComponent<ECText> = (
       style={[
         customStyle,
         {
-          fontFamily,
+          fontWeight: fontWeight,
           fontSize,
-          color: passive ? '#a8adb3' : textColor,
+          color: textColor,
           textAlign,
         },
       ]}>

@@ -12,6 +12,10 @@ target 'Ecommerce' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'EcommerceTests' do
     inherit! :complete
     # Pods for testing

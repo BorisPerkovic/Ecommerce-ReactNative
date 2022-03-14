@@ -7,8 +7,8 @@ export const productsAPI = createApi({
     baseUrl: 'https://fakestoreapi.com',
   }),
   endpoints: builder => ({
-    products: builder.query<ProductsModels[], void>({
-      query: () => '/products',
+    products: builder.query<ProductsModels[], string>({
+      query: url => url,
       transformResponse: (response: ProductsModelsDTO[]) => {
         return response.map(data => ({
           id: data.id,

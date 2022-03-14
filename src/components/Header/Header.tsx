@@ -15,9 +15,10 @@ export const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#fff',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    padding: 15,
   },
 });

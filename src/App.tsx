@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform, UIManager} from 'react-native';
+import {Platform, StatusBar, UIManager} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
 import {Provider as PaperProvider} from 'react-native-paper';
@@ -17,6 +17,7 @@ if (
 const App = () => {
   return (
     <PaperProvider>
+      <StatusBar backgroundColor="#004666" />
       <NavigationContainer>
         <RootStack />
       </NavigationContainer>

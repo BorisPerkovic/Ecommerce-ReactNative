@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     letterSpacing: 1,
     marginVertical: 10,
+    marginTop: 1,
   },
   text: {
     fontSize: 14,

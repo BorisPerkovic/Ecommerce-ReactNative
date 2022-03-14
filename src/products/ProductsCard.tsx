@@ -1,18 +1,29 @@
 import {StyleSheet, View, Image, Text} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {TouchableRipple} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
+import {ProductsStackParams} from './ProductsStack';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type SingleProductNavigationType = StackNavigationProp<
+  ProductsStackParams,
+  'SingleProduct'
+>;
 
 interface ProductsProps {
+  productId: number;
   image: string;
   price: number;
   title: string;
 }
 
 export const ProductsCard: FunctionComponent<ProductsProps> = ({
+  productId,
   image,
   price,
   title,
 }) => {
+  const {navigate} = useNavigation<SingleProductNavigationType>();
   const rippleColor = 'rgba(0, 0, 0, 0.32)';
   return (
     <View style={styles.rippleContainer}>
@@ -23,7 +34,7 @@ export const ProductsCard: FunctionComponent<ProductsProps> = ({
         // eslint-disable-next-line react-native/no-inline-styles
         style={{borderRadius: 10}}
         onPress={() => {
-          console.log('clicked');
+          navigate('SingleProduct', {productId: productId});
         }}>
         <View style={styles.container}>
           <Image source={{uri: image}} style={styles.image} />

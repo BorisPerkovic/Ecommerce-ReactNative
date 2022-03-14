@@ -1,10 +1,10 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {OnboardingPaymantScreen} from './onboarding-overview/OnboardingPaymantScreen';
 import {OnboardingOverviewScreen} from './onboarding-overview/OnboardingOverviewScreen';
 import {OnboardingShopScreen} from './onboarding-overview/OnboardingShopScreen';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export const OnboardingStack = () => {
   return (

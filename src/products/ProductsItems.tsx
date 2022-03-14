@@ -1,23 +1,37 @@
 import {StyleSheet, View, FlatList, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ProductsCard} from './ProductsCard';
-import {useProductsQuery} from './fetchProducts';
+import {useDispatch, useSelector, RootStateOrAny} from 'react-redux';
 import {SkeletonMapped} from './ProductsSkeleton';
+import {Categories} from './Categories';
+import {getProducts} from './productsSlice';
 
 export const ProductsItems = () => {
-  const {data, error, isLoading, isSuccess, isFetching} = useProductsQuery();
+  const [url, setUrl] = useState('https://fakestoreapi.com/products');
+
+  const productsStatus = useSelector((state: RootStateOrAny) => state.products);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts(url));
+  }, [dispatch, url]);
+
   return (
     <>
-      <Text style={styles.productsText}>Products</Text>
-      {isLoading && <SkeletonMapped />}
-      {error && <Text>Something went wrong!</Text>}
-      {isSuccess && !isFetching && (
+      <Categories setUrl={setUrl} />
+      {productsStatus.loading === 'pending' ? <SkeletonMapped /> : null}
+      {productsStatus.loading === 'failed' ? (
+        <Text>Something went wrong!</Text>
+      ) : null}
+      {productsStatus.loading === 'succeeded' ? (
         <View style={styles.containerContent}>
           <FlatList
             scrollEnabled={true}
-            data={data}
+            data={productsStatus.products}
             renderItem={itemData => (
               <ProductsCard
+                productId={+itemData.item.id}
                 image={itemData.item.image}
                 price={itemData.item.price}
                 title={itemData.item.title}
@@ -28,7 +42,7 @@ export const ProductsItems = () => {
             numColumns={2}
           />
         </View>
-      )}
+      ) : null}
     </>
   );
 };

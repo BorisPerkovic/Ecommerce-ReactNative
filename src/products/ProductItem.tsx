@@ -15,7 +15,6 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {TouchableRipple} from 'react-native-paper';
 import {ECText} from '../components/ECText';
 import {ECButton} from '../components/ECButton';
-import {Loading} from '../components/Loading';
 import {SingleProductSkeleton} from './SingleProductSkeleton';
 
 export const ProductItem = () => {
@@ -32,20 +31,22 @@ export const ProductItem = () => {
   }, [dispatch, params]);
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}>
       <StatusBar backgroundColor="#f0f0f3" barStyle={'dark-content'} />
       {product.loading === 'pending' ? <SingleProductSkeleton /> : null}
       {product.loading === 'succeeded' ? (
         <>
-          <TouchableRipple
-            borderless
-            style={styles.backIcon}
-            rippleColor="rgba(0, 0, 0, 0.32)"
-            accessibilityRole="button"
-            onPress={() => navigate('Products')}>
-            <Entypo name="chevron-left" size={30} color="#004666" />
-          </TouchableRipple>
           <View style={styles.imageContainer}>
+            <TouchableRipple
+              borderless
+              style={styles.backIcon}
+              rippleColor="rgba(0, 0, 0, 0.32)"
+              accessibilityRole="button"
+              onPress={() => navigate('Products')}>
+              <Entypo name="chevron-left" size={30} color="#004666" />
+            </TouchableRipple>
             <Image
               source={{
                 uri: product.product.image,
@@ -53,20 +54,25 @@ export const ProductItem = () => {
               style={styles.image}
             />
           </View>
-          <View style={styles.textWrapper}>
-            <ECText style={styles.title} fontSize={26} bold textColor="black">
-              {product.product.title}
-            </ECText>
-            <ECText style={styles.description} fontSize={16} textColor="black">
-              {product.product.description}
-            </ECText>
-            <View style={styles.divider} />
-            <ECText fontSize={23} bold textColor="black">
-              ${product.product.price}
-            </ECText>
-            <ECText fontSize={16} textColor="black">
-              Product Rating: {product.product.rating.rate.toString()} / 5
-            </ECText>
+          <View style={styles.someContent}>
+            <View style={styles.textWrapper}>
+              <ECText style={styles.title} fontSize={26} bold textColor="black">
+                {product.product.title}
+              </ECText>
+              <ECText
+                style={styles.description}
+                fontSize={16}
+                textColor="black">
+                {product.product.description}
+              </ECText>
+              <View style={styles.divider} />
+              <ECText fontSize={23} bold textColor="black">
+                ${product.product.price}
+              </ECText>
+              <ECText fontSize={16} textColor="black">
+                Product Rating: {product.product.rating.rate.toString()} / 5
+              </ECText>
+            </View>
             <View style={styles.button}>
               <ECButton
                 buttonMode="contained"
@@ -84,10 +90,7 @@ export const ProductItem = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
-    position: 'relative',
-    flex: 1,
+    flexGrow: 1,
   },
   backIcon: {
     position: 'absolute',
@@ -112,9 +115,12 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
   },
+  someContent: {
+    flex: 1,
+  },
   textWrapper: {
     flex: 1,
-    justifyContent: 'space-evenly',
+    alignContent: 'space-between',
     paddingHorizontal: 20,
   },
   title: {
@@ -131,7 +137,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   button: {
-    paddingVertical: 20,
-    marginTop: 20,
+    flex: 1,
+    paddingHorizontal: 20,
+    marginVertical: 20,
+    justifyContent: 'flex-end',
   },
 });

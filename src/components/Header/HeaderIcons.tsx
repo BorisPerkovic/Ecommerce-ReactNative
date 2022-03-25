@@ -1,4 +1,4 @@
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -13,7 +13,6 @@ export const HeaderIconsShoopingBag = () => {
       borderless
       rippleColor="rgba(0, 0, 0, .32)"
       accessibilityRole="button"
-      // eslint-disable-next-line react-native/no-inline-styles
       style={{borderRadius: 10}}
       onPress={() => {
         navigation.dispatch(DrawerActions.openDrawer());
@@ -24,10 +23,18 @@ export const HeaderIconsShoopingBag = () => {
 };
 
 export const HeaderIconsShoopingCart = () => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity>
+    <TouchableRipple
+      borderless
+      rippleColor="rgba(0, 0, 0, .32)"
+      accessibilityRole="button"
+      style={{borderRadius: 10}}
+      onPress={() => {
+        navigation.navigate('Cart');
+      }}>
       <MaterialCommunityIcons name="cart" style={styles.icon} />
-    </TouchableOpacity>
+    </TouchableRipple>
   );
 };
 

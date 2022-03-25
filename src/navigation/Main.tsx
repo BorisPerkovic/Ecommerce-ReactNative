@@ -4,6 +4,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {ProductsStack} from '../products/ProductsStack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Header} from '../components/Header/Header';
+import {Account} from '../account/Account';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,7 +20,8 @@ export const Main = () => {
       screenOptions={{
         headerShown: true,
         header: () => <Header />,
-      }}>
+      }}
+      drawerContent={() => <Account />}>
       <Drawer.Screen
         options={{
           drawerIcon: () => {

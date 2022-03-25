@@ -3,20 +3,23 @@ import React from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {TouchableRipple} from 'react-native-paper';
 
 export const HeaderIconsShoopingBag = () => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity>
-      <Entypo
-        name="menu"
-        style={styles.icon}
-        onPress={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
-    </TouchableOpacity>
+    <TouchableRipple
+      borderless
+      rippleColor="rgba(0, 0, 0, .32)"
+      accessibilityRole="button"
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{borderRadius: 10}}
+      onPress={() => {
+        navigation.dispatch(DrawerActions.openDrawer());
+      }}>
+      <Entypo name="menu" style={styles.icon} />
+    </TouchableRipple>
   );
 };
 

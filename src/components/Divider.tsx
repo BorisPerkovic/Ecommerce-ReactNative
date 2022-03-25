@@ -11,5 +11,5 @@ export const Divider: FunctionComponent<DividerProps> = ({color}) => {
 };
 
 const styles = StyleSheet.create({
-  divider: {width: '100%', height: 1},
+  divider: {width: '100%', height: 1, marginVertical: 4},
 });

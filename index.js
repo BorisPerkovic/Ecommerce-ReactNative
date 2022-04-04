@@ -5,6 +5,9 @@ import App from './src/App';
 import {name as appName} from './app.json';
 import {Provider} from 'react-redux';
 import {store} from './src/store';
+import {getTotals} from './src/cart/cartSlice';
+
+store.dispatch(getTotals());
 
 const RNRedux = () => {
   return (

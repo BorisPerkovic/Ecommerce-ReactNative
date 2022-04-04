@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {OnboardingStack} from './onboarding/OnBoardingStack';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 import {setIsOnboardingSeen} from './onboarding/onboardingSlice';
 import {Loading} from './components/Loading';

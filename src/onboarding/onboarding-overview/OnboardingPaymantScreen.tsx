@@ -4,7 +4,7 @@ import {ECText} from '../../components/ECText';
 import {OnboardingOverviewAction} from './OnboardingOverviewAction';
 import {OnboardingOverviewItems} from './OnboardingOverviewItems';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import {setIsOnboardingSeen} from '../onboardingSlice';
 

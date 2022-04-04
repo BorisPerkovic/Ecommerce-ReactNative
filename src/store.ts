@@ -1,19 +1,44 @@
-import {configureStore} from '@reduxjs/toolkit';
+import {
+  combineReducers,
+  configureStore,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 import onboardingReducer from './onboarding/onboardingSlice';
 import productsReducer from './products/productsSlice';
 import singleProductReducer from './products/singleProductsSlice';
-import {productsAPI} from './products/fetchProducts';
+import cartReducer from './cart/cartSlice';
+import {persistStore, persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const rootReducer = combineReducers({
+  products: productsReducer,
+  singleProduct: singleProductReducer,
+  onboarding: onboardingReducer,
+  cart: cartReducer,
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['cart'],
+};
+
+const middleware = [
+  ...getDefaultMiddleware({
+    // NOTE: Disabled since we use immer
+    immutableCheck: false,
+    serializableCheck: false,
+  }),
+];
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    products: productsReducer,
-    singleProduct: singleProductReducer,
-    onboarding: onboardingReducer,
-    [productsAPI.reducerPath]: productsAPI.reducer,
-  },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      immutableCheck: false,
-      serializableCheck: false,
-    }).concat(productsAPI.middleware),
+  reducer: persistedReducer,
+  middleware,
+  devTools: false,
 });
+
+export const persistor = persistStore(store);

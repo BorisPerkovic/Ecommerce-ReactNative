@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 //import {useDispatch} from 'react-redux';
-import AsyncStorage from '@react-native-community/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const useOnboarding = () => {
   const {replace} = useNavigation();

@@ -1,9 +1,13 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {ECButton} from '../components/ECButton';
 
-const CartOrderInfo = () => {
+interface CartOrderInfoProps {
+  cartTotal: number;
+}
+
+const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
   return (
     <View style={styles.orderInfoContainer}>
       <ECText
@@ -18,7 +22,7 @@ const CartOrderInfo = () => {
           Subtotal
         </ECText>
         <ECText textColor="#ccc" bold fontSize={16}>
-          $199.00
+          ${cartTotal.toFixed(2)}
         </ECText>
       </View>
       <View style={styles.total}>
@@ -34,7 +38,7 @@ const CartOrderInfo = () => {
           Total
         </ECText>
         <ECText textColor="#ccc" bold fontSize={20}>
-          $199.00
+          ${`${(cartTotal + 10).toFixed(2)}`}
         </ECText>
       </View>
       <View style={styles.button}>
@@ -42,7 +46,7 @@ const CartOrderInfo = () => {
           buttonMode="contained"
           contentColor="#004666"
           onPress={() => console.log('clicked')}>
-          Checkout ($209.00)
+          Checkout (${`${(cartTotal + 10).toFixed(2)}`})
         </ECButton>
       </View>
     </View>

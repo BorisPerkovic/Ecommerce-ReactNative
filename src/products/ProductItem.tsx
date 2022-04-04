@@ -10,12 +10,13 @@ import React, {useEffect} from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {ProductsStackParams} from './ProductsStack';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
-import {singleProduct} from './singleProductsSlice';
+import {singleProduct, SingleProductDTO} from './singleProductsSlice';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {TouchableRipple} from 'react-native-paper';
 import {ECText} from '../components/ECText';
 import {ECButton} from '../components/ECButton';
 import {SingleProductSkeleton} from './SingleProductSkeleton';
+import {addToCart} from '../cart/cartSlice';
 
 export const ProductItem = () => {
   const {params} = useRoute<RouteProp<ProductsStackParams, 'SingleProduct'>>();
@@ -23,6 +24,10 @@ export const ProductItem = () => {
 
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
+
+  const handleAddToCart = (item: SingleProductDTO) => {
+    dispatch(addToCart(item));
+  };
 
   useEffect(() => {
     dispatch(
@@ -77,7 +82,7 @@ export const ProductItem = () => {
               <ECButton
                 buttonMode="contained"
                 contentColor="#004666"
-                onPress={() => console.log('clicked')}>
+                onPress={() => handleAddToCart(product.product)}>
                 Add To Cart
               </ECButton>
             </View>

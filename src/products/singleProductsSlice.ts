@@ -1,14 +1,28 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
+export interface SingleProductDTO {
+  id: number;
+  title: string;
+  price: string;
+  category: string;
+  description: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  cartQuantity: number;
+}
+
 interface SingleProductsState {
-  product: {};
+  product: SingleProductDTO[];
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
   errorMessage?: string;
 }
 
 const initialState: SingleProductsState = {
-  product: {},
+  product: [],
   loading: 'idle',
   errorMessage: '',
 };

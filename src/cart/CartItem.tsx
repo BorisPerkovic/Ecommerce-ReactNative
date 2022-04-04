@@ -1,18 +1,29 @@
 import {StyleSheet, View, Image} from 'react-native';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {CartQuantityItem} from './CartQuantityItem';
+interface CartItemProps {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+  quantity: number;
+}
 
-const CartItem = () => {
-  const title = 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops';
+export const CartItem: FunctionComponent<CartItemProps> = ({
+  id,
+  image,
+  title,
+  price,
+  quantity,
+}) => {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.contentWrapper}>
         <View style={styles.imageWrapper}>
           <Image
             source={{
-              uri: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+              uri: image,
             }}
             style={styles.image}
           />
@@ -20,47 +31,18 @@ const CartItem = () => {
         <View style={styles.infoWrapper}>
           <View>
             <ECText fontSize={16} textColor="black">
-              {title.slice(0, 28)}...
+              {title.slice(0, 25)}...
             </ECText>
             <ECText fontSize={14} textColor="#ccc" bold>
-              $199
+              ${price}
             </ECText>
           </View>
-          <View style={styles.quantityWrapper}>
-            <View style={styles.quantity}>
-              <TouchableOpacity
-                onPress={() => {
-                  console.log('minus clicked');
-                }}>
-                <EvilIcons name="minus" size={33} color="#ccc" />
-              </TouchableOpacity>
-              <ECText
-                fontSize={20}
-                textColor="black"
-                style={{marginHorizontal: 15}}>
-                1
-              </ECText>
-              <TouchableOpacity
-                onPress={() => {
-                  console.log('plus clicked');
-                }}>
-                <EvilIcons name="plus" size={33} color="#ccc" />
-              </TouchableOpacity>
-            </View>
-            <TouchableOpacity
-              onPress={() => {
-                console.log('trash clicked');
-              }}>
-              <EvilIcons name="trash" size={33} color="#ccc" />
-            </TouchableOpacity>
-          </View>
+          <CartQuantityItem quantity={quantity} id={id} />
         </View>
       </View>
     </View>
   );
 };
-
-export default CartItem;
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -87,22 +69,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   infoWrapper: {
+    width: '60%',
     justifyContent: 'space-between',
     paddingVertical: 5,
-  },
-  quantityWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  quantity: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  quantityIcons: {
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
   },
 });

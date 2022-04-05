@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createSlice} from '@reduxjs/toolkit';
-import {SingleProductDTO} from '../products/singleProductsSlice';
+import {SingleProductDTO} from '../products/single-product/singleProductsSlice';
 
 export interface InitialState {
   cartItems: SingleProductDTO[];

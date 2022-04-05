@@ -1,6 +1,12 @@
 import {Divider} from '../components/Divider';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 
-export const AccountNavigationItemDivider = () => {
-  return <Divider color="#ffffff" />;
+interface AccountNavigationItemDividerProps {
+  color: string;
+}
+
+export const AccountNavigationItemDivider: FunctionComponent<
+  AccountNavigationItemDividerProps
+> = ({color}) => {
+  return <Divider color={color} />;
 };

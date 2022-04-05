@@ -5,6 +5,9 @@ import {useDispatch, useSelector, RootStateOrAny} from 'react-redux';
 import {SkeletonMapped} from './ProductsSkeleton';
 import {Categories} from './Categories';
 import {getProducts} from './productsSlice';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {black} = ECOMMERCE_THEME.colors;
 
 export const ProductsItems = () => {
   const [url, setUrl] = useState('https://fakestoreapi.com/products');
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
   },
   productsText: {
     fontSize: 20,
-    color: '#000',
+    color: black,
     fontWeight: '500',
     letterSpacing: 1,
     marginTop: 20,

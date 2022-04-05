@@ -1,6 +1,9 @@
 import React, {FunctionComponent, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Chip} from 'react-native-paper';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {categoriesBackgroundColor, categorisTextColor} = ECOMMERCE_THEME.colors;
 
 const CATEGORIES = [
   {
@@ -38,7 +41,7 @@ export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
           <Chip
             mode="outlined"
             selected={selectedCategory === itemData.item.name}
-            selectedColor="#fff"
+            selectedColor={categorisTextColor}
             style={styles.renderItemContainer}
             textStyle={styles.renderItemText}
             onPress={() => {
@@ -64,12 +67,12 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   renderItemContainer: {
-    backgroundColor: '#004666',
+    backgroundColor: categoriesBackgroundColor,
     marginRight: 5,
     marginVertical: 10,
   },
   renderItemText: {
-    color: '#fff',
+    color: categorisTextColor,
     fontSize: 14,
     fontWeight: '500',
   },

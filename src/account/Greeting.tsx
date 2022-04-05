@@ -1,14 +1,17 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {AccountNavigationItemDivider} from './AccountNavigationItemDivider';
 import {GuestGreeting} from './GuestGreeting';
+
+const {white} = ECOMMERCE_THEME.colors;
 
 export const Greeting = () => {
   return (
     <View style={styles.container}>
       <GuestGreeting />
       <View style={styles.divider}>
-        <AccountNavigationItemDivider />
+        <AccountNavigationItemDivider color={white} />
       </View>
     </View>
   );

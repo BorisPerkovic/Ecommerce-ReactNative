@@ -2,6 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {TouchableOpacity, StyleSheet, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {ECText} from '../components/ECText';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 
 export interface AccountNavigationItemProps {
   primaryIcon: Element;
@@ -9,10 +10,12 @@ export interface AccountNavigationItemProps {
   onPress: () => void;
 }
 
+const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
+
 export const AccountNavigationItem: FunctionComponent<
   AccountNavigationItemProps
 > = props => {
-  const {primaryIcon, labelColor = '#ffffff', children} = props;
+  const {primaryIcon, labelColor = sideMenuTextColor, children} = props;
 
   return (
     <TouchableOpacity style={styles.rootContainer} {...props}>
@@ -25,7 +28,7 @@ export const AccountNavigationItem: FunctionComponent<
         </ECText>
       </View>
       <View>
-        <Entypo name="chevron-thin-right" size={18} color="#ffffff" />
+        <Entypo name="chevron-thin-right" size={18} color={sideMenuTextColor} />
       </View>
     </TouchableOpacity>
   );

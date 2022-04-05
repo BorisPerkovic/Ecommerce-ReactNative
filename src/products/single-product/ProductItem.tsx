@@ -8,15 +8,27 @@ import {
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import {ProductsStackParams} from './ProductsStack';
+import {ProductsStackParams} from '../ProductsStack';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import {singleProduct, SingleProductDTO} from './singleProductsSlice';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {TouchableRipple} from 'react-native-paper';
-import {ECText} from '../components/ECText';
-import {ECButton} from '../components/ECButton';
+import {ECText} from '../../components/ECText';
+import {ECButton} from '../../components/ECButton';
 import {SingleProductSkeleton} from './SingleProductSkeleton';
-import {addToCart} from '../cart/cartSlice';
+import {addToCart} from '../../cart/cartSlice';
+import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+
+const {
+  singleProductButtonBakgroundColor,
+  singleProductButtonTextColor,
+  singleProductImageBackgroundColor,
+  singleProductStatusBarColor,
+  singleProductTextColor,
+  iconRippleColor,
+  singleProductBackIconColor,
+  black,
+} = ECOMMERCE_THEME.colors;
 
 export const ProductItem = () => {
   const {params} = useRoute<RouteProp<ProductsStackParams, 'SingleProduct'>>();
@@ -39,7 +51,10 @@ export const ProductItem = () => {
     <ScrollView
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}>
-      <StatusBar backgroundColor="#f0f0f3" barStyle={'dark-content'} />
+      <StatusBar
+        backgroundColor={singleProductStatusBarColor}
+        barStyle={'dark-content'}
+      />
       {product.loading === 'pending' ? <SingleProductSkeleton /> : null}
       {product.loading === 'succeeded' ? (
         <>
@@ -47,10 +62,14 @@ export const ProductItem = () => {
             <TouchableRipple
               borderless
               style={styles.backIcon}
-              rippleColor="rgba(0, 0, 0, 0.32)"
+              rippleColor={iconRippleColor}
               accessibilityRole="button"
               onPress={() => navigate('Products')}>
-              <Entypo name="chevron-left" size={30} color="#004666" />
+              <Entypo
+                name="chevron-left"
+                size={30}
+                color={singleProductBackIconColor}
+              />
             </TouchableRipple>
             <Image
               source={{
@@ -61,27 +80,32 @@ export const ProductItem = () => {
           </View>
           <View style={styles.someContent}>
             <View style={styles.textWrapper}>
-              <ECText style={styles.title} fontSize={26} bold textColor="black">
+              <ECText
+                style={styles.title}
+                fontSize={26}
+                bold
+                textColor={singleProductTextColor}>
                 {product.product.title}
               </ECText>
               <ECText
                 style={styles.description}
                 fontSize={16}
-                textColor="black">
+                textColor={singleProductTextColor}>
                 {product.product.description}
               </ECText>
               <View style={styles.divider} />
-              <ECText fontSize={23} bold textColor="black">
+              <ECText fontSize={23} bold textColor={singleProductTextColor}>
                 ${product.product.price}
               </ECText>
-              <ECText fontSize={16} textColor="black">
+              <ECText fontSize={16} textColor={singleProductTextColor}>
                 Product Rating: {product.product.rating.rate.toString()} / 5
               </ECText>
             </View>
             <View style={styles.button}>
               <ECButton
                 buttonMode="contained"
-                contentColor="#004666"
+                contentColor={singleProductButtonBakgroundColor}
+                labelColor={singleProductButtonTextColor}
                 onPress={() => handleAddToCart(product.product)}>
                 Add To Cart
               </ECButton>
@@ -110,7 +134,7 @@ const styles = StyleSheet.create({
     height: (Dimensions.get('screen').height / 100) * 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f3',
+    backgroundColor: singleProductImageBackgroundColor,
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,
     padding: 10,
@@ -138,7 +162,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: 'black',
+    backgroundColor: black,
     marginVertical: 10,
   },
   button: {

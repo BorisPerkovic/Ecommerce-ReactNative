@@ -4,6 +4,9 @@ import {TouchableRipple} from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import {ECText} from '../components/ECText';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {black, headerIconColor, iconRippleColor, white} = ECOMMERCE_THEME.colors;
 
 const CartHeader = () => {
   const {navigate} = useNavigation();
@@ -14,15 +17,15 @@ const CartHeader = () => {
           <TouchableRipple
             borderless
             style={styles.backIcon}
-            rippleColor="rgba(0, 0, 0, 0.32)"
+            rippleColor={iconRippleColor}
             accessibilityRole="button"
             onPress={() => navigate('Products')}>
-            <Entypo name="chevron-left" size={30} color="#004666" />
+            <Entypo name="chevron-left" size={30} color={headerIconColor} />
           </TouchableRipple>
         </View>
       </View>
       <View style={{width: '50%'}}>
-        <ECText textAlign="center" textColor="black" bold fontSize={25}>
+        <ECText textAlign="center" textColor={black} bold fontSize={25}>
           My Cart
         </ECText>
       </View>
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: white,
   },
   backIcon: {
     padding: 5,

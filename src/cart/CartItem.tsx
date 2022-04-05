@@ -2,6 +2,10 @@ import {StyleSheet, View, Image} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {CartQuantityItem} from './CartQuantityItem';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {black, cartImageBackgroundColor, white} = ECOMMERCE_THEME.colors;
+
 interface CartItemProps {
   id: number;
   image: string;
@@ -30,10 +34,10 @@ export const CartItem: FunctionComponent<CartItemProps> = ({
         </View>
         <View style={styles.infoWrapper}>
           <View>
-            <ECText fontSize={16} textColor="black">
+            <ECText fontSize={16} textColor={black}>
               {title.slice(0, 25)}...
             </ECText>
-            <ECText fontSize={14} textColor="#ccc" bold>
+            <ECText style={styles.textStyle} fontSize={14} textColor={black}>
               ${price}
             </ECText>
           </View>
@@ -47,7 +51,7 @@ export const CartItem: FunctionComponent<CartItemProps> = ({
 const styles = StyleSheet.create({
   itemContainer: {
     paddingHorizontal: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: white,
   },
   contentWrapper: {
     marginVertical: 15,
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     width: '30%',
     height: 100,
     padding: 14,
-    backgroundColor: '#f0f0f3',
+    backgroundColor: cartImageBackgroundColor,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -72,5 +76,10 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'space-between',
     paddingVertical: 5,
+  },
+  textStyle: {
+    fontWeight: '400',
+    opacity: 0.6,
+    marginTop: 5,
   },
 });

@@ -1,0 +1,34 @@
+export interface ColorTheme {
+  white: string;
+  black: string;
+  iconRippleColor: string;
+  sideMenuBackgroundColor: string;
+  sideMenuTextColor: string;
+  secondaryBacgkroundColor: string;
+  primaryTextColor: string;
+  secondaryTextColor: string;
+  sideMenuDividerColor: string;
+  loginButtonBackgroundColor: string;
+  loginButtonTextColor: string;
+  headerIconColor: string;
+  cartImageBackgroundColor: string;
+  cartTextColor: string;
+  orderInfoTextColor: string;
+  checkoutButtonBackgroundColor: string;
+  cartStatusBarColor: string;
+  openDrawerIconColor: string;
+  cartIconColor: string;
+  searchBorderColor: string;
+  categoriesBackgroundColor: string;
+  categorisTextColor: string;
+  singleProductStatusBarColor: string;
+  singleProductImageBackgroundColor: string;
+  singleProductTextColor: string;
+  singleProductButtonBakgroundColor: string;
+  singleProductButtonTextColor: string;
+  singleProductBackIconColor: string;
+  singleProductSkeletonColor: string;
+  productsSkeletonColor: string;
+  productsImageBackgroundColor: string;
+  productsStatusBarColor: string;
+}

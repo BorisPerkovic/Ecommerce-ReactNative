@@ -5,11 +5,12 @@ import {Button} from 'react-native-paper';
 export interface ButtonProps {
   buttonMode: 'text' | 'outlined' | 'contained';
   contentColor: string;
+  labelColor: string;
   onPress: () => void;
 }
 
 export const ECButton: FunctionComponent<ButtonProps> = props => {
-  const {children, buttonMode, contentColor, onPress} = props;
+  const {children, buttonMode, contentColor, labelColor, onPress} = props;
 
   return (
     <Button
@@ -17,7 +18,7 @@ export const ECButton: FunctionComponent<ButtonProps> = props => {
       style={styles.container}
       uppercase={false}
       contentStyle={[styles.contentStyle, {backgroundColor: contentColor}]}
-      labelStyle={styles.labelStyle}
+      labelStyle={[styles.labelStyle, {color: labelColor}]}
       onPress={onPress}>
       {children}
     </Button>
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     marginVertical: 0,
     marginHorizontal: 0,
     letterSpacing: 0,
-    fontSize: 15,
+    fontSize: 16,
+    lineHeight: 24,
   },
 });

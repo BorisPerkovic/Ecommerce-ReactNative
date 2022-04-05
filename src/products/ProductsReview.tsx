@@ -1,5 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {black} = ECOMMERCE_THEME.colors;
 
 export const ProductsReview = () => {
   return (
@@ -16,7 +19,7 @@ export const ProductsReview = () => {
 const styles = StyleSheet.create({
   title: {
     fontSize: 26,
-    color: '#000',
+    color: black,
     fontWeight: '500',
     letterSpacing: 1,
     marginVertical: 10,
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    color: '#000',
+    color: black,
     fontWeight: '400',
     letterSpacing: 1,
     marginVertical: 5,

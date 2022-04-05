@@ -9,24 +9,27 @@ import {Divider} from '../components/Divider';
 import {MyTransactionsNavigationItem} from './MyTransactionsNavigationItem';
 import {MyReviewsNavigationItem} from './MyReviewsNavigationItem';
 import {AppFeedbackNavigationItem} from './AppFeedbackNavigationItem';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {sideMenuDividerColor} = ECOMMERCE_THEME.colors;
 
 export const GuestAccount: FunctionComponent<{}> = () => {
   return (
     <>
       <MyTransactionsNavigationItem />
-      <Divider color="#00628F" />
+      <Divider color={sideMenuDividerColor} />
       <MyReviewsNavigationItem />
-      <Divider color="#00628F" />
+      <Divider color={sideMenuDividerColor} />
       <AppFeedbackNavigationItem />
-      <Divider color="#00628F" />
+      <Divider color={sideMenuDividerColor} />
       <DataProtectionNavigationItem />
-      <Divider color="#00628F" />
+      <Divider color={sideMenuDividerColor} />
       <LanguageSettingsNavigationItem title="Country Settings" />
-      <Divider color="#00628F" />
+      <Divider color={sideMenuDividerColor} />
       <Partners />
-      <Divider color="#00628F" />
+      <Divider color={sideMenuDividerColor} />
       <CallSupportNavigationItem>Call Support</CallSupportNavigationItem>
-      <Divider color="#00628F" />
+      <Divider color={sideMenuDividerColor} />
       <View style={styles.buttonContainer}>
         <LoginButton />
       </View>

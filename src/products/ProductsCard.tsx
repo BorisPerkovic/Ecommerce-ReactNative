@@ -4,6 +4,10 @@ import {TouchableRipple} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {ProductsStackParams} from './ProductsStack';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {iconRippleColor, productsImageBackgroundColor, black} =
+  ECOMMERCE_THEME.colors;
 
 type SingleProductNavigationType = StackNavigationProp<
   ProductsStackParams,
@@ -24,12 +28,11 @@ export const ProductsCard: FunctionComponent<ProductsProps> = ({
   title,
 }) => {
   const {navigate} = useNavigation<SingleProductNavigationType>();
-  const rippleColor = 'rgba(0, 0, 0, 0.32)';
   return (
     <View style={styles.rippleContainer}>
       <TouchableRipple
         borderless
-        rippleColor={rippleColor}
+        rippleColor={iconRippleColor}
         accessibilityRole="button"
         // eslint-disable-next-line react-native/no-inline-styles
         style={{borderRadius: 10}}
@@ -44,7 +47,7 @@ export const ProductsCard: FunctionComponent<ProductsProps> = ({
       <Text numberOfLines={2} style={styles.title}>
         {title}
       </Text>
-      <Text>&#8377; {price}</Text>
+      <Text>$ {price}</Text>
     </View>
   );
 };
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 10,
-    backgroundColor: '#f0f0f3',
+    backgroundColor: productsImageBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
   title: {
     width: 150,
     fontSize: 12,
-    color: '#000',
+    color: black,
     fontWeight: '600',
     marginBottom: 2,
   },

@@ -7,7 +7,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {setIsOnboardingSeen} from './onboarding/onboardingSlice';
 import {Loading} from './components/Loading';
 import {Main} from './navigation/Main';
-import {SingleProductScreen} from './products/SingleProductScreen';
+import {SingleProductScreen} from './products/single-product/SingleProductScreen';
 import {CartScreen} from './cart/CartScreen';
 
 const Stack = createStackNavigator();

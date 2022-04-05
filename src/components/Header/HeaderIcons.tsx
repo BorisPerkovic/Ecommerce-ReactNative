@@ -4,6 +4,9 @@ import {DrawerActions, useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TouchableRipple} from 'react-native-paper';
+import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+
+const {iconRippleColor, openDrawerIconColor, white} = ECOMMERCE_THEME.colors;
 
 export const HeaderIconsShoopingBag = () => {
   const navigation = useNavigation();
@@ -11,7 +14,7 @@ export const HeaderIconsShoopingBag = () => {
   return (
     <TouchableRipple
       borderless
-      rippleColor="rgba(0, 0, 0, .32)"
+      rippleColor={iconRippleColor}
       accessibilityRole="button"
       style={{borderRadius: 10}}
       onPress={() => {
@@ -27,7 +30,7 @@ export const HeaderIconsShoopingCart = () => {
   return (
     <TouchableRipple
       borderless
-      rippleColor="rgba(0, 0, 0, .32)"
+      rippleColor={iconRippleColor}
       accessibilityRole="button"
       style={{borderRadius: 10}}
       onPress={() => {
@@ -41,8 +44,8 @@ export const HeaderIconsShoopingCart = () => {
 const styles = StyleSheet.create({
   icon: {
     fontSize: 18,
-    color: '#fff',
-    backgroundColor: '#004666',
+    color: white,
+    backgroundColor: openDrawerIconColor,
     borderRadius: 10,
     padding: 12,
   },

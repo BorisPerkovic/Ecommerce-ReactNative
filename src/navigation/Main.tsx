@@ -5,16 +5,19 @@ import {ProductsStack} from '../products/ProductsStack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Header} from '../components/Header/Header';
 import {Account} from '../account/Account';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 
 const Drawer = createDrawerNavigator();
+
+const {sideMenuBackgroundColor, sideMenuTextColor} = ECOMMERCE_THEME.colors;
 
 export const Main = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContentOptions={{
-        activeTintColor: '#fff',
-        inactiveTintColor: '#fff',
+        activeTintColor: sideMenuTextColor,
+        inactiveTintColor: sideMenuTextColor,
       }}
       drawerStyle={styles.drawerStyle}
       screenOptions={{
@@ -25,7 +28,7 @@ export const Main = () => {
       <Drawer.Screen
         options={{
           drawerIcon: () => {
-            return <Ionicons name="home" size={25} color="#fff" />;
+            return <Ionicons name="home" size={25} color={sideMenuTextColor} />;
           },
           unmountOnBlur: true,
         }}
@@ -38,7 +41,7 @@ export const Main = () => {
 
 const styles = StyleSheet.create({
   drawerStyle: {
-    backgroundColor: '#004666',
+    backgroundColor: sideMenuBackgroundColor,
     width: '80%',
     height: '100%',
   },

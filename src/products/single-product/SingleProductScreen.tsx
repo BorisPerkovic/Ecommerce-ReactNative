@@ -1,6 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {ProductItem} from './ProductItem';
+import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+
+const {white} = ECOMMERCE_THEME.colors;
 
 export const SingleProductScreen = () => {
   return (
@@ -13,6 +16,6 @@ export const SingleProductScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: white,
   },
 });

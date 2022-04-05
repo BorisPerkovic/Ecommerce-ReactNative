@@ -2,6 +2,10 @@ import {StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {ECButton} from '../components/ECButton';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {black, orderInfoTextColor, white, checkoutButtonBackgroundColor} =
+  ECOMMERCE_THEME.colors;
 
 interface CartOrderInfoProps {
   cartTotal: number;
@@ -12,39 +16,57 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
     <View style={styles.orderInfoContainer}>
       <ECText
         textAlign="left"
-        textColor="black"
+        textColor={black}
         fontSize={23}
         style={{marginVertical: 20}}>
         Order Info
       </ECText>
       <View style={styles.total}>
-        <ECText textColor="#ccc" fontSize={16}>
+        <ECText
+          style={styles.textStyle}
+          textColor={orderInfoTextColor}
+          fontSize={16}>
           Subtotal
         </ECText>
-        <ECText textColor="#ccc" bold fontSize={16}>
+        <ECText
+          style={styles.textStyle}
+          textColor={orderInfoTextColor}
+          bold
+          fontSize={16}>
           ${cartTotal.toFixed(2)}
         </ECText>
       </View>
       <View style={styles.total}>
-        <ECText textColor="#ccc" fontSize={16}>
+        <ECText
+          style={styles.textStyle}
+          textColor={orderInfoTextColor}
+          fontSize={16}>
           Shipping Cost
         </ECText>
-        <ECText textColor="#ccc" bold fontSize={16}>
+        <ECText
+          style={styles.textStyle}
+          textColor={orderInfoTextColor}
+          bold
+          fontSize={16}>
           +$10.00
         </ECText>
       </View>
       <View style={[styles.total, {marginVertical: 10}]}>
-        <ECText textColor="#ccc" fontSize={16}>
+        <ECText
+          style={styles.textStyle}
+          textColor={orderInfoTextColor}
+          fontSize={16}>
           Total
         </ECText>
-        <ECText textColor="#ccc" bold fontSize={20}>
+        <ECText textColor={orderInfoTextColor} bold fontSize={20}>
           ${`${(cartTotal + 10).toFixed(2)}`}
         </ECText>
       </View>
       <View style={styles.button}>
         <ECButton
           buttonMode="contained"
-          contentColor="#004666"
+          contentColor={checkoutButtonBackgroundColor}
+          labelColor={white}
           onPress={() => console.log('clicked')}>
           Checkout (${`${(cartTotal + 10).toFixed(2)}`})
         </ECButton>
@@ -60,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'flex-end',
-    backgroundColor: '#ffffff',
+    backgroundColor: white,
   },
   total: {
     flexDirection: 'row',
@@ -68,6 +90,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    paddingVertical: 10,
+    marginVertical: 10,
+  },
+  textStyle: {
+    fontWeight: '400',
+    opacity: 0.6,
   },
 });

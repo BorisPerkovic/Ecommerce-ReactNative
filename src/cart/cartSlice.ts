@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createSlice} from '@reduxjs/toolkit';
+import {alertService} from '../alertService';
 import {SingleProductDTO} from '../products/single-product/singleProductsSlice';
 
 export interface InitialState {
@@ -24,9 +25,14 @@ export const cartSlice = createSlice({
       );
       if (itemIndex >= 0) {
         state.cartItems[itemIndex].cartQuantity += 1;
+        alertService.alert(
+          'info',
+          `${payload.title}\nincrease product quantity`,
+        );
       } else {
         const tempProduct = {...payload, cartQuantity: 1};
         state.cartItems.push(tempProduct);
+        alertService.alert('success', `${payload.title}\nadded to cart`);
       }
 
       const setStorage = async () => {
@@ -38,8 +44,13 @@ export const cartSlice = createSlice({
       setStorage();
     },
     removeFromCart(state, {payload}) {
+      const itemIndex = state.cartItems.findIndex(item => item.id === payload);
       const nextCartItems = state.cartItems.filter(item => item.id !== payload);
       state.cartItems = nextCartItems;
+      alertService.alert(
+        'danger',
+        `${state.cartItems[itemIndex].title}\nproduct removed from cart`,
+      );
 
       const setStorage = async () => {
         await AsyncStorage.setItem(
@@ -58,6 +69,10 @@ export const cartSlice = createSlice({
           item => item.id !== payload,
         );
         state.cartItems = nextCartItems;
+        alertService.alert(
+          'danger',
+          `${state.cartItems[itemIndex].title}\nproduct removed from cart`,
+        );
       }
 
       const setStorage = async () => {

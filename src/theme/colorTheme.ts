@@ -31,4 +31,9 @@ export interface ColorTheme {
   productsSkeletonColor: string;
   productsImageBackgroundColor: string;
   productsStatusBarColor: string;
+  flashMessageDangerBackgroundColors: string;
+  flashMessageSuccessBackgroundColors: string;
+  flashMessageWarningBackgroundColors: string;
+  flashMessageInfoBackgroundColors: string;
+  flashMessageTextColor: string;
 }

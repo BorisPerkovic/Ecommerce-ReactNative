@@ -35,5 +35,10 @@ export const ECOMMERCE_THEME: AppTheme = {
     productsSkeletonColor: Colors.CART_IMAGE_BACGKROUND,
     productsImageBackgroundColor: Colors.CART_IMAGE_BACGKROUND,
     productsStatusBarColor: Colors.PRIMARY_BACKGROUND,
+    flashMessageDangerBackgroundColors: Colors.DANGER_COLOR,
+    flashMessageSuccessBackgroundColors: Colors.SUCCESS_COLOR,
+    flashMessageWarningBackgroundColors: Colors.WARNGING_COLOR,
+    flashMessageInfoBackgroundColors: Colors.INFO_COLOR,
+    flashMessageTextColor: Colors.WHITE,
   },
 };

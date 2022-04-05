@@ -20,4 +20,6 @@ export enum Colors {
   WARNGING_COLOR = '#FFAA00',
   INFO_COLOR = '#0d6efd',
   SUCCESS_COLOR = '#009900',
+
+  SPLASH_COLOR = '#302d2d',
 }

@@ -36,4 +36,5 @@ export interface ColorTheme {
   flashMessageWarningBackgroundColors: string;
   flashMessageInfoBackgroundColors: string;
   flashMessageTextColor: string;
+  splashScreenStatusBarColor: string;
 }

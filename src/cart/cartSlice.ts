@@ -45,12 +45,12 @@ export const cartSlice = createSlice({
     },
     removeFromCart(state, {payload}) {
       const itemIndex = state.cartItems.findIndex(item => item.id === payload);
-      const nextCartItems = state.cartItems.filter(item => item.id !== payload);
-      state.cartItems = nextCartItems;
       alertService.alert(
         'danger',
         `${state.cartItems[itemIndex].title}\nproduct removed from cart`,
       );
+      const nextCartItems = state.cartItems.filter(item => item.id !== payload);
+      state.cartItems = nextCartItems;
 
       const setStorage = async () => {
         await AsyncStorage.setItem(
@@ -68,11 +68,11 @@ export const cartSlice = createSlice({
         const nextCartItems = state.cartItems.filter(
           item => item.id !== payload,
         );
-        state.cartItems = nextCartItems;
         alertService.alert(
           'danger',
           `${state.cartItems[itemIndex].title}\nproduct removed from cart`,
         );
+        state.cartItems = nextCartItems;
       }
 
       const setStorage = async () => {

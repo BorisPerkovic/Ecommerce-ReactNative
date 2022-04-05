@@ -1,10 +1,29 @@
-import {StyleSheet, View, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  ImageBackground,
+  Text,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+
+const {splashScreenStatusBarColor} = ECOMMERCE_THEME.colors;
 
 export const Loading = () => {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color="#00ff00" />
+      <StatusBar backgroundColor={splashScreenStatusBarColor} />
+      <ImageBackground
+        source={require('../../assets/images/preparingApp.png')}
+        resizeMode="cover"
+        style={styles.image}>
+        <View style={styles.textWrapper}>
+          <Text style={styles.text}>Preparing your app</Text>
+          <ActivityIndicator color={'white'} size="large" />
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -12,7 +31,19 @@ export const Loading = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  textWrapper: {
+    height: 170,
+    paddingBottom: 25,
+  },
+  text: {
+    color: 'white',
+    fontSize: 30,
+    textAlign: 'center',
+    marginBottom: 15,
   },
 });

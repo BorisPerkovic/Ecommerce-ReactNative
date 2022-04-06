@@ -18,6 +18,9 @@ import {ECButton} from '../../components/ECButton';
 import {SingleProductSkeleton} from './SingleProductSkeleton';
 import {addToCart} from '../../cart/cartSlice';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {addToFavorites} from '../../favorites/favoritesSlice';
+import {RootState} from '../../store';
 
 const {
   singleProductButtonBakgroundColor,
@@ -33,12 +36,23 @@ const {
 export const ProductItem = () => {
   const {params} = useRoute<RouteProp<ProductsStackParams, 'SingleProduct'>>();
   const product = useSelector((state: RootStateOrAny) => state.singleProduct);
+  const favorites = useSelector(
+    (state: RootState) => state.favorites.favoritesItems,
+  );
+
+  const isFavorite = favorites.findIndex(
+    item => item.id === product.product.id,
+  );
 
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
 
   const handleAddToCart = (item: SingleProductDTO) => {
     dispatch(addToCart(item));
+  };
+
+  const AddToFavorites = (item: SingleProductDTO) => {
+    dispatch(addToFavorites(item));
   };
 
   useEffect(() => {
@@ -94,12 +108,24 @@ export const ProductItem = () => {
                 {product.product.description}
               </ECText>
               <View style={styles.divider} />
-              <ECText fontSize={23} bold textColor={singleProductTextColor}>
-                ${product.product.price}
-              </ECText>
-              <ECText fontSize={16} textColor={singleProductTextColor}>
-                Product Rating: {product.product.rating.rate.toString()} / 5
-              </ECText>
+              <View style={styles.favoritesWrapper}>
+                <View>
+                  <ECText fontSize={23} bold textColor={singleProductTextColor}>
+                    ${product.product.price}
+                  </ECText>
+                  <ECText fontSize={16} textColor={singleProductTextColor}>
+                    Product Rating: {product.product.rating.rate.toString()} / 5
+                  </ECText>
+                </View>
+                <View style={styles.favoritesIcon}>
+                  <Ionicons
+                    name={isFavorite >= 0 ? 'heart' : 'heart-outline'}
+                    size={38}
+                    color="#004666"
+                    onPress={() => AddToFavorites(product.product)}
+                  />
+                </View>
+              </View>
             </View>
             <View style={styles.button}>
               <ECButton
@@ -151,6 +177,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: 'space-between',
     paddingHorizontal: 20,
+  },
+  favoritesWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  favoritesIcon: {
+    padding: 10,
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    borderColor: '#004666',
+    borderRadius: 10,
   },
   title: {
     marginVertical: 20,

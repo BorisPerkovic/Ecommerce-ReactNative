@@ -5,11 +5,15 @@ import {CartScreen} from '../cart/CartScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {StatusBar} from 'react-native';
 import {RootStateOrAny, useSelector} from 'react-redux';
+import {Favorites} from '../favorites/Favorites';
 
 const Tab = createBottomTabNavigator();
 
 export const BottomTabs = () => {
   const cart = useSelector((state: RootStateOrAny) => state.cart.cartItems);
+  const favorites = useSelector(
+    (state: RootStateOrAny) => state.favorites.favoritesItems,
+  );
 
   return (
     <>
@@ -53,6 +57,14 @@ export const BottomTabs = () => {
           },
         }}>
         <Tab.Screen name="Home" component={ProductsScreen} />
+        <Tab.Screen
+          name="Favorites"
+          component={Favorites}
+          options={{
+            tabBarBadge: favorites.length,
+            tabBarBadgeStyle: {marginLeft: 6},
+          }}
+        />
         <Tab.Screen
           name="Cart"
           component={CartScreen}

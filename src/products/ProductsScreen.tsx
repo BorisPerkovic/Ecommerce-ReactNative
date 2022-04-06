@@ -1,23 +1,42 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-virtualized-view';
+import {Header} from '../components/Header/Header';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ProductsItems} from './ProductsItems';
 import {ProductsReview} from './ProductsReview';
 
-const {white, productsStatusBarColor} = ECOMMERCE_THEME.colors;
+const {white} = ECOMMERCE_THEME.colors;
 
 export const ProductsScreen = () => {
+  const navigation = useNavigation();
+  let scroll = 0;
+
+  const onScroll = (e: {nativeEvent: {contentOffset: {y: any}}}) => {
+    let contentOffsetY = e.nativeEvent.contentOffset.y;
+    let diff = contentOffsetY - scroll;
+    if (diff > 0) {
+      navigation.setOptions({tabBarVisible: false});
+    } else {
+      navigation.setOptions({tabBarVisible: true});
+    }
+    scroll = contentOffsetY;
+  };
+
   return (
-    <ScrollView
-      style={styles.safeAreaView}
-      showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <StatusBar backgroundColor={productsStatusBarColor} />
-        <ProductsReview />
-        <ProductsItems />
-      </View>
-    </ScrollView>
+    <>
+      <Header />
+      <ScrollView
+        style={styles.safeAreaView}
+        showsVerticalScrollIndicator={false}
+        onScroll={onScroll}>
+        <View style={styles.container}>
+          <ProductsReview />
+          <ProductsItems />
+        </View>
+      </ScrollView>
+    </>
   );
 };
 

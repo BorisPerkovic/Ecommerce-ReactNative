@@ -10,11 +10,12 @@ export const HeaderSearch = () => {
 
 const styles = StyleSheet.create({
   input: {
-    width: '65%',
+    width: '80%',
     height: '82%',
     borderWidth: 1,
     borderRadius: 5,
     borderColor: searchBorderColor,
     paddingHorizontal: 10,
+    marginLeft: 20,
   },
 });

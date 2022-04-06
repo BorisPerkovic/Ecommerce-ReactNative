@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 import React from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TouchableRipple} from 'react-native-paper';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 
@@ -21,22 +20,6 @@ export const HeaderIconsShoopingBag = () => {
         navigation.dispatch(DrawerActions.openDrawer());
       }}>
       <Entypo name="menu" style={styles.icon} />
-    </TouchableRipple>
-  );
-};
-
-export const HeaderIconsShoopingCart = () => {
-  const navigation = useNavigation();
-  return (
-    <TouchableRipple
-      borderless
-      rippleColor={iconRippleColor}
-      accessibilityRole="button"
-      style={{borderRadius: 10}}
-      onPress={() => {
-        navigation.navigate('Cart');
-      }}>
-      <MaterialCommunityIcons name="cart" style={styles.icon} />
     </TouchableRipple>
   );
 };

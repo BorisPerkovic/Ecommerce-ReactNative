@@ -8,7 +8,6 @@ import {setIsOnboardingSeen} from './onboarding/onboardingSlice';
 import {Loading} from './components/Loading';
 import {Main} from './navigation/Main';
 import {SingleProductScreen} from './products/single-product/SingleProductScreen';
-import {CartScreen} from './cart/CartScreen';
 
 const Stack = createStackNavigator();
 
@@ -43,7 +42,6 @@ export const RootStack = () => {
         <>
           <Stack.Screen name="Home" component={Main} />
           <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
-          <Stack.Screen name="Cart" component={CartScreen} />
         </>
       )}
     </Stack.Navigator>

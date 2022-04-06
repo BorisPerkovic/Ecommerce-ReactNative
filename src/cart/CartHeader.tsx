@@ -19,7 +19,7 @@ const CartHeader = () => {
             style={styles.backIcon}
             rippleColor={iconRippleColor}
             accessibilityRole="button"
-            onPress={() => navigate('Products')}>
+            onPress={() => navigate('Home')}>
             <Entypo name="chevron-left" size={30} color={headerIconColor} />
           </TouchableRipple>
         </View>

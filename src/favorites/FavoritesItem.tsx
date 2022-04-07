@@ -3,8 +3,12 @@ import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {FavoritesRemove} from './FavoritesRemove';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import {TouchableRipple} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
+import {SingleProductNavigationType} from '../products/ProductsCard';
 
-const {black, cartImageBackgroundColor, white} = ECOMMERCE_THEME.colors;
+const {black, cartImageBackgroundColor, white, iconRippleColor} =
+  ECOMMERCE_THEME.colors;
 
 interface FavoritesItemProps {
   id: number;
@@ -19,17 +23,27 @@ export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
   title,
   price,
 }) => {
+  const {navigate} = useNavigation<SingleProductNavigationType>();
+
   return (
     <View style={styles.itemContainer}>
       <View style={styles.contentWrapper}>
-        <View style={styles.imageWrapper}>
+        <TouchableRipple
+          borderless
+          rippleColor={iconRippleColor}
+          accessibilityRole="button"
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={[styles.imageWrapper, {borderRadius: 10}]}
+          onPress={() => {
+            navigate('SingleProduct', {productId: id});
+          }}>
           <Image
             source={{
               uri: image,
             }}
             style={styles.image}
           />
-        </View>
+        </TouchableRipple>
         <View style={styles.infoWrapper}>
           <View>
             <ECText fontSize={16} textColor={black}>

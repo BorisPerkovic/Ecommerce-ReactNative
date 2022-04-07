@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import {addToFavorites} from '../../favorites/favoritesSlice';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+import {StaticRatings} from '../../components/ratings/StaticRatings';
 
 interface SingleProductRatingProps {
   product: SingleProductDTO;
@@ -25,6 +26,7 @@ export const SingleProductRating: FunctionComponent<
   );
 
   const isFavorite = favorites.findIndex(item => item.id === product.id);
+  const ratingNumber = product.rating.rate.toFixed(1);
 
   const handleAddToFavorites = (item: SingleProductDTO) => {
     dispatch(addToFavorites(item));
@@ -36,9 +38,11 @@ export const SingleProductRating: FunctionComponent<
         <ECText fontSize={23} bold textColor={singleProductTextColor}>
           ${product.price}
         </ECText>
-        <ECText fontSize={16} textColor={singleProductTextColor}>
-          Product Rating: {product.rating.rate.toString()} / 5
-        </ECText>
+        <StaticRatings
+          stars={parseInt(ratingNumber, 10)}
+          size={18}
+          starStyle={styles.stars}
+        />
       </View>
       <View style={styles.favoritesIcon}>
         <Ionicons
@@ -64,5 +68,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: favoriteHeartBorderColor,
     borderRadius: 10,
+  },
+  stars: {
+    marginTop: 10,
   },
 });

@@ -45,5 +45,7 @@ export const ECOMMERCE_THEME: AppTheme = {
     favoriteHeartBorderColor: Colors.PRIMARY_BACKGROUND,
     favoritesTrashColor: Colors.PRIMARY_BACKGROUND,
     favoritesTrashBorderColor: Colors.PRIMARY_BACKGROUND,
+    starSelectedColor: Colors.STAR_SELECTED,
+    starUnselectedColor: Colors.STAR_UNSELECTED,
   },
 };

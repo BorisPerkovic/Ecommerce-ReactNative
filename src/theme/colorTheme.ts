@@ -41,4 +41,6 @@ export interface ColorTheme {
   favoriteHeartBorderColor: string;
   favoritesTrashColor: string;
   favoritesTrashBorderColor: string;
+  starSelectedColor: string;
+  starUnselectedColor: string;
 }

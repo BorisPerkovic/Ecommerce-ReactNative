@@ -9,7 +9,7 @@ import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 const {iconRippleColor, productsImageBackgroundColor, black} =
   ECOMMERCE_THEME.colors;
 
-type SingleProductNavigationType = StackNavigationProp<
+export type SingleProductNavigationType = StackNavigationProp<
   ProductsStackParams,
   'SingleProduct'
 >;

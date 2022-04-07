@@ -22,4 +22,7 @@ export enum Colors {
   SUCCESS_COLOR = '#009900',
 
   SPLASH_COLOR = '#302d2d',
+
+  STAR_SELECTED = '#004666',
+  STAR_UNSELECTED = '#D4D6D9',
 }

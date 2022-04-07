@@ -37,4 +37,8 @@ export interface ColorTheme {
   flashMessageInfoBackgroundColors: string;
   flashMessageTextColor: string;
   splashScreenStatusBarColor: string;
+  favoriteHeartColor: string;
+  favoriteHeartBorderColor: string;
+  favoritesTrashColor: string;
+  favoritesTrashBorderColor: string;
 }

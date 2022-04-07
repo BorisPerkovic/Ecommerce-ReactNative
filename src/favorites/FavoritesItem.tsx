@@ -33,7 +33,7 @@ export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
         <View style={styles.infoWrapper}>
           <View>
             <ECText fontSize={16} textColor={black}>
-              {title.slice(0, 25)}...
+              {title.slice(0, 20)}...
             </ECText>
             <ECText style={styles.textStyle} fontSize={14} textColor={black}>
               ${price}

@@ -41,5 +41,9 @@ export const ECOMMERCE_THEME: AppTheme = {
     flashMessageInfoBackgroundColors: Colors.INFO_COLOR,
     flashMessageTextColor: Colors.WHITE,
     splashScreenStatusBarColor: Colors.SPLASH_COLOR,
+    favoriteHeartColor: Colors.PRIMARY_BACKGROUND,
+    favoriteHeartBorderColor: Colors.PRIMARY_BACKGROUND,
+    favoritesTrashColor: Colors.PRIMARY_BACKGROUND,
+    favoritesTrashBorderColor: Colors.PRIMARY_BACKGROUND,
   },
 };

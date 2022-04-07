@@ -12,7 +12,8 @@ interface SingleProductRatingProps {
   product: SingleProductDTO;
 }
 
-const {singleProductTextColor} = ECOMMERCE_THEME.colors;
+const {singleProductTextColor, favoriteHeartBorderColor, favoriteHeartColor} =
+  ECOMMERCE_THEME.colors;
 
 export const SingleProductRating: FunctionComponent<
   SingleProductRatingProps
@@ -43,7 +44,7 @@ export const SingleProductRating: FunctionComponent<
         <Ionicons
           name={isFavorite >= 0 ? 'heart' : 'heart-outline'}
           size={38}
-          color="#004666"
+          color={favoriteHeartColor}
           onPress={() => handleAddToFavorites(product)}
         />
       </View>
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingHorizontal: 15,
     borderWidth: 1,
-    borderColor: '#004666',
+    borderColor: favoriteHeartBorderColor,
     borderRadius: 10,
   },
 });

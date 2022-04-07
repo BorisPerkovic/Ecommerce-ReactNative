@@ -10,24 +10,18 @@ import React, {useEffect} from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {ProductsStackParams} from '../ProductsStack';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
-import {singleProduct, SingleProductDTO} from './singleProductsSlice';
+import {singleProduct} from './singleProductsSlice';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {TouchableRipple} from 'react-native-paper';
-import {ECText} from '../../components/ECText';
-import {ECButton} from '../../components/ECButton';
 import {SingleProductSkeleton} from './SingleProductSkeleton';
-import {addToCart} from '../../cart/cartSlice';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {addToFavorites} from '../../favorites/favoritesSlice';
-import {RootState} from '../../store';
+import {SingleProductDescription} from './SingleProductDescription';
+import {SingleProductRating} from './SingleProductRating';
+import {SingleProductButton} from './SingleProductButton';
 
 const {
-  singleProductButtonBakgroundColor,
-  singleProductButtonTextColor,
   singleProductImageBackgroundColor,
   singleProductStatusBarColor,
-  singleProductTextColor,
   iconRippleColor,
   singleProductBackIconColor,
   black,
@@ -36,24 +30,9 @@ const {
 export const ProductItem = () => {
   const {params} = useRoute<RouteProp<ProductsStackParams, 'SingleProduct'>>();
   const product = useSelector((state: RootStateOrAny) => state.singleProduct);
-  const favorites = useSelector(
-    (state: RootState) => state.favorites.favoritesItems,
-  );
-
-  const isFavorite = favorites.findIndex(
-    item => item.id === product.product.id,
-  );
 
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
-
-  const handleAddToCart = (item: SingleProductDTO) => {
-    dispatch(addToCart(item));
-  };
-
-  const AddToFavorites = (item: SingleProductDTO) => {
-    dispatch(addToFavorites(item));
-  };
 
   useEffect(() => {
     dispatch(
@@ -94,48 +73,14 @@ export const ProductItem = () => {
           </View>
           <View style={styles.someContent}>
             <View style={styles.textWrapper}>
-              <ECText
-                style={styles.title}
-                fontSize={26}
-                bold
-                textColor={singleProductTextColor}>
-                {product.product.title}
-              </ECText>
-              <ECText
-                style={styles.description}
-                fontSize={16}
-                textColor={singleProductTextColor}>
-                {product.product.description}
-              </ECText>
+              <SingleProductDescription
+                title={product.product.title}
+                description={product.product.description}
+              />
               <View style={styles.divider} />
-              <View style={styles.favoritesWrapper}>
-                <View>
-                  <ECText fontSize={23} bold textColor={singleProductTextColor}>
-                    ${product.product.price}
-                  </ECText>
-                  <ECText fontSize={16} textColor={singleProductTextColor}>
-                    Product Rating: {product.product.rating.rate.toString()} / 5
-                  </ECText>
-                </View>
-                <View style={styles.favoritesIcon}>
-                  <Ionicons
-                    name={isFavorite >= 0 ? 'heart' : 'heart-outline'}
-                    size={38}
-                    color="#004666"
-                    onPress={() => AddToFavorites(product.product)}
-                  />
-                </View>
-              </View>
+              <SingleProductRating product={product.product} />
             </View>
-            <View style={styles.button}>
-              <ECButton
-                buttonMode="contained"
-                contentColor={singleProductButtonBakgroundColor}
-                labelColor={singleProductButtonTextColor}
-                onPress={() => handleAddToCart(product.product)}>
-                Add To Cart
-              </ECButton>
-            </View>
+            <SingleProductButton product={product.product} />
           </View>
         </>
       ) : null}
@@ -178,35 +123,9 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
     paddingHorizontal: 20,
   },
-  favoritesWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  favoritesIcon: {
-    padding: 10,
-    paddingHorizontal: 15,
-    borderWidth: 1,
-    borderColor: '#004666',
-    borderRadius: 10,
-  },
-  title: {
-    marginVertical: 20,
-  },
-  description: {
-    marginBottom: 20,
-    fontWeight: '400',
-    opacity: 0.6,
-  },
   divider: {
     height: 1,
     backgroundColor: black,
     marginVertical: 10,
-  },
-  button: {
-    flex: 1,
-    paddingHorizontal: 20,
-    marginVertical: 20,
-    justifyContent: 'flex-end',
   },
 });

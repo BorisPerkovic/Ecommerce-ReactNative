@@ -1,27 +1,38 @@
 import React, {FunctionComponent} from 'react';
 import {StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
+import {ButtonVariantStyle} from '../theme/buttonTheme';
+import {Button, TouchableRipple} from 'react-native-paper';
+import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import {ECText} from './ECText';
 
 export interface ButtonProps {
-  buttonMode: 'text' | 'outlined' | 'contained';
-  contentColor: string;
+  buttonMode: ButtonVariantStyle;
   labelColor: string;
+  labelText: string;
   onPress: () => void;
 }
 
+const {iconRippleColor} = ECOMMERCE_THEME.colors;
+
 export const ECButton: FunctionComponent<ButtonProps> = props => {
-  const {children, buttonMode, contentColor, labelColor, onPress} = props;
+  const {labelText, buttonMode, labelColor, onPress} = props;
 
   return (
-    <Button
-      mode={buttonMode}
+    <TouchableRipple
+      borderless
+      rippleColor={iconRippleColor}
+      accessibilityRole="button"
       style={styles.container}
-      uppercase={false}
-      contentStyle={[styles.contentStyle, {backgroundColor: contentColor}]}
-      labelStyle={[styles.labelStyle, {color: labelColor}]}
       onPress={onPress}>
-      {children}
-    </Button>
+      <Button
+        style={styles.container}
+        uppercase={false}
+        contentStyle={[styles.contentStyle, buttonMode.containerStyle]}>
+        <ECText fontSize={16} textColor={labelColor} style={styles.labelStyle}>
+          {labelText}
+        </ECText>
+      </Button>
+    </TouchableRipple>
   );
 };
 
@@ -31,6 +42,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   contentStyle: {
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     height: 56,
@@ -39,7 +51,6 @@ const styles = StyleSheet.create({
     marginVertical: 0,
     marginHorizontal: 0,
     letterSpacing: 0,
-    fontSize: 16,
     lineHeight: 24,
   },
 });

@@ -47,5 +47,6 @@ export const ECOMMERCE_THEME: AppTheme = {
     favoritesTrashBorderColor: Colors.PRIMARY_BACKGROUND,
     starSelectedColor: Colors.STAR_SELECTED,
     starUnselectedColor: Colors.STAR_UNSELECTED,
+    addToCartButtonColors: Colors.PRIMARY_BACKGROUND,
   },
 };

@@ -5,13 +5,15 @@ import {SingleProductDTO} from './singleProductsSlice';
 import {useDispatch} from 'react-redux';
 import {addToCart} from '../../cart/cartSlice';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 
 interface SingleProductButtonProps {
   product: SingleProductDTO;
 }
 
-const {singleProductButtonBakgroundColor, singleProductButtonTextColor} =
-  ECOMMERCE_THEME.colors;
+const {singleProductButtonTextColor} = ECOMMERCE_THEME.colors;
+
+const {primaryButtonContained} = ecommerceButtonTheme;
 
 export const SingleProductButton: FunctionComponent<
   SingleProductButtonProps
@@ -25,12 +27,11 @@ export const SingleProductButton: FunctionComponent<
   return (
     <View style={styles.button}>
       <ECButton
-        buttonMode="contained"
-        contentColor={singleProductButtonBakgroundColor}
+        labelText="Add To Cart"
+        buttonMode={primaryButtonContained}
         labelColor={singleProductButtonTextColor}
-        onPress={() => handleAddToCart(product)}>
-        Add To Cart
-      </ECButton>
+        onPress={() => handleAddToCart(product)}
+      />
     </View>
   );
 };

@@ -16,28 +16,18 @@ export const favortesSlice = createSlice({
   initialState,
   reducers: {
     addToFavorites(state, {payload}) {
-      const itemIndex = state.favoritesItems.findIndex(
-        item => item.id === payload.id,
+      state.favoritesItems.push(payload);
+      alertService.alert(
+        'success',
+        `${payload.title}\nItem added to favorites`,
       );
-      if (itemIndex >= 0) {
-        alertService.alert(
-          'info',
-          `${payload.title}\nItem is already in favorites`,
+      const setStorage = async () => {
+        await AsyncStorage.setItem(
+          'favoritesItems',
+          JSON.stringify(state.favoritesItems),
         );
-      } else {
-        state.favoritesItems.push(payload);
-        alertService.alert(
-          'success',
-          `${payload.title}\nItem added to favorites`,
-        );
-        const setStorage = async () => {
-          await AsyncStorage.setItem(
-            'favoritesItems',
-            JSON.stringify(state.favoritesItems),
-          );
-        };
-        setStorage();
-      }
+      };
+      setStorage();
     },
     removeFromFavorites(state, {payload}) {
       const tempItems = state.favoritesItems.filter(

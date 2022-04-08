@@ -1,12 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {ECButton} from '../components/ECButton';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 
-const {black, orderInfoTextColor, white, checkoutButtonBackgroundColor} =
-  ECOMMERCE_THEME.colors;
+const {black, orderInfoTextColor, white} = ECOMMERCE_THEME.colors;
 
+const {checkoutButton} = ecommerceButtonTheme;
 interface CartOrderInfoProps {
   cartTotal: number;
 }
@@ -64,12 +66,11 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
       </View>
       <View style={styles.button}>
         <ECButton
-          buttonMode="contained"
-          contentColor={checkoutButtonBackgroundColor}
+          labelText={`Checkout (${(cartTotal + 10).toFixed(2)})`}
+          buttonMode={checkoutButton}
           labelColor={white}
-          onPress={() => console.log('clicked')}>
-          Checkout (${`${(cartTotal + 10).toFixed(2)}`})
-        </ECButton>
+          onPress={() => console.log('clicked')}
+        />
       </View>
     </View>
   );

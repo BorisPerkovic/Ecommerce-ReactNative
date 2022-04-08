@@ -18,6 +18,7 @@ import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {SingleProductDescription} from './SingleProductDescription';
 import {SingleProductRating} from './SingleProductRating';
 import {SingleProductButton} from './SingleProductButton';
+import SingleProductNoItem from './SingleProductNoItem';
 
 const {
   singleProductImageBackgroundColor,
@@ -49,6 +50,7 @@ export const ProductItem = () => {
         barStyle={'dark-content'}
       />
       {product.loading === 'pending' ? <SingleProductSkeleton /> : null}
+      {product.loading === 'failed' ? <SingleProductNoItem /> : null}
       {product.loading === 'succeeded' ? (
         <>
           <View style={styles.imageContainer}>

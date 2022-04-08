@@ -43,4 +43,5 @@ export interface ColorTheme {
   favoritesTrashBorderColor: string;
   starSelectedColor: string;
   starUnselectedColor: string;
+  addToCartButtonColors: string;
 }

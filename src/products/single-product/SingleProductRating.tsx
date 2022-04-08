@@ -5,7 +5,10 @@ import {SingleProductDTO} from './singleProductsSlice';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store';
-import {addToFavorites} from '../../favorites/favoritesSlice';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../favorites/favoritesSlice';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {StaticRatings} from '../../components/ratings/StaticRatings';
 
@@ -32,6 +35,10 @@ export const SingleProductRating: FunctionComponent<
     dispatch(addToFavorites(item));
   };
 
+  const handleRemoveFromFavorites = (item: number) => {
+    dispatch(removeFromFavorites(item));
+  };
+
   return (
     <View style={styles.favoritesWrapper}>
       <View>
@@ -45,12 +52,21 @@ export const SingleProductRating: FunctionComponent<
         />
       </View>
       <View style={styles.favoritesIcon}>
-        <Ionicons
-          name={isFavorite >= 0 ? 'heart' : 'heart-outline'}
-          size={38}
-          color={favoriteHeartColor}
-          onPress={() => handleAddToFavorites(product)}
-        />
+        {isFavorite >= 0 ? (
+          <Ionicons
+            name="heart"
+            size={38}
+            color={favoriteHeartColor}
+            onPress={() => handleRemoveFromFavorites(product.id)}
+          />
+        ) : (
+          <Ionicons
+            name="heart-outline"
+            size={38}
+            color={favoriteHeartColor}
+            onPress={() => handleAddToFavorites(product)}
+          />
+        )}
       </View>
     </View>
   );

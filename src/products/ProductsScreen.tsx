@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-virtualized-view';
@@ -10,8 +9,10 @@ import {ProductsReview} from './ProductsReview';
 const {white} = ECOMMERCE_THEME.colors;
 
 export const ProductsScreen = () => {
-  const navigation = useNavigation();
-  let scroll = 0;
+  // NOTE: in case we want to have tab bar hidden/visible, code is below
+  /*
+    const navigation = useNavigation();
+    let scroll = 0;
 
   const onScroll = (e: {nativeEvent: {contentOffset: {y: any}}}) => {
     let contentOffsetY = e.nativeEvent.contentOffset.y;
@@ -22,15 +23,14 @@ export const ProductsScreen = () => {
       navigation.setOptions({tabBarVisible: true});
     }
     scroll = contentOffsetY;
-  };
+  }; */
 
   return (
     <>
       <Header />
       <ScrollView
         style={styles.safeAreaView}
-        showsVerticalScrollIndicator={false}
-        onScroll={onScroll}>
+        showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <ProductsReview />
           <ProductsItems />

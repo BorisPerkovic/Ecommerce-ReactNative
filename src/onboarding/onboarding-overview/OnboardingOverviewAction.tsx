@@ -2,12 +2,15 @@ import React, {FunctionComponent} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {ECButton} from '../../components/ECButton';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 
 interface ButtonsProps {
   replaceTo?: string;
   title: string;
   onBoardingFinished?: () => void;
 }
+
+const {primaryButtonContained} = ecommerceButtonTheme;
 
 export const OnboardingOverviewAction: FunctionComponent<ButtonsProps> = ({
   replaceTo,
@@ -17,13 +20,13 @@ export const OnboardingOverviewAction: FunctionComponent<ButtonsProps> = ({
   const {replace} = useNavigation<StackNavigationProp<any>>();
   return (
     <ECButton
-      buttonMode="contained"
-      contentColor="#004666"
+      labelColor="#FFFFFF"
+      labelText={title}
+      buttonMode={primaryButtonContained}
       onPress={() => {
         onBoardingFinished ? onBoardingFinished() : '';
         replaceTo ? replace(replaceTo) : '';
-      }}>
-      {title}
-    </ECButton>
+      }}
+    />
   );
 };

@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: white,
   },
   contentWrapper: {
-    marginVertical: 15,
+    marginVertical: 8,
     flexDirection: 'row',
   },
   imageWrapper: {

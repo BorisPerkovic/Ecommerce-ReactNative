@@ -2,17 +2,19 @@ import React, {FunctionComponent} from 'react';
 import {useNavigation} from '@react-navigation/core';
 import {ECButton} from '../components/ECButton';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 
-const {loginButtonBackgroundColor, loginButtonTextColor} =
-  ECOMMERCE_THEME.colors;
+const {loginButtonTextColor} = ECOMMERCE_THEME.colors;
+
+const {loginButton} = ecommerceButtonTheme;
 
 export const LoginButton: FunctionComponent<{}> = () => {
   const {navigate} = useNavigation();
 
   return (
     <ECButton
-      buttonMode="contained"
-      contentColor={loginButtonBackgroundColor}
+      labelText="Sign In"
+      buttonMode={loginButton}
       labelColor={loginButtonTextColor}
       onPress={() => {
         navigate('WelcomeSignInScreen');

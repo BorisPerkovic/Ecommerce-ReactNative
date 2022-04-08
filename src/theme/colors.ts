@@ -25,4 +25,6 @@ export enum Colors {
 
   STAR_SELECTED = '#004666',
   STAR_UNSELECTED = '#D4D6D9',
+
+  BANNER_IMAGE_TEXT_BACKGROUND = '#004666',
 }

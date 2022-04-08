@@ -17,7 +17,7 @@ export const LoginButton: FunctionComponent<{}> = () => {
       buttonMode={loginButton}
       labelColor={loginButtonTextColor}
       onPress={() => {
-        navigate('WelcomeSignInScreen');
+        navigate('Welcome');
       }}>
       Sign In
     </ECButton>

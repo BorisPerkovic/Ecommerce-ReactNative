@@ -44,4 +44,5 @@ export interface ColorTheme {
   starSelectedColor: string;
   starUnselectedColor: string;
   addToCartButtonColors: string;
+  bannerImageBackgroundColor: string;
 }

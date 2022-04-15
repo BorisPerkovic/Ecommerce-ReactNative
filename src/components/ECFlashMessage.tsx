@@ -16,6 +16,7 @@ const {
   flashMessageSuccessBackgroundColors,
   flashMessageTextColor,
   flashMessageWarningBackgroundColors,
+  flashMessageWarningTextColor,
   white,
 } = ECOMMERCE_THEME.colors;
 
@@ -50,7 +51,7 @@ export const ECFlashMessage: FunctionComponent<
       <Ionicons
         name="warning-outline"
         size={32}
-        color={flashMessageTextColor}
+        color={flashMessageWarningTextColor}
       />
     ),
   };
@@ -62,6 +63,15 @@ export const ECFlashMessage: FunctionComponent<
     success: flashMessageSuccessBackgroundColors,
     danger: flashMessageDangerBackgroundColors,
     warning: flashMessageWarningBackgroundColors,
+  };
+
+  const flashMessageTextColors: FlashMessageColorModel = {
+    none: white,
+    default: white,
+    info: flashMessageTextColor,
+    success: flashMessageTextColor,
+    danger: flashMessageTextColor,
+    warning: flashMessageWarningTextColor,
   };
 
   return (
@@ -76,12 +86,15 @@ export const ECFlashMessage: FunctionComponent<
       {flashMessageIcons[type as MessageType]}
       <ECText
         fontSize={13}
-        textColor={flashMessageTextColor}
+        textColor={flashMessageTextColors[type as MessageType]}
         style={styles.message}>
         {message}
       </ECText>
       <TouchableOpacity onPress={() => hideMessage()} style={styles.dismiss}>
-        <ECText bold fontSize={15} textColor={flashMessageTextColor}>
+        <ECText
+          bold
+          fontSize={15}
+          textColor={flashMessageTextColors[type as MessageType]}>
           OK
         </ECText>
       </TouchableOpacity>

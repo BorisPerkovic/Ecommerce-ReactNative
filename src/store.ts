@@ -10,6 +10,7 @@ import cartReducer from './cart/cartSlice';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import favoritesReducer from './favorites/favoritesSlice';
+import signInReducer from './account/sign-in/signInSlice';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   onboarding: onboardingReducer,
   cart: cartReducer,
   favorites: favoritesReducer,
+  signIn: signInReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

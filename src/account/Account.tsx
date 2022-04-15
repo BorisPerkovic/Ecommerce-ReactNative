@@ -1,27 +1,29 @@
 import React, {FunctionComponent} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store';
 import {Greeting} from './Greeting';
 import {GuestAccount} from './GuestAccount';
-/*import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
- import { Greeting } from './Greeting';
-import { UserAccount } from './UserAccount';
-import { AccountFooter } from './AccountFooter';
-import { useAppTheme } from 'theme'; */
+import {LoginButton} from './LoginButton';
+import {LogoutButton} from './LogoutButton';
+import {UserAccount} from './UserAccount';
 
 export const Account: FunctionComponent<{}> = () => {
+  const isLoggedIn = useSelector((state: RootState) => state.signIn.isLoggedIn);
+
   return (
     <ScrollView
       bounces={false}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
       <Greeting />
-      {/* <View style={styles.accountItemsContainer}>
-          {loggedIn ? <UserAccount /> : <GuestAccount />}
-        </View> */}
-      {/* <AccountFooter /> */}
-      <GuestAccount />
+      <View style={styles.accountItemsContainer}>
+        {isLoggedIn ? <UserAccount /> : null}
+        <GuestAccount />
+      </View>
+      <View style={styles.buttonContainer}>
+        {isLoggedIn ? <LogoutButton /> : <LoginButton />}
+      </View>
     </ScrollView>
   );
 };
@@ -35,4 +37,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   accountItemsContainer: {flex: 1},
+  buttonContainer: {
+    paddingVertical: 40,
+  },
 });

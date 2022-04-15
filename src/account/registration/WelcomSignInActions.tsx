@@ -16,7 +16,7 @@ export const WelcomeSignInActions: FunctionComponent<{}> = () => {
           labelColor="#FFFFFF"
           labelText="Create Account"
           buttonMode={primaryButtonContained}
-          onPress={() => navigate('CreateAccountScreen')}
+          onPress={() => navigate('Registration')}
         />
       </View>
       <ECButton
@@ -24,7 +24,7 @@ export const WelcomeSignInActions: FunctionComponent<{}> = () => {
         labelText="Sign In With Email"
         buttonMode={primaryButtonOutlined}
         onPress={() => {
-          navigate('SignInScreen');
+          navigate('SignIn');
         }}
       />
     </>

@@ -8,7 +8,9 @@ type ButtonVariant =
   | 'tertiaryButtonContained'
   | 'tertiaryButtonOutlined'
   | 'loginButton'
-  | 'checkoutButton';
+  | 'logoutButton'
+  | 'checkoutButton'
+  | 'disabledButton';
 
 export type ButtonTheme = {
   [variant in ButtonVariant]: ButtonVariantStyle;

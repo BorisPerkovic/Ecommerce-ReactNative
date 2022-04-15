@@ -5,6 +5,7 @@ const {
   loginButtonBackgroundColor,
   addToCartButtonColors,
   checkoutButtonBackgroundColor,
+  disabledButtonBackgroundColor,
 } = ECOMMERCE_THEME.colors;
 
 export const ecommerceButtonTheme: ButtonTheme = {
@@ -59,6 +60,18 @@ export const ecommerceButtonTheme: ButtonTheme = {
     containerStyle: {
       borderRadius: 12,
       backgroundColor: loginButtonBackgroundColor,
+    },
+  },
+  logoutButton: {
+    containerStyle: {
+      borderRadius: 12,
+      backgroundColor: 'black',
+    },
+  },
+  disabledButton: {
+    containerStyle: {
+      borderRadius: 12,
+      backgroundColor: disabledButtonBackgroundColor,
     },
   },
 };

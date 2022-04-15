@@ -36,6 +36,7 @@ export interface ColorTheme {
   flashMessageWarningBackgroundColors: string;
   flashMessageInfoBackgroundColors: string;
   flashMessageTextColor: string;
+  flashMessageWarningTextColor: string;
   splashScreenStatusBarColor: string;
   favoriteHeartColor: string;
   favoriteHeartBorderColor: string;
@@ -45,4 +46,5 @@ export interface ColorTheme {
   starUnselectedColor: string;
   addToCartButtonColors: string;
   bannerImageBackgroundColor: string;
+  disabledButtonBackgroundColor: string;
 }

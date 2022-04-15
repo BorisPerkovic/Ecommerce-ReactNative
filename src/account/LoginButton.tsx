@@ -14,6 +14,7 @@ export const LoginButton: FunctionComponent<{}> = () => {
   return (
     <ECButton
       labelText="Sign In"
+      disabled={false}
       buttonMode={loginButton}
       labelColor={loginButtonTextColor}
       onPress={() => {

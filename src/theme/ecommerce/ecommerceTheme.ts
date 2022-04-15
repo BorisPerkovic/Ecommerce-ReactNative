@@ -40,6 +40,7 @@ export const ECOMMERCE_THEME: AppTheme = {
     flashMessageWarningBackgroundColors: Colors.WARNGING_COLOR,
     flashMessageInfoBackgroundColors: Colors.INFO_COLOR,
     flashMessageTextColor: Colors.WHITE,
+    flashMessageWarningTextColor: Colors.WARNING_TEXT_COLOR,
     splashScreenStatusBarColor: Colors.SPLASH_COLOR,
     favoriteHeartColor: Colors.PRIMARY_BACKGROUND,
     favoriteHeartBorderColor: Colors.PRIMARY_BACKGROUND,
@@ -49,5 +50,6 @@ export const ECOMMERCE_THEME: AppTheme = {
     starUnselectedColor: Colors.STAR_UNSELECTED,
     addToCartButtonColors: Colors.PRIMARY_BACKGROUND,
     bannerImageBackgroundColor: Colors.PRIMARY_BACKGROUND,
+    disabledButtonBackgroundColor: Colors.DISABLED_BUTTON,
   },
 };

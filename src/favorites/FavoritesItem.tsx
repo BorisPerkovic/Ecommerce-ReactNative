@@ -15,6 +15,7 @@ interface FavoritesItemProps {
   image: string;
   title: string;
   price: number;
+  ratings: number;
 }
 
 export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
@@ -22,6 +23,7 @@ export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
   image,
   title,
   price,
+  ratings,
 }) => {
   const {navigate} = useNavigation<SingleProductNavigationType>();
 
@@ -53,7 +55,7 @@ export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
               ${price}
             </ECText>
           </View>
-          <FavoritesRemove id={id} />
+          <FavoritesRemove id={id} ratings={ratings} />
         </View>
       </View>
     </View>

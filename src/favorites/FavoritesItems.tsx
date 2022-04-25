@@ -22,6 +22,7 @@ export const FavoritesItems = () => {
                 image={item.image}
                 price={parseFloat(item.price)}
                 title={item.title}
+                ratings={item.rating.rate}
               />
             );
           })}

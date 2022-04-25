@@ -1,9 +1,4 @@
-import {
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../../components/ECText';
 import {SingleProductDTO} from './singleProductsSlice';

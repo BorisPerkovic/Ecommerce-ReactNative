@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {User, users} from '../../../util/fakeusers';
 import {alertService} from '../../alertService';
@@ -57,6 +58,16 @@ export const signInSlice = createSlice({
       if (state.errorMessage === 200) {
         state.isLoggedIn = true;
         state.loading = 'succeeded';
+        const setStorage = async () => {
+          await AsyncStorage.setItem(
+            'signIn',
+            JSON.stringify({
+              isLoggedIn: state.isLoggedIn,
+              loggedUser: state.loggedUser,
+            }),
+          );
+        };
+        setStorage();
       } else {
         state.loading = 'failed';
         alertService.alert(
@@ -76,6 +87,10 @@ export const signInSlice = createSlice({
         email: '',
         password: '',
       };
+      const setStorage = async () => {
+        await AsyncStorage.removeItem('signIn');
+      };
+      setStorage();
     },
   },
 });

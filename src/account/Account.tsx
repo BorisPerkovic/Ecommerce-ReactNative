@@ -16,7 +16,7 @@ export const Account: FunctionComponent<{}> = () => {
       bounces={false}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
-      <Greeting />
+      <Greeting loggedIn={isLoggedIn} />
       <View style={styles.accountItemsContainer}>
         {isLoggedIn ? <UserAccount /> : null}
         <GuestAccount />

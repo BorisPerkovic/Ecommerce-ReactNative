@@ -22,6 +22,8 @@
     "axios": "^0.26.0",
     "js-flipper": "^0.136.0",
     "lodash": "^4.17.21",
+    "lottie-ios": "^3.2.3",
+    "lottie-react-native": "^5.0.1",
     "react": "17.0.2",
     "react-hook-form": "^7.29.0",
     "react-native": "0.67.2",

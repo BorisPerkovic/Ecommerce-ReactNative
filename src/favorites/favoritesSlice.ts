@@ -44,9 +44,17 @@ export const favortesSlice = createSlice({
       };
       setStorage();
     },
+    removeAllFromFavorites(state) {
+      state.favoritesItems = [];
+      const setStorage = async () => {
+        await AsyncStorage.removeItem('favoritesItems');
+      };
+      setStorage();
+    },
   },
 });
 
-export const {addToFavorites, removeFromFavorites} = favortesSlice.actions;
+export const {addToFavorites, removeFromFavorites, removeAllFromFavorites} =
+  favortesSlice.actions;
 
 export default favortesSlice.reducer;

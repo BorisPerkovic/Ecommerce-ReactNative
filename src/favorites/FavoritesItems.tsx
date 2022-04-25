@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {FavoritesNoItems} from './FavoritesNoItems';
 import {RootState} from '../store';
 import {FavoritesItem} from './FavoritesItem';
+import {FavoriteRemoveAllButton} from './FavoriteRemoveAllButton';
 
 export const FavoritesItems = () => {
   const favorites = useSelector(
@@ -13,20 +14,23 @@ export const FavoritesItems = () => {
   return (
     <>
       {favorites.length > 0 ? (
-        <View style={styles.container}>
-          {favorites.map(item => {
-            return (
-              <FavoritesItem
-                key={item.id}
-                id={item.id}
-                image={item.image}
-                price={parseFloat(item.price)}
-                title={item.title}
-                ratings={item.rating.rate}
-              />
-            );
-          })}
-        </View>
+        <>
+          <View style={styles.container}>
+            {favorites.map(item => {
+              return (
+                <FavoritesItem
+                  key={item.id}
+                  id={item.id}
+                  image={item.image}
+                  price={parseFloat(item.price)}
+                  title={item.title}
+                  ratings={item.rating.rate}
+                />
+              );
+            })}
+          </View>
+          <FavoriteRemoveAllButton />
+        </>
       ) : (
         <FavoritesNoItems />
       )}

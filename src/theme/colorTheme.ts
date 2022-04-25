@@ -1,6 +1,7 @@
 export interface ColorTheme {
   white: string;
   black: string;
+  statusBarBackgroundColor: string;
   iconRippleColor: string;
   sideMenuBackgroundColor: string;
   sideMenuTextColor: string;
@@ -15,13 +16,11 @@ export interface ColorTheme {
   cartTextColor: string;
   orderInfoTextColor: string;
   checkoutButtonBackgroundColor: string;
-  cartStatusBarColor: string;
   openDrawerIconColor: string;
   cartIconColor: string;
   searchBorderColor: string;
   categoriesBackgroundColor: string;
   categorisTextColor: string;
-  singleProductStatusBarColor: string;
   singleProductImageBackgroundColor: string;
   singleProductTextColor: string;
   singleProductButtonBakgroundColor: string;
@@ -30,7 +29,6 @@ export interface ColorTheme {
   singleProductSkeletonColor: string;
   productsSkeletonColor: string;
   productsImageBackgroundColor: string;
-  productsStatusBarColor: string;
   flashMessageDangerBackgroundColors: string;
   flashMessageSuccessBackgroundColors: string;
   flashMessageWarningBackgroundColors: string;

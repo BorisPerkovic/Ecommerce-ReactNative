@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Platform} from 'react-native';
 import {
   hideMessage,
   MessageComponentProps,
@@ -9,6 +9,8 @@ import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ECText} from './ECText';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
+import {toPairs} from 'lodash';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const {
   flashMessageDangerBackgroundColors,
@@ -28,6 +30,8 @@ export const ECFlashMessage: FunctionComponent<
   const {
     message: {message, type},
   } = props;
+
+  const {top} = useSafeAreaInsets();
 
   const flashMessageIcons: Record<MessageType, Element> = {
     none: () => null,
@@ -81,6 +85,7 @@ export const ECFlashMessage: FunctionComponent<
         {
           backgroundColor:
             type && flashMessageBackgroundColors[type as MessageType],
+          paddingTop: Platform.OS === 'android' ? 45 : top,
         },
       ]}>
       {flashMessageIcons[type as MessageType]}

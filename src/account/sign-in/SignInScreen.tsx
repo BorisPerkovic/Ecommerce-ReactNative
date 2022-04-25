@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {SignInHeader} from './SignInHeader';
@@ -9,7 +9,7 @@ const {white} = ECOMMERCE_THEME.colors;
 
 export const SignInScreen = () => {
   return (
-    <>
+    <ScrollView style={styles.wrapper}>
       <SignInHeader />
       <KeyboardAwareScrollView
         bounces={false}
@@ -19,11 +19,14 @@ export const SignInScreen = () => {
         contentContainerStyle={styles.container}>
         <SignInForm />
       </KeyboardAwareScrollView>
-    </>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: white,
+  },
   container: {
     paddingHorizontal: 16,
     paddingTop: 28,

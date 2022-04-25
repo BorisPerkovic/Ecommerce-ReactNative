@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, TextInput, TextInputProps} from 'react-native';
+import {StyleSheet, TextInput, TextInputProps, Platform} from 'react-native';
 import React, {forwardRef, useState} from 'react';
 import {ECText} from './ECText';
 
@@ -65,14 +65,16 @@ export const ECEmailInputField = forwardRef<TextInput, ECEmailInputFieldProps>(
 
 const styles = StyleSheet.create({
   input: {
-    height: 55,
+    height: Platform.OS === 'android' ? 55 : 60,
     borderRadius: 7,
     borderWidth: 1,
     color: '#004666',
     fontSize: 15,
     lineHeight: 24,
     paddingVertical: 15,
+    paddingTop: Platform.OS === 'android' ? 15 : 5,
     paddingHorizontal: 10,
+    alignItems: 'center',
   },
   label: {
     marginLeft: 5,

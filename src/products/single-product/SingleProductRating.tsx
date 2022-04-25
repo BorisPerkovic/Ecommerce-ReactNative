@@ -1,4 +1,9 @@
-import {StyleSheet, View} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../../components/ECText';
 import {SingleProductDTO} from './singleProductsSlice';
@@ -53,19 +58,21 @@ export const SingleProductRating: FunctionComponent<
       </View>
       <View style={styles.favoritesIcon}>
         {isFavorite >= 0 ? (
-          <Ionicons
-            name="heart"
-            size={38}
-            color={favoriteHeartColor}
-            onPress={() => handleRemoveFromFavorites(product.id)}
-          />
+          <TouchableOpacity
+            activeOpacity={0}
+            onPress={() => handleRemoveFromFavorites(product.id)}>
+            <Ionicons name="heart" size={38} color={favoriteHeartColor} />
+          </TouchableOpacity>
         ) : (
-          <Ionicons
-            name="heart-outline"
-            size={38}
-            color={favoriteHeartColor}
-            onPress={() => handleAddToFavorites(product)}
-          />
+          <TouchableOpacity
+            activeOpacity={0}
+            onPress={() => handleAddToFavorites(product)}>
+            <Ionicons
+              name="heart-outline"
+              size={38}
+              color={favoriteHeartColor}
+            />
+          </TouchableOpacity>
         )}
       </View>
     </View>

@@ -1,6 +1,7 @@
 import React from 'react';
-import {Dimensions, StatusBar} from 'react-native';
+import {Dimensions} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import {MyStatusBar} from '../../components/ECStatusBar';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 
 const {singleProductSkeletonColor, singleProductStatusBarColor} =
@@ -9,10 +10,6 @@ const {singleProductSkeletonColor, singleProductStatusBarColor} =
 export const SingleProductSkeleton = () => {
   return (
     <>
-      <StatusBar
-        backgroundColor={singleProductStatusBarColor}
-        barStyle={'dark-content'}
-      />
       <SkeletonPlaceholder backgroundColor={singleProductSkeletonColor}>
         <SkeletonPlaceholder.Item
           width="100%"

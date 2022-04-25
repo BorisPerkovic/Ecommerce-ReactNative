@@ -6,32 +6,37 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import {ECText} from '../../components/ECText';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {MyStatusBar} from '../../components/ECStatusBar';
 
 const {black, headerIconColor, iconRippleColor, white} = ECOMMERCE_THEME.colors;
 
 export const SignInHeader = () => {
   const {goBack} = useNavigation();
   return (
-    <View style={styles.headerContainer}>
-      <View style={{width: '25%'}}>
-        <View>
-          <TouchableRipple
-            borderless
-            style={styles.backIcon}
-            rippleColor={iconRippleColor}
-            accessibilityRole="button"
-            onPress={() => goBack()}>
-            <Entypo name="chevron-left" size={30} color={headerIconColor} />
-          </TouchableRipple>
+    <>
+      <MyStatusBar backColor={'#004666'} themeStyle={'light-content'} />
+      <View style={styles.headerContainer}>
+        <View style={{width: '25%'}}>
+          <View>
+            <TouchableRipple
+              borderless
+              style={styles.backIcon}
+              rippleColor={iconRippleColor}
+              accessibilityRole="button"
+              onPress={() => goBack()}>
+              <Entypo name="chevron-left" size={30} color={headerIconColor} />
+            </TouchableRipple>
+          </View>
         </View>
+        <View style={{width: '50%'}}>
+          <ECText textAlign="center" textColor={black} bold fontSize={25}>
+            Sign In
+          </ECText>
+        </View>
+        <View style={{width: '25%'}} />
       </View>
-      <View style={{width: '50%'}}>
-        <ECText textAlign="center" textColor={black} bold fontSize={25}>
-          Sign In
-        </ECText>
-      </View>
-      <View style={{width: '25%'}} />
-    </View>
+    </>
   );
 };
 

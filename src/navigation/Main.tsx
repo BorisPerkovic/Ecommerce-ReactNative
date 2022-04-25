@@ -5,12 +5,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Account} from '../account/Account';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {BottomTabs} from './BottomTabs';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Drawer = createDrawerNavigator();
 
 const {sideMenuBackgroundColor, sideMenuTextColor} = ECOMMERCE_THEME.colors;
 
 export const Main = () => {
+  const {top} = useSafeAreaInsets();
   return (
     <Drawer.Navigator
       initialRouteName="Home"
@@ -18,7 +20,7 @@ export const Main = () => {
         activeTintColor: sideMenuTextColor,
         inactiveTintColor: sideMenuTextColor,
       }}
-      drawerStyle={styles.drawerStyle}
+      drawerStyle={[styles.drawerStyle, {paddingTop: top}]}
       drawerContent={() => <Account />}>
       <Drawer.Screen
         options={{

@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     paddingHorizontal: 20,
+    paddingBottom: 20,
     marginVertical: 20,
     justifyContent: 'flex-end',
   },

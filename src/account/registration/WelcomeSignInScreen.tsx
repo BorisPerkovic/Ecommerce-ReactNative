@@ -4,12 +4,15 @@ import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {WelcomeSignInBanner} from './WelcomeSignInBanner';
 import WelcomeSignInLogo from './WelcomeSignInLogo';
 import {WelcomeSignInActions} from './WelcomSignInActions';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {MyStatusBar} from '../../components/ECStatusBar';
 
 const {white} = ECOMMERCE_THEME.colors;
 
 export const WelcomeSignInScreen = () => {
   return (
     <>
+      <MyStatusBar backColor={'#004666'} themeStyle={'light-content'} />
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <WelcomeSignInBanner />

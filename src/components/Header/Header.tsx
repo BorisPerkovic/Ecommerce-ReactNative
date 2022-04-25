@@ -3,6 +3,7 @@ import React from 'react';
 import {HeaderIconsShoopingBag} from './HeaderIcons';
 import {HeaderSearch} from './HeaderSearch';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const {white} = ECOMMERCE_THEME.colors;
 

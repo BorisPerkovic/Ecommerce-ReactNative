@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, TextInput, TextInputProps, View} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  View,
+} from 'react-native';
 import React, {forwardRef, useState} from 'react';
 import {ECText} from './ECText';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -76,13 +82,14 @@ export const ECPasswordInputField = forwardRef<
 
 const styles = StyleSheet.create({
   input: {
-    height: 55,
+    height: Platform.OS === 'android' ? 55 : 60,
     borderRadius: 7,
     borderWidth: 1,
     color: '#004666',
     fontSize: 15,
     lineHeight: 24,
     paddingVertical: 15,
+    paddingTop: Platform.OS === 'android' ? 15 : 5,
     paddingHorizontal: 10,
   },
   label: {

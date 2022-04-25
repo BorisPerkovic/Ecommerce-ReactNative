@@ -126,6 +126,7 @@ export const SignInForm: FunctionComponent = () => {
 
 const styles = StyleSheet.create({
   inputWrapper: {
+    marginTop: 20,
     marginBottom: 24,
   },
   buttonWrapper: {

@@ -10,6 +10,9 @@ import {Main} from './navigation/Main';
 import {SingleProductScreen} from './products/single-product/SingleProductScreen';
 import {WelcomeSignInScreen} from './account/registration/WelcomeSignInScreen';
 import {SignInScreen} from './account/sign-in/SignInScreen';
+import {OrderScreen} from './order/OrderScreen';
+import {MyOrders} from './my-orders/MyOrders';
+import {OrderSuccess} from './order/OrderSuccess';
 
 const Stack = createStackNavigator();
 
@@ -46,6 +49,9 @@ export const RootStack = () => {
           <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
           <Stack.Screen name="Welcome" component={WelcomeSignInScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="Order" component={OrderScreen} />
+          <Stack.Screen name="MyOrders" component={MyOrders} />
+          <Stack.Screen name="OrdersSucces" component={OrderSuccess} />
         </>
       )}
     </Stack.Navigator>

@@ -11,6 +11,8 @@ import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import favoritesReducer from './favorites/favoritesSlice';
 import signInReducer from './account/sign-in/signInSlice';
+import orderReducer from './order/ordersSlice';
+import myOrdersReducer from './my-orders/myOrdersSlice';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   favorites: favoritesReducer,
   signIn: signInReducer,
+  order: orderReducer,
+  myOrders: myOrdersReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -26,7 +30,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['cart', 'favorites', 'signIn'],
+  whitelist: ['cart', 'favorites', 'signIn', 'myOrders'],
 };
 
 const middleware = [

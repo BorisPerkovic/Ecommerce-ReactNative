@@ -4,6 +4,7 @@ import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {logout} from './sign-in/signInSlice';
 import {useDispatch} from 'react-redux';
+import {clearUserData} from '../order/ordersSlice';
 
 const {white} = ECOMMERCE_THEME.colors;
 
@@ -19,6 +20,7 @@ export const LogoutButton: FunctionComponent<{}> = () => {
       buttonMode={logoutButton}
       labelColor={white}
       onPress={() => {
+        dispatch(clearUserData());
         dispatch(logout());
       }}>
       Sign Out

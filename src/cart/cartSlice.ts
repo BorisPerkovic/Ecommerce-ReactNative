@@ -115,6 +115,18 @@ export const cartSlice = createSlice({
       state.cartTotalAmmount = total;
       state.cartTotalQuantity = quantity;
     },
+    clearCart(state) {
+      state.cartItems = [];
+      state.cartTotalQuantity = 0;
+      state.cartTotalAmmount = 0;
+      const setStorage = async () => {
+        await AsyncStorage.setItem(
+          'cartItems',
+          JSON.stringify(state.cartItems),
+        );
+      };
+      setStorage();
+    },
   },
 });
 
@@ -124,6 +136,7 @@ export const {
   decreaseCart,
   increaseCart,
   getTotals,
+  clearCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

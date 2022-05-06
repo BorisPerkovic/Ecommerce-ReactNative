@@ -1,10 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
+import {Alert, StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {ECButton} from '../components/ECButton';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store';
+import {useNavigation} from '@react-navigation/native';
 
 const {black, orderInfoTextColor, white} = ECOMMERCE_THEME.colors;
 
@@ -14,6 +17,8 @@ interface CartOrderInfoProps {
 }
 
 const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
+  const {navigate} = useNavigation();
+  const isLogged = useSelector((state: RootState) => state.signIn.isLoggedIn);
   return (
     <View style={styles.orderInfoContainer}>
       <ECText
@@ -69,7 +74,14 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
           labelText={`Checkout (${(cartTotal + 10).toFixed(2)})`}
           buttonMode={checkoutButton}
           labelColor={white}
-          onPress={() => console.log('clicked')}
+          onPress={() => {
+            isLogged
+              ? navigate('Order')
+              : Alert.alert(
+                  'Log In',
+                  'You need to be logged in to proceed order',
+                );
+          }}
         />
       </View>
     </View>

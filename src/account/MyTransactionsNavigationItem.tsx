@@ -16,7 +16,7 @@ export const MyTransactionsNavigationItem: FunctionComponent = () => {
         <Ionicons name="card-outline" size={25} color={sideMenuTextColor} />
       }
       onPress={() => {
-        navigation.navigate('DataProtection');
+        navigation.navigate('MyOrders');
       }}>
       <Text>My Transactions</Text>
     </AccountNavigationItem>

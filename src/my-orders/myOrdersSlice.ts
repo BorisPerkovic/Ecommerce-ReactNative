@@ -18,6 +18,7 @@ export const myOrdersSlice = createSlice({
         user: payload.user,
         date: payload.date,
         items: payload.orderItems,
+        totalPrice: payload.totalPrice,
       };
       state.myOrders.push(finalOrder);
       const setStorage = async () => {

@@ -61,10 +61,11 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
 
   return (
     <KeyboardAwareScrollView
+      showsVerticalScrollIndicator={false}
       enableOnAndroid
       enableAutomaticScroll={true}
-      scrollEnabled={true}
-      contentContainerStyle={styles.container}>
+      extraScrollHeight={10}
+      scrollEnabled={false}>
       <View style={styles.inputs}>
         <Controller
           control={control}
@@ -81,7 +82,7 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               value={value}
-              onSubmitEditing={() => Keyboard.dismiss()}
+              onSubmitEditing={() => countryInputRef.current?.focus()}
               errorMessage={errors.city?.message}
             />
           )}
@@ -105,7 +106,7 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               value={value}
-              onSubmitEditing={() => Keyboard.dismiss}
+              onSubmitEditing={() => zipCodeInputRef.current?.focus()}
               errorMessage={errors.country?.message}
             />
           )}
@@ -129,7 +130,7 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               value={value}
-              onSubmitEditing={() => Keyboard.dismiss()}
+              onSubmitEditing={() => addressInputRef.current?.focus()}
               errorMessage={errors.zipCode?.message}
             />
           )}
@@ -175,12 +176,12 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
   },
   inputs: {
     marginTop: 10,
   },
   button: {
-    paddingVertical: 25,
+    paddingTop: 15,
   },
 });

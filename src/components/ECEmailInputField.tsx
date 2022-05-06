@@ -52,6 +52,7 @@ export const ECEmailInputField = forwardRef<TextInput, ECEmailInputFieldProps>(
           ref={ref}
           onFocus={() => setIsFocused(true)}
           onEndEditing={() => setIsFocused(false)}
+          blurOnSubmit={false}
         />
         {errorMessage ? (
           <ECText fontSize={12} textColor="#EC3654">

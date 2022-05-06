@@ -9,6 +9,7 @@ import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {clearCart} from '../cart/cartSlice';
 import {useNavigation} from '@react-navigation/native';
 import {addToMyOrders} from '../my-orders/myOrdersSlice';
+import {format} from 'date-fns';
 
 interface OrderCartprops {
   position: number;
@@ -94,11 +95,15 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
           labelColor="#ffffff"
           labelText="Proceed"
           onPress={() => {
+            const date = new Date();
+            const timeStamp = format(date, 'dd.MM.yyyy HH:mm');
+
             dispatch(
               addToMyOrders({
                 user: userOrder.user,
-                date: '04.05.2022.',
+                date: timeStamp,
                 orderItems: orderItems,
+                totalPrice: totalPrice,
               }),
             );
             dispatch(clearCart());

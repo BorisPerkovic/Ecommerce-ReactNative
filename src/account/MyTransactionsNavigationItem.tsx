@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Text} from 'react-native';
 import {AccountNavigationItem} from './AccountNavigationItem';
@@ -16,6 +16,7 @@ export const MyTransactionsNavigationItem: FunctionComponent = () => {
         <Ionicons name="card-outline" size={25} color={sideMenuTextColor} />
       }
       onPress={() => {
+        navigation.dispatch(DrawerActions.closeDrawer());
         navigation.navigate('MyOrders');
       }}>
       <Text>My Transactions</Text>

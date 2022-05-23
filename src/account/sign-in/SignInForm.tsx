@@ -6,9 +6,9 @@ import {ECButton} from '../../components/ECButton';
 import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 import {ECEmailInputField} from '../../components/ECEmailInputField';
 import {ECPasswordInputField} from '../../components/ECPasswordInputField';
-import {login, setErrors} from './signInSlice';
 import {RootState} from '../../store';
 import {useNavigation} from '@react-navigation/native';
+import {signInThunk} from './signInSlice';
 
 type FormData = {
   email: string;
@@ -37,22 +37,15 @@ export const SignInForm: FunctionComponent = () => {
   const {navigate} = useNavigation();
   const isLoading = useSelector((state: RootState) => state.signIn.loading);
 
-  const onSubmitHandler = async (formData: FormData) => {
-    await dispatch(
-      login({
-        email: formData.email,
-        password: formData.password,
-      }),
-    );
-    setTimeout(() => {
-      dispatch(setErrors());
-    }, 2000);
+  const onSubmitHandler = (data: FormData) => {
+    dispatch(signInThunk(data));
   };
 
   useEffect(() => {
     if (isLoading === 'succeeded') {
       navigate('Home');
     }
+    return () => {};
   }, [isLoading, navigate]);
 
   return (
@@ -126,7 +119,6 @@ export const SignInForm: FunctionComponent = () => {
 
 const styles = StyleSheet.create({
   inputWrapper: {
-    marginTop: 20,
     marginBottom: 24,
   },
   buttonWrapper: {

@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createSlice} from '@reduxjs/toolkit';
 import {alertService} from '../alertService';
-import {SingleProductDTO} from '../products/single-product/singleProductsSlice';
+import {SingleProduct} from '../products/single-product/singleProductsSlice';
 
 export interface InitialState {
-  favoritesItems: SingleProductDTO[];
+  favoritesItems: SingleProduct[];
 }
 
 const initialState: InitialState = {

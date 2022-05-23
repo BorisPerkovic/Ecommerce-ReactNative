@@ -22,9 +22,9 @@ export const FavoritesItems = () => {
                   key={item.id}
                   id={item.id}
                   image={item.image}
-                  price={parseFloat(item.price)}
+                  price={item.price}
                   title={item.title}
-                  ratings={item.rating.rate}
+                  ratings={item.rate}
                 />
               );
             })}

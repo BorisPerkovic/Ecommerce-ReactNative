@@ -12,6 +12,7 @@ import {SingleProductDescription} from './SingleProductDescription';
 import {SingleProductRating} from './SingleProductRating';
 import {SingleProductButton} from './SingleProductButton';
 import SingleProductNoItem from './SingleProductNoItem';
+import config from '../../../config';
 
 const {
   singleProductImageBackgroundColor,
@@ -28,9 +29,7 @@ export const ProductItem = () => {
   const {navigate} = useNavigation();
 
   useEffect(() => {
-    dispatch(
-      singleProduct(`https://fakestoreapi.com/products/${params.productId}`),
-    );
+    dispatch(singleProduct(`${config.SINGLE_PRODUCT}${params.productId}`));
   }, [dispatch, params]);
 
   return (

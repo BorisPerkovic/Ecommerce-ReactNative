@@ -44,9 +44,7 @@ export const ProductsCard: FunctionComponent<ProductsProps> = ({
         </View>
       </TouchableRipple>
 
-      <Text numberOfLines={2} style={styles.title}>
-        {title}
-      </Text>
+      <Text style={styles.title}>{title}</Text>
       <Text>$ {price}</Text>
     </View>
   );
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '70%',
-    height: '70%',
+    height: '60%',
     resizeMode: 'contain',
   },
   title: {

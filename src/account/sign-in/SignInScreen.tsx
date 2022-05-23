@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet} from 'react-native';
+import {Platform, StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {SignInHeader} from './SignInHeader';
@@ -7,19 +7,24 @@ import {SignInForm} from './SignInForm';
 
 const {white} = ECOMMERCE_THEME.colors;
 
+const height = Dimensions.get('window').height;
+
 export const SignInScreen = () => {
   return (
-    <ScrollView style={styles.wrapper}>
+    <>
       <SignInHeader />
       <KeyboardAwareScrollView
         bounces={false}
         enableOnAndroid
         showsVerticalScrollIndicator={false}
+        extraHeight={Platform.OS === 'ios' ? 85 : 0}
+        extraScrollHeight={height < 600 ? 16 : 32}
+        keyboardOpeningTime={0}
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={styles.container}>
         <SignInForm />
       </KeyboardAwareScrollView>
-    </ScrollView>
+    </>
   );
 };
 
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingTop: 28,
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: white,
   },
 });

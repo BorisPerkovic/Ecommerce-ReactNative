@@ -1,0 +1,25 @@
+import {
+  LOG_IN,
+  BASE_URL,
+  TELEPHONES,
+  TELEVISIONS,
+  LAPTOPS,
+  AUDIO,
+  PHOTO_CAMERAS,
+  SINGLE_PRODUCT,
+  MY_ORDERS,
+  ORDER,
+} from '@env';
+
+export default {
+  LOG_IN,
+  BASE_URL,
+  TELEPHONES,
+  TELEVISIONS,
+  LAPTOPS,
+  AUDIO,
+  PHOTO_CAMERAS,
+  SINGLE_PRODUCT,
+  MY_ORDERS,
+  ORDER,
+};

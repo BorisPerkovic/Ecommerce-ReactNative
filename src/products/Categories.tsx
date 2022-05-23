@@ -2,29 +2,34 @@ import React, {FunctionComponent, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Chip} from 'react-native-paper';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import config from '../../config';
 
 const {categoriesBackgroundColor, categorisTextColor} = ECOMMERCE_THEME.colors;
 
 const CATEGORIES = [
   {
-    name: 'all Products',
-    url: 'https://fakestoreapi.com/products',
+    name: 'home',
+    url: config.BASE_URL,
   },
   {
-    name: 'electronics',
-    url: 'https://fakestoreapi.com/products/category/electronics',
+    name: 'telephones',
+    url: config.TELEPHONES,
   },
   {
-    name: 'jewelery',
-    url: 'https://fakestoreapi.com/products/category/jewelery',
+    name: 'televisions',
+    url: config.TELEVISIONS,
   },
   {
-    name: "men's clothing",
-    url: "https://fakestoreapi.com/products/category/men's clothing",
+    name: 'laptops',
+    url: config.LAPTOPS,
   },
   {
-    name: "women's clothing",
-    url: "https://fakestoreapi.com/products/category/women's clothing",
+    name: 'audio',
+    url: config.AUDIO,
+  },
+  {
+    name: 'photo-cameras',
+    url: config.PHOTO_CAMERAS,
   },
 ];
 interface CategoriesProps {
@@ -32,7 +37,7 @@ interface CategoriesProps {
 }
 
 export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
-  const [selectedCategory, setSelectedCategory] = useState('all Products');
+  const [selectedCategory, setSelectedCategory] = useState('home');
   return (
     <View style={styles.container}>
       <FlatList
@@ -51,7 +56,7 @@ export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
             {itemData.item.name.toLocaleUpperCase()}
           </Chip>
         )}
-        keyExtractor={item => item.url.toString()}
+        keyExtractor={item => item.name.toString()}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />

@@ -4,7 +4,6 @@ import {ECEmailInputField} from '../components/ECEmailInputField';
 import {Controller, useForm} from 'react-hook-form';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {useDispatch, useSelector} from 'react-redux';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ECButton} from '../components/ECButton';
 import {addUserLocationToOrder} from './ordersSlice';
 import {RootState} from '../store';
@@ -60,12 +59,7 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
   };
 
   return (
-    <KeyboardAwareScrollView
-      showsVerticalScrollIndicator={false}
-      enableOnAndroid
-      enableAutomaticScroll={true}
-      extraScrollHeight={10}
-      scrollEnabled={false}>
+    <>
       <View style={styles.inputs}>
         <Controller
           control={control}
@@ -170,16 +164,13 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
           onPress={handleSubmit(onSubmitHandler)}
         />
       </View>
-    </KeyboardAwareScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-  },
   inputs: {
-    marginTop: 10,
+    marginBottom: 10,
   },
   button: {
     paddingTop: 15,

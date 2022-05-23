@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, TextInput, TextInputProps, Platform} from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  Platform,
+  Keyboard,
+} from 'react-native';
 import React, {forwardRef, useState} from 'react';
 import {ECText} from './ECText';
 
@@ -47,7 +53,13 @@ export const ECEmailInputField = forwardRef<TextInput, ECEmailInputFieldProps>(
           secureTextEntry={false}
           value={value}
           onChangeText={onChangeText}
-          onSubmitEditing={onSubmitEditing}
+          onSubmitEditing={() => {
+            if (Platform.OS === 'ios') {
+              Keyboard.dismiss();
+            } else {
+              onSubmitEditing();
+            }
+          }}
           onBlur={onBlur}
           ref={ref}
           onFocus={() => setIsFocused(true)}

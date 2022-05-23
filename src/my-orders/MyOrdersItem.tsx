@@ -2,56 +2,60 @@
 import {StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
+import {format} from 'date-fns';
 
-interface ItemsProps {
-  cartQuantity: string;
-  title: string;
-  description: string;
-  id: number;
-  image: string;
-  category: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
+interface MyOrderItemProps {
+  orderNumber: number;
+  created: string;
+  items: string;
   price: number;
 }
 
-interface MyOrderItemProps {
-  date: string;
-  items: ItemsProps[];
-  totalPrice: number;
-}
-
 export const MyOrdersItem: FunctionComponent<MyOrderItemProps> = ({
-  date,
+  orderNumber,
+  created,
   items,
-  totalPrice,
+  price,
 }) => {
+  const orderItems = JSON.parse(items);
+
+  const date = created.split(' ').join('T');
+  const timestamp = format(Date.parse(date), 'dd.MM.yyyy HH:mm');
+
   return (
     <View style={styles.container}>
       <ECText fontSize={17} textColor={'#004666'}>
-        {date}
+        {timestamp}
       </ECText>
-      {items.map(item => {
-        return (
-          <View key={item.title}>
-            <ECText fontSize={15} textColor={'#004666'} style={styles.title}>
-              {item.title}
-            </ECText>
-            <View style={styles.quantity}>
-              <ECText textColor={'#004666'} fontSize={15}>
-                Quantity: {item.cartQuantity}
+      <ECText fontSize={17} textColor={'#004666'}>
+        Order number: #{orderNumber}
+      </ECText>
+      {orderItems.map(
+        (item: {
+          title: React.Key | null | undefined;
+          cartQuantity: string;
+          price: number;
+        }) => {
+          return (
+            <View key={item.title}>
+              <ECText fontSize={15} textColor={'#004666'} style={styles.title}>
+                {item.title}
               </ECText>
-              <ECText textColor={'#004666'} fontSize={15}>
-                Price: {(parseInt(item.cartQuantity) * item.price).toString()}$
-              </ECText>
+              <View style={styles.quantity}>
+                <ECText textColor={'#004666'} fontSize={15}>
+                  Quantity: {item.cartQuantity}
+                </ECText>
+                <ECText textColor={'#004666'} fontSize={15}>
+                  Price: {(parseInt(item.cartQuantity) * item.price).toString()}
+                  $
+                </ECText>
+              </View>
             </View>
-          </View>
-        );
-      })}
+          );
+        },
+      )}
       <ECText fontSize={17} textColor={'#004666'} style={styles.price}>
-        Total Price: {totalPrice}$
+        Total Price: {price}$
       </ECText>
     </View>
   );

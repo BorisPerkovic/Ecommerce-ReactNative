@@ -1,4 +1,7 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import axios from 'axios';
+import {alertService} from '../alertService';
+import config from '../../config';
 
 export interface InitialState {
   user: {
@@ -12,6 +15,7 @@ export interface InitialState {
     zipCode: string;
     address: string;
   };
+  loading: 'idle' | 'pending' | 'succeeded' | 'failed';
 }
 
 const initialState: InitialState = {
@@ -26,7 +30,32 @@ const initialState: InitialState = {
     zipCode: '',
     address: '',
   },
+  loading: 'idle',
 };
+
+export const createOrderThunk = createAsyncThunk(
+  'order/createOrderThunk',
+  async (orderItems: {
+    users_id: number;
+    country: string;
+    city: string;
+    address: string;
+    zip: string;
+    items: {};
+    price: number;
+  }) => {
+    const response = await axios.post(config.ORDER, {
+      users_id: orderItems.users_id,
+      country: orderItems.country,
+      city: orderItems.city,
+      address: orderItems.address,
+      zip: orderItems.zip,
+      items: orderItems.items,
+      price: orderItems.price,
+    });
+    return response.data;
+  },
+);
 
 export const orderSlice = createSlice({
   name: 'order',
@@ -37,6 +66,7 @@ export const orderSlice = createSlice({
     },
     addUserLocationToOrder(state, {payload}) {
       state.location = payload;
+      state.loading = 'idle';
     },
     clearUserData(state) {
       state.location = {
@@ -46,6 +76,22 @@ export const orderSlice = createSlice({
         address: '',
       };
     },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(createOrderThunk.pending, state => {
+        state.loading = 'pending';
+      })
+      .addCase(createOrderThunk.fulfilled, state => {
+        state.loading = 'succeeded';
+      })
+      .addCase(createOrderThunk.rejected, state => {
+        state.loading = 'failed';
+        alertService.alert(
+          'warning',
+          'Something went wrong. Please, try again later!',
+        );
+      });
   },
 });
 

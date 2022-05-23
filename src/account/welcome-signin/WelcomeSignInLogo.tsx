@@ -1,7 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import LottieView from 'lottie-react-native';
-import WelcomeAnimation from './welcomeAnimation.json';
+import WelcomeAnimation from '../welcome-signin/welcomeAnimation.json';
 
 const WelcomeSignInLogo = () => {
   return (

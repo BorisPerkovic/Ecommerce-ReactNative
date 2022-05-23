@@ -1,20 +1,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {User, users} from '../../../util/fakeusers';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
+import {User} from '../../../util/fakeusers';
 import {alertService} from '../../alertService';
+import config from '../../../config';
 
 interface SignInUser {
-  users: User[];
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
-  errorMessage?: number;
+  errorMessage?: string;
   isLoggedIn: boolean;
   loggedUser: User;
 }
 
 const initialState: SignInUser = {
-  users: users,
   loading: 'idle',
-  errorMessage: 0,
   isLoggedIn: false,
   loggedUser: {
     id: '',
@@ -25,60 +24,23 @@ const initialState: SignInUser = {
   },
 };
 
-interface Credentials {
-  email: string;
-  password: string;
-}
+export const signInThunk = createAsyncThunk(
+  'signIn/signInthunk',
+  async (data: {email: string; password: string}) => {
+    const response = await axios.post(config.LOG_IN, {
+      email: data.email,
+      password: data.password,
+    });
+    return response.data;
+  },
+);
 
 export const signInSlice = createSlice({
   name: 'signIn',
   initialState,
   reducers: {
-    login(state, action: PayloadAction<Credentials>) {
-      state.loading = 'pending';
-      const checkUsers = state.users.filter(
-        user =>
-          user.email === action.payload.email &&
-          user.password === action.payload.password,
-      );
-      if (checkUsers.length > 0) {
-        state.loggedUser = {
-          id: checkUsers[0].id,
-          firstName: checkUsers[0].firstName,
-          lastName: checkUsers[0].lastName,
-          email: checkUsers[0].email,
-          password: checkUsers[0].password,
-        };
-        state.errorMessage = 200;
-      } else {
-        state.errorMessage = 401;
-      }
-    },
-    setErrors(state) {
-      if (state.errorMessage === 200) {
-        state.isLoggedIn = true;
-        state.loading = 'succeeded';
-        const setStorage = async () => {
-          await AsyncStorage.setItem(
-            'signIn',
-            JSON.stringify({
-              isLoggedIn: state.isLoggedIn,
-              loggedUser: state.loggedUser,
-            }),
-          );
-        };
-        setStorage();
-      } else {
-        state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          "We couldn't log you in\nCheck your email or password and try again",
-        );
-      }
-    },
     logout(state) {
       state.loading = 'idle';
-      state.errorMessage = 0;
       state.isLoggedIn = false;
       state.loggedUser = {
         id: '',
@@ -93,8 +55,47 @@ export const signInSlice = createSlice({
       setStorage();
     },
   },
+  extraReducers: builder => {
+    builder
+      .addCase(signInThunk.pending, state => {
+        state.loading = 'pending';
+      })
+      .addCase(signInThunk.fulfilled, (state, action) => {
+        if (action.payload === 'E-mail or password are inccorect!') {
+          alertService.alert('warning', action.payload);
+          state.loading = 'idle';
+        } else {
+          state.loggedUser = {
+            id: action.payload.users_id,
+            firstName: action.payload.users_name,
+            lastName: action.payload.users_lastname,
+            email: action.payload.users_email,
+            password: action.payload.users_password,
+          };
+          state.isLoggedIn = true;
+          const setStorage = async () => {
+            await AsyncStorage.setItem(
+              'signIn',
+              JSON.stringify({
+                isLoggedIn: state.isLoggedIn,
+                loggedUser: state.loggedUser,
+              }),
+            );
+          };
+          setStorage();
+          state.loading = 'succeeded';
+        }
+      })
+      .addCase(signInThunk.rejected, state => {
+        state.loading = 'failed';
+        alertService.alert(
+          'danger',
+          'Something went wrong. Please try again later!',
+        );
+      });
+  },
 });
 
-export const {login, setErrors, logout} = signInSlice.actions;
+export const {logout} = signInSlice.actions;
 
 export default signInSlice.reducer;

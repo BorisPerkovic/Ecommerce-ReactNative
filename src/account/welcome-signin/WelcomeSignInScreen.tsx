@@ -4,7 +4,6 @@ import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {WelcomeSignInBanner} from './WelcomeSignInBanner';
 import WelcomeSignInLogo from './WelcomeSignInLogo';
 import {WelcomeSignInActions} from './WelcomSignInActions';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {MyStatusBar} from '../../components/ECStatusBar';
 
 const {white} = ECOMMERCE_THEME.colors;

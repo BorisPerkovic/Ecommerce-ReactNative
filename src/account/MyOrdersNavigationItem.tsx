@@ -7,7 +7,7 @@ import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 
 const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
 
-export const MyTransactionsNavigationItem: FunctionComponent = () => {
+export const MyOrdersNavigationItem: FunctionComponent = () => {
   const navigation = useNavigation();
 
   return (
@@ -19,7 +19,7 @@ export const MyTransactionsNavigationItem: FunctionComponent = () => {
         navigation.dispatch(DrawerActions.closeDrawer());
         navigation.navigate('MyOrders');
       }}>
-      <Text>My Transactions</Text>
+      <Text>My Orders</Text>
     </AccountNavigationItem>
   );
 };

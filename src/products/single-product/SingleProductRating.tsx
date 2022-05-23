@@ -1,7 +1,7 @@
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../../components/ECText';
-import {SingleProductDTO} from './singleProductsSlice';
+import {SingleProduct} from './singleProductsSlice';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store';
@@ -13,7 +13,7 @@ import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {StaticRatings} from '../../components/ratings/StaticRatings';
 
 interface SingleProductRatingProps {
-  product: SingleProductDTO;
+  product: SingleProduct;
 }
 
 const {singleProductTextColor, favoriteHeartBorderColor, favoriteHeartColor} =
@@ -29,9 +29,9 @@ export const SingleProductRating: FunctionComponent<
   );
 
   const isFavorite = favorites.findIndex(item => item.id === product.id);
-  const ratingNumber = product.rating.rate.toFixed(1);
+  const ratingNumber = product.rate.toFixed(1);
 
-  const handleAddToFavorites = (item: SingleProductDTO) => {
+  const handleAddToFavorites = (item: SingleProduct) => {
     dispatch(addToFavorites(item));
   };
 

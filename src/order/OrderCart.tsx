@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {StyleSheet, View, ScrollView} from 'react-native';
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {ECText} from '../components/ECText';
@@ -8,8 +9,7 @@ import {ECButton} from '../components/ECButton';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {clearCart} from '../cart/cartSlice';
 import {useNavigation} from '@react-navigation/native';
-import {addToMyOrders} from '../my-orders/myOrdersSlice';
-import {format} from 'date-fns';
+import {createOrderThunk} from './ordersSlice';
 
 interface OrderCartprops {
   position: number;
@@ -23,12 +23,21 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
   setPosition,
 }) => {
   const userOrder = useSelector((state: RootState) => state.order);
+  const loggedUser = useSelector((state: RootState) => state.signIn.loggedUser);
+  const isLoading = useSelector((state: RootState) => state.order.loading);
   const orderItems = useSelector((state: RootState) => state.cart.cartItems);
   const totalPrice = useSelector(
     (state: RootState) => state.cart.cartTotalAmmount,
   );
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
+
+  useEffect(() => {
+    if (isLoading === 'succeeded') {
+      dispatch(clearCart());
+      navigate('OrdersSucces');
+    }
+  }, [isLoading, dispatch]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -68,7 +77,7 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
                 Quantity: {item.cartQuantity}
               </ECText>
               <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
-                Price: {(parseFloat(item.price) * item.cartQuantity).toFixed(2)}
+                Price: {(item.price * item.cartQuantity).toFixed(2)}
               </ECText>
             </View>
           </View>
@@ -94,20 +103,33 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
           buttonMode={primaryButtonContained}
           labelColor="#ffffff"
           labelText="Proceed"
+          isLoading={isLoading === 'pending'}
           onPress={() => {
-            const date = new Date();
-            const timeStamp = format(date, 'dd.MM.yyyy HH:mm');
+            const itemsToOrder: {
+              title: string;
+              price: number;
+              cartQuantity: number;
+            }[] = [];
+            orderItems.map(item => {
+              const newItems = {
+                title: item.title,
+                price: item.price,
+                cartQuantity: item.cartQuantity,
+              };
+              itemsToOrder.push(newItems);
+            });
 
             dispatch(
-              addToMyOrders({
-                user: userOrder.user,
-                date: timeStamp,
-                orderItems: orderItems,
-                totalPrice: totalPrice,
+              createOrderThunk({
+                users_id: +loggedUser.id,
+                country: userOrder.location.country,
+                city: userOrder.location.city,
+                zip: userOrder.location.zipCode,
+                address: userOrder.location.address,
+                items: itemsToOrder,
+                price: totalPrice,
               }),
             );
-            dispatch(clearCart());
-            navigate('OrdersSucces');
           }}
         />
       </View>

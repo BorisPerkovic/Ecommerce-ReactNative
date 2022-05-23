@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createSlice} from '@reduxjs/toolkit';
 import {alertService} from '../alertService';
-import {SingleProductDTO} from '../products/single-product/singleProductsSlice';
+import {SingleProduct} from '../products/single-product/singleProductsSlice';
 
 export interface InitialState {
-  cartItems: SingleProductDTO[];
+  cartItems: SingleProduct[];
   cartTotalQuantity: number;
   cartTotalAmmount: number;
 }
@@ -99,7 +99,7 @@ export const cartSlice = createSlice({
       let {total, quantity} = state.cartItems.reduce(
         (cartTotal, cartItem) => {
           const {price, cartQuantity} = cartItem;
-          const itemTotal = parseFloat(price) * cartQuantity;
+          const itemTotal = price * cartQuantity;
 
           cartTotal.total += itemTotal;
           cartTotal.quantity += cartQuantity;

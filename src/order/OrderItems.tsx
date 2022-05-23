@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {OrderCart} from './OrderCart';
 import {OrderLocation} from './OrderLocation';
 import {OrderStepper} from './OrderStepper';
@@ -13,7 +14,18 @@ export const OrderItems = () => {
       case 0:
         return <OrderUserInfo position={position} setPosition={setPosition} />;
       case 1:
-        return <OrderLocation position={position} setPosition={setPosition} />;
+        return (
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            extraHeight={Platform.OS === 'ios' ? 85 : 0}
+            extraScrollHeight={600 ? 16 : 32}
+            keyboardOpeningTime={0}
+            keyboardShouldPersistTaps="always"
+            contentContainerStyle={styles.containerContent}>
+            <OrderLocation position={position} setPosition={setPosition} />
+          </KeyboardAwareScrollView>
+        );
       case 2:
         return <OrderCart position={position} setPosition={setPosition} />;
     }
@@ -29,10 +41,10 @@ export const OrderItems = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
+    paddingHorizontal: 10,
   },
   containerContent: {
-    flex: 1,
-    padding: 20,
+    flexGrow: 1,
   },
 });

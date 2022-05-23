@@ -6,11 +6,12 @@ import {SkeletonMapped} from './ProductsSkeleton';
 import {Categories} from './Categories';
 import {getProducts} from './productsSlice';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import config from '../../config';
 
 const {black} = ECOMMERCE_THEME.colors;
 
 export const ProductsItems = () => {
-  const [url, setUrl] = useState('https://fakestoreapi.com/products');
+  const [url, setUrl] = useState(config.BASE_URL);
 
   const productsStatus = useSelector((state: RootStateOrAny) => state.products);
 
@@ -34,13 +35,13 @@ export const ProductsItems = () => {
             data={productsStatus.products}
             renderItem={itemData => (
               <ProductsCard
-                productId={+itemData.item.id}
-                image={itemData.item.image}
-                price={itemData.item.price}
-                title={itemData.item.title}
+                productId={+itemData.item.products_id}
+                image={itemData.item.products_image}
+                price={itemData.item.products_price}
+                title={itemData.item.products_title}
               />
             )}
-            keyExtractor={item => item.id.toString()}
+            keyExtractor={item => item.products_id.toString()}
             maxToRenderPerBatch={30}
             numColumns={2}
           />

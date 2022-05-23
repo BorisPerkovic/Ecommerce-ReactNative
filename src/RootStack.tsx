@@ -8,7 +8,7 @@ import {setIsOnboardingSeen} from './onboarding/onboardingSlice';
 import {Loading} from './components/Loading';
 import {Main} from './navigation/Main';
 import {SingleProductScreen} from './products/single-product/SingleProductScreen';
-import {WelcomeSignInScreen} from './account/registration/WelcomeSignInScreen';
+import {WelcomeSignInScreen} from './account/welcome-signin/WelcomeSignInScreen';
 import {SignInScreen} from './account/sign-in/SignInScreen';
 import {OrderScreen} from './order/OrderScreen';
 import {MyOrders} from './my-orders/MyOrders';

@@ -4,7 +4,12 @@ import React, {
   useCallback,
   useState,
 } from 'react';
-import {TextInput, TextInputProps, TouchableOpacity} from 'react-native';
+import {
+  ReturnKeyTypeOptions,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ECTextField} from './ECTextField';
 
@@ -13,6 +18,8 @@ interface PasswordInputFieldProps extends TextInputProps {
   placeholder: string;
   error?: string;
   info?: boolean;
+  returnKeyLabel?: ReturnKeyTypeOptions;
+  returnKeyType?: ReturnKeyTypeOptions;
   onChangeText: (value: string) => void;
   onSubmitEditing: () => void;
   onBlur: () => void;
@@ -32,6 +39,8 @@ export const ECPasswordInputField = forwardRef<
     label,
     placeholder,
     error,
+    returnKeyLabel,
+    returnKeyType,
     onChangeText,
     onSubmitEditing,
     onBlur,
@@ -43,6 +52,8 @@ export const ECPasswordInputField = forwardRef<
       primaryLabel={label}
       onChangeText={onChangeText}
       secureTextEntry={isPasswordHidden}
+      returnKeyLabel={returnKeyLabel}
+      returnKeyType={returnKeyType}
       ActionComponent={
         <PasswordAction
           isPasswordHidden={isPasswordHidden}

@@ -86,6 +86,8 @@ export const RegistrationUserInfo: FunctionComponent<
               <ECEmailInputField
                 label="First Name"
                 placeholder="Enter First Name"
+                returnKeyLabel="next"
+                returnKeyType="next"
                 onChangeText={e => onChange(e)}
                 onBlur={onBlur}
                 onSubmitEditing={() => lastnameRef.current?.focus()}
@@ -106,6 +108,8 @@ export const RegistrationUserInfo: FunctionComponent<
                 ref={lastnameRef}
                 label="Last Name"
                 placeholder="Enter Last Name"
+                returnKeyLabel="next"
+                returnKeyType="next"
                 onChangeText={e => onChange(e)}
                 onBlur={onBlur}
                 onSubmitEditing={() => emailRef.current?.focus()}
@@ -126,6 +130,8 @@ export const RegistrationUserInfo: FunctionComponent<
                 ref={emailRef}
                 label="Email Address"
                 placeholder="Enter Email Address"
+                returnKeyLabel="done"
+                returnKeyType="done"
                 onChangeText={e => onChange(e)}
                 onBlur={onBlur}
                 onSubmitEditing={() => Keyboard.dismiss()}

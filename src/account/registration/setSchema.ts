@@ -37,5 +37,18 @@ export const emailSchema = {
     ),
 };
 
+export const signInEmailSchema = {
+  email: yup
+    .string()
+    .trim()
+    .required('email is required')
+    .matches(
+      /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      'email must be in valid format',
+    ),
+  password: yup.string().trim().required('password is required'),
+};
+
 export const setPasswordSchema = yup.object().shape(passwordSchema);
 export const setEmailSchema = yup.object().shape(emailSchema);
+export const setSignInEmailSchema = yup.object().shape(signInEmailSchema);

@@ -16,12 +16,13 @@ export const OrderItems = () => {
       case 1:
         return (
           <KeyboardAwareScrollView
+            enableOnAndroid
             showsVerticalScrollIndicator={false}
             bounces={false}
             extraHeight={Platform.OS === 'ios' ? 85 : 0}
-            extraScrollHeight={600 ? 16 : 32}
+            extraScrollHeight={32}
             keyboardOpeningTime={0}
-            keyboardShouldPersistTaps="always"
+            keyboardShouldPersistTaps="handled"
             contentContainerStyle={styles.containerContent}>
             <OrderLocation position={position} setPosition={setPosition} />
           </KeyboardAwareScrollView>

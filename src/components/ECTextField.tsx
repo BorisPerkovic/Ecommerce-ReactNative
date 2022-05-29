@@ -7,6 +7,7 @@ import {
   TextInputProps,
   TouchableOpacity,
   Alert,
+  ReturnKeyTypeOptions,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ECText} from './ECText';
@@ -14,6 +15,8 @@ import {ECText} from './ECText';
 interface ECTextFieldProps extends TextInputProps {
   ActionComponent?: React.ReactNode;
   primaryLabel: string;
+  returnKeyType?: ReturnKeyTypeOptions;
+  returnKeyLabel?: ReturnKeyTypeOptions;
   isRequired?: boolean;
   info?: boolean;
   primaryPlaceholder: string;

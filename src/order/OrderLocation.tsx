@@ -1,4 +1,4 @@
-import {Keyboard, StyleSheet, TextInput, View} from 'react-native';
+import {Keyboard, Platform, StyleSheet, TextInput, View} from 'react-native';
 import React, {FunctionComponent, useRef} from 'react';
 import {ECEmailInputField} from '../components/ECEmailInputField';
 import {Controller, useForm} from 'react-hook-form';
@@ -74,10 +74,12 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
               label="City"
               placeholder="Enter City"
               onChangeText={e => onChange(e)}
+              returnKeyLabel="next"
+              returnKeyType="next"
               onBlur={onBlur}
               value={value}
               onSubmitEditing={() => countryInputRef.current?.focus()}
-              errorMessage={errors.city?.message}
+              error={errors.city?.message}
             />
           )}
           name="city"
@@ -97,11 +99,13 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
               ref={countryInputRef}
               label="Country"
               placeholder="Enter Country"
+              returnKeyLabel="next"
+              returnKeyType="next"
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               value={value}
               onSubmitEditing={() => zipCodeInputRef.current?.focus()}
-              errorMessage={errors.country?.message}
+              error={errors.country?.message}
             />
           )}
           name="country"
@@ -121,11 +125,19 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
               ref={zipCodeInputRef}
               label="Zip Code"
               placeholder="Enter Zip Code"
+              returnKeyLabel="default"
+              returnKeyType="default"
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               value={value}
-              onSubmitEditing={() => addressInputRef.current?.focus()}
-              errorMessage={errors.zipCode?.message}
+              onSubmitEditing={() => {
+                if (Platform.OS === 'android') {
+                  addressInputRef.current?.focus();
+                } else {
+                  Keyboard.dismiss();
+                }
+              }}
+              error={errors.zipCode?.message}
             />
           )}
           name="zipCode"
@@ -144,11 +156,13 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
             <ECEmailInputField
               label="Address"
               placeholder="Enter Address"
+              returnKeyLabel="done"
+              returnKeyType="done"
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               value={value}
               onSubmitEditing={() => Keyboard.dismiss()}
-              errorMessage={errors.address?.message}
+              error={errors.address?.message}
               ref={addressInputRef}
             />
           )}
@@ -169,8 +183,11 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+  },
   inputs: {
-    marginBottom: 10,
+    marginBottom: 20,
   },
   button: {
     paddingTop: 15,

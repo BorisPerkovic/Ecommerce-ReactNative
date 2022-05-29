@@ -9,6 +9,8 @@ import {ECPasswordInputField} from '../../components/ECPasswordInputField';
 import {RootState} from '../../store';
 import {useNavigation} from '@react-navigation/native';
 import {signInThunk} from './signInSlice';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {setSignInEmailSchema} from '../registration/setSchema';
 
 type FormData = {
   email: string;
@@ -16,8 +18,6 @@ type FormData = {
 };
 
 const {primaryButtonContained, disabledButton} = ecommerceButtonTheme;
-const emailRegex =
-  /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const SignInForm: FunctionComponent = () => {
   const {
@@ -25,11 +25,8 @@ export const SignInForm: FunctionComponent = () => {
     control,
     formState: {isValid, errors},
   } = useForm<FormData>({
+    resolver: yupResolver(setSignInEmailSchema),
     mode: 'onTouched',
-    defaultValues: {
-      email: '',
-      password: '',
-    },
   });
 
   const passwordInputRef = useRef<TextInput>(null);
@@ -54,24 +51,19 @@ export const SignInForm: FunctionComponent = () => {
         <Controller
           control={control}
           rules={{
-            required: {
-              value: true,
-              message: 'Email address is required',
-            },
-            pattern: {
-              value: emailRegex,
-              message: 'Email must be in valid format',
-            },
+            required: true,
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECEmailInputField
               label="Email"
               placeholder="Enter Email"
+              returnKeyLabel="next"
+              returnKeyType="next"
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               value={value}
               onSubmitEditing={() => passwordInputRef.current?.focus()}
-              errorMessage={errors.email?.message}
+              error={errors.email?.message}
             />
           )}
           name="email"
@@ -81,19 +73,18 @@ export const SignInForm: FunctionComponent = () => {
         <Controller
           control={control}
           rules={{
-            required: {
-              value: true,
-              message: 'Password is required',
-            },
+            required: true,
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECPasswordInputField
               label="Password"
               placeholder="Enter Password"
+              returnKeyLabel="done"
+              returnKeyType="done"
               onChangeText={e => onChange(e)}
               value={value}
               ref={passwordInputRef}
-              errorMessage={errors.password?.message}
+              error={errors.password?.message}
               onBlur={onBlur}
               onSubmitEditing={() => {
                 Keyboard.dismiss();

@@ -77,6 +77,8 @@ export const RegistrationUserPassword: FunctionComponent<
             <ECPasswordInputField
               label="Password"
               placeholder="Enter Password"
+              returnKeyLabel="next"
+              returnKeyType="next"
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               info={true}

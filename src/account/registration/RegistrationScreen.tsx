@@ -1,14 +1,16 @@
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
 import {RegistrationHeader} from './RegistrationHeader';
 import {RegistrationItems} from './RegistrationItems';
 
 const RegistrationScreen = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}>
       <RegistrationHeader />
       <RegistrationItems />
-    </View>
+    </ScrollView>
   );
 };
 

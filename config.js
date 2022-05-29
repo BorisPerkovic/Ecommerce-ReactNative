@@ -11,6 +11,7 @@ import {
   SINGLE_PRODUCT,
   MY_ORDERS,
   ORDER,
+  SEARCH,
 } from '@env';
 
 export default {
@@ -26,4 +27,5 @@ export default {
   SINGLE_PRODUCT,
   MY_ORDERS,
   ORDER,
+  SEARCH,
 };

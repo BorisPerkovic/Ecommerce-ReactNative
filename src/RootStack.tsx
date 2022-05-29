@@ -14,6 +14,7 @@ import {OrderScreen} from './order/OrderScreen';
 import {MyOrders} from './my-orders/MyOrders';
 import {OrderSuccess} from './order/OrderSuccess';
 import RegistrationScreen from './account/registration/RegistrationScreen';
+import SearchScreen from './search/SearchScreen';
 
 const Stack = createStackNavigator();
 
@@ -54,6 +55,7 @@ export const RootStack = () => {
           <Stack.Screen name="Order" component={OrderScreen} />
           <Stack.Screen name="MyOrders" component={MyOrders} />
           <Stack.Screen name="OrdersSucces" component={OrderSuccess} />
+          <Stack.Screen name="Search" component={SearchScreen} />
         </>
       )}
     </Stack.Navigator>

@@ -14,7 +14,7 @@ import {ECText} from './ECText';
 
 interface ECTextFieldProps extends TextInputProps {
   ActionComponent?: React.ReactNode;
-  primaryLabel: string;
+  primaryLabel?: string;
   returnKeyType?: ReturnKeyTypeOptions;
   returnKeyLabel?: ReturnKeyTypeOptions;
   isRequired?: boolean;

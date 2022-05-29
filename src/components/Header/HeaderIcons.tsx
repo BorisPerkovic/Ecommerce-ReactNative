@@ -1,13 +1,15 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet} from 'react-native';
 import React from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TouchableRipple} from 'react-native-paper';
 import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 
-const {iconRippleColor, openDrawerIconColor, white} = ECOMMERCE_THEME.colors;
+const {iconRippleColor, openDrawerIconColor} = ECOMMERCE_THEME.colors;
 
-export const HeaderIconsShoopingBag = () => {
+export const HeaderIconsMenu = () => {
   const navigation = useNavigation();
 
   return (
@@ -19,17 +21,39 @@ export const HeaderIconsShoopingBag = () => {
       onPress={() => {
         navigation.dispatch(DrawerActions.openDrawer());
       }}>
-      <Entypo name="menu" style={styles.icon} />
+      <Ionicons name="menu" style={styles.icon} size={25} color={'#004666'} />
+    </TouchableRipple>
+  );
+};
+
+export const HeaderIconsFilter = () => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableRipple
+      borderless
+      rippleColor={iconRippleColor}
+      accessibilityRole="button"
+      style={{borderRadius: 10}}
+      onPress={() => {
+        navigation.dispatch(DrawerActions.openDrawer());
+      }}>
+      <MaterialCommunityIcons
+        name="filter-outline"
+        style={styles.icon}
+        size={25}
+        color={'#004666'}
+      />
     </TouchableRipple>
   );
 };
 
 const styles = StyleSheet.create({
   icon: {
-    fontSize: 18,
-    color: white,
-    backgroundColor: openDrawerIconColor,
+    alignSelf: 'center',
     borderRadius: 10,
-    padding: 12,
+    borderWidth: 1,
+    borderColor: openDrawerIconColor,
+    padding: 7,
   },
 });

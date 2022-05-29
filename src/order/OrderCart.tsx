@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {ECText} from '../components/ECText';
 import {Divider} from '../components/Divider';
-import {ECButton} from '../components/ECButton';
+import {ECButton} from '../components/button/ECButton';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {clearCart} from '../cart/cartSlice';
 import {useNavigation} from '@react-navigation/native';
@@ -90,20 +90,19 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
       <Divider />
       <View style={styles.buttons}>
         <ECButton
-          buttonMode={primaryButtonContained}
-          labelColor="#ffffff"
-          labelText="Back"
+          mode="outlined"
+          variant={primaryButtonContained}
           onPress={() => {
             setPosition(position - 1);
-          }}
-        />
+          }}>
+          Back
+        </ECButton>
       </View>
       <View style={styles.buttons}>
         <ECButton
-          buttonMode={primaryButtonContained}
-          labelColor="#ffffff"
-          labelText="Proceed"
-          isLoading={isLoading === 'pending'}
+          mode="outlined"
+          variant={primaryButtonContained}
+          loading={isLoading === 'pending'}
           onPress={() => {
             const itemsToOrder: {
               title: string;
@@ -130,8 +129,9 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
                 price: totalPrice,
               }),
             );
-          }}
-        />
+          }}>
+          Proceed
+        </ECButton>
       </View>
     </ScrollView>
   );

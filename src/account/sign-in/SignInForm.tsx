@@ -2,7 +2,7 @@ import {Keyboard, StyleSheet, TextInput, View} from 'react-native';
 import React, {FunctionComponent, useEffect, useRef} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
-import {ECButton} from '../../components/ECButton';
+import {ECButton} from '../../components/button/ECButton';
 import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 import {ECEmailInputField} from '../../components/ECEmailInputField';
 import {ECPasswordInputField} from '../../components/ECPasswordInputField';
@@ -105,13 +105,12 @@ export const SignInForm: FunctionComponent = () => {
       </View>
       <View style={styles.buttonWrapper}>
         <ECButton
-          labelText="Sign In"
           disabled={!isValid}
-          buttonMode={!isValid ? disabledButton : primaryButtonContained}
-          labelColor="#FFFFFF"
+          variant={!isValid ? disabledButton : primaryButtonContained}
           onPress={handleSubmit(onSubmitHandler)}
-          isLoading={isLoading === 'pending' ? true : false}
-        />
+          loading={isLoading === 'pending'}>
+          Next
+        </ECButton>
       </View>
     </>
   );

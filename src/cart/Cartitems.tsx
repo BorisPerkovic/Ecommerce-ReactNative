@@ -27,7 +27,7 @@ export const Cartitems = () => {
                 key={item.id}
                 id={item.id}
                 image={item.image}
-                price={parseFloat(item.price) * item.cartQuantity}
+                price={item.price * item.cartQuantity}
                 quantity={item.cartQuantity}
                 title={item.title}
               />

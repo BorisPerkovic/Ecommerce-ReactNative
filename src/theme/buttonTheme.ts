@@ -17,5 +17,10 @@ export type ButtonTheme = {
 };
 
 export interface ButtonVariantStyle {
-  containerStyle: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  labelStyle?: LabelSTyle;
+}
+
+interface LabelSTyle {
+  color: string;
 }

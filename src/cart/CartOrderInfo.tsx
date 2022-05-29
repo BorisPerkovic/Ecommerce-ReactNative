@@ -2,7 +2,7 @@
 import {Alert, StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
-import {ECButton} from '../components/ECButton';
+import {ECButton} from '../components/button/ECButton';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {useSelector} from 'react-redux';
@@ -71,9 +71,8 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
       </View>
       <View style={styles.button}>
         <ECButton
-          labelText={`Checkout (${(cartTotal + 10).toFixed(2)})`}
-          buttonMode={checkoutButton}
-          labelColor={white}
+          mode="contained"
+          variant={checkoutButton}
           onPress={() => {
             isLogged
               ? navigate('Order')
@@ -81,8 +80,7 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
                   'Log In',
                   'You need to be logged in to proceed order',
                 );
-          }}
-        />
+          }}>{`Checkout (${(cartTotal + 10).toFixed(2)})`}</ECButton>
       </View>
     </View>
   );

@@ -6,6 +6,7 @@ const {
   addToCartButtonColors,
   checkoutButtonBackgroundColor,
   disabledButtonBackgroundColor,
+  loginButtonTextColor,
 } = ECOMMERCE_THEME.colors;
 
 export const ecommerceButtonTheme: ButtonTheme = {
@@ -14,12 +15,19 @@ export const ecommerceButtonTheme: ButtonTheme = {
       borderRadius: 12,
       backgroundColor: addToCartButtonColors,
     },
+    labelStyle: {
+      color: 'white',
+    },
   },
   primaryButtonOutlined: {
     containerStyle: {
       borderRadius: 12,
       borderWidth: 1,
-      borderColor: '#cccccc',
+      borderColor: '#004666',
+      backgroundColor: 'transparent',
+    },
+    labelStyle: {
+      color: '#004666',
     },
   },
   secondaryButtonContained: {
@@ -28,12 +36,18 @@ export const ecommerceButtonTheme: ButtonTheme = {
       borderWidth: 1,
       borderColor: '#cccccc',
     },
+    labelStyle: {
+      color: 'white',
+    },
   },
   secondaryButtonOutlined: {
     containerStyle: {
       borderRadius: 12,
       borderWidth: 1,
       borderColor: '#cccccc',
+    },
+    labelStyle: {
+      color: 'white',
     },
   },
   tertiaryButtonContained: {
@@ -42,6 +56,9 @@ export const ecommerceButtonTheme: ButtonTheme = {
       borderWidth: 1,
       borderColor: '#cccccc',
     },
+    labelStyle: {
+      color: 'white',
+    },
   },
   tertiaryButtonOutlined: {
     containerStyle: {
@@ -49,11 +66,17 @@ export const ecommerceButtonTheme: ButtonTheme = {
       borderWidth: 1,
       borderColor: '#cccccc',
     },
+    labelStyle: {
+      color: 'white',
+    },
   },
   checkoutButton: {
     containerStyle: {
       borderRadius: 12,
       backgroundColor: checkoutButtonBackgroundColor,
+    },
+    labelStyle: {
+      color: 'white',
     },
   },
   loginButton: {
@@ -61,17 +84,26 @@ export const ecommerceButtonTheme: ButtonTheme = {
       borderRadius: 12,
       backgroundColor: loginButtonBackgroundColor,
     },
+    labelStyle: {
+      color: loginButtonTextColor,
+    },
   },
   logoutButton: {
     containerStyle: {
       borderRadius: 12,
       backgroundColor: 'black',
     },
+    labelStyle: {
+      color: 'white',
+    },
   },
   disabledButton: {
     containerStyle: {
       borderRadius: 12,
       backgroundColor: disabledButtonBackgroundColor,
+    },
+    labelStyle: {
+      color: 'white',
     },
   },
 };

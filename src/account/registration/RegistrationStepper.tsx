@@ -2,22 +2,22 @@ import React, {FunctionComponent} from 'react';
 import {StyleSheet, View} from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 
-import {OrderLabels, customStyles} from '../../util/stepper';
+import {RegistrationLabels, customStyles} from '../../../util/stepper';
 
-interface OrderStepperProps {
+interface RegistrationStepperProps {
   position: number;
 }
 
-export const OrderStepper: FunctionComponent<OrderStepperProps> = ({
-  position,
-}) => {
+export const RegistrationStepper: FunctionComponent<
+  RegistrationStepperProps
+> = ({position}) => {
   return (
     <View style={styles.headerContainer}>
       <StepIndicator
         stepCount={3}
         customStyles={customStyles}
         currentPosition={position}
-        labels={OrderLabels}
+        labels={RegistrationLabels}
       />
     </View>
   );

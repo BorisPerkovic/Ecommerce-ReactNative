@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {ECButton} from '../../components/ECButton';
+import {ECButton} from '../../components/button/ECButton';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
+import {Alert, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {TouchableRipple} from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -10,7 +10,7 @@ import {MyStatusBar} from '../../components/ECStatusBar';
 
 const {black, headerIconColor, iconRippleColor, white} = ECOMMERCE_THEME.colors;
 
-export const SignInHeader = () => {
+export const RegistrationHeader = () => {
   const {goBack} = useNavigation();
   return (
     <>
@@ -23,14 +23,30 @@ export const SignInHeader = () => {
               style={styles.backIcon}
               rippleColor={iconRippleColor}
               accessibilityRole="button"
-              onPress={() => goBack()}>
+              onPress={() => {
+                Alert.alert(
+                  'Discard',
+                  'You may have some changes that are not saved. Are you sure you want to go back?',
+                  [
+                    {
+                      text: 'Cancel',
+                      onPress: () => null,
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'YES',
+                      onPress: () => goBack(),
+                    },
+                  ],
+                );
+              }}>
               <Entypo name="chevron-left" size={30} color={headerIconColor} />
             </TouchableRipple>
           </View>
         </View>
         <View style={{width: '50%'}}>
           <ECText textAlign="center" textColor={black} bold fontSize={25}>
-            Sign In
+            Registration
           </ECText>
         </View>
         <View style={{width: '25%'}} />

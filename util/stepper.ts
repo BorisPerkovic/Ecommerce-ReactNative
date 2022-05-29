@@ -1,4 +1,5 @@
-export const labels = ['User', 'Location', 'Items'];
+export const OrderLabels = ['User', 'Location', 'Items'];
+export const RegistrationLabels = ['User', 'Set Password', 'Success'];
 export const customStyles = {
   stepIndicatorSize: 50,
   currentStepIndicatorSize: 60,

@@ -3,7 +3,7 @@ import React, {FunctionComponent} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {ECText} from '../components/ECText';
-import {ECButton} from '../components/ECButton';
+import {ECButton} from '../components/button/ECButton';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {addUserToOrder} from './ordersSlice';
 
@@ -43,9 +43,8 @@ export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
       </ECText>
       <View style={styles.button}>
         <ECButton
-          buttonMode={primaryButtonContained}
-          labelColor="#ffffff"
-          labelText="Next"
+          mode="contained"
+          variant={primaryButtonContained}
           onPress={() => {
             dispatch(
               addUserToOrder({
@@ -55,8 +54,9 @@ export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
               }),
             );
             setPosition(position + 1);
-          }}
-        />
+          }}>
+          Next
+        </ECButton>
       </View>
     </View>
   );

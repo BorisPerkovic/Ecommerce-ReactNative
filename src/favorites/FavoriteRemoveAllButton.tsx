@@ -1,6 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {ECButton} from '../components/ECButton';
+import {ECButton} from '../components/button/ECButton';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {useDispatch} from 'react-redux';
@@ -15,13 +15,13 @@ export const FavoriteRemoveAllButton = () => {
   return (
     <View style={styles.button}>
       <ECButton
-        labelText="Remove All From Favorites"
-        buttonMode={checkoutButton}
-        labelColor={white}
+        mode="contained"
+        variant={checkoutButton}
         onPress={() => {
           dispatch(removeAllFromFavorites());
-        }}
-      />
+        }}>
+        Remove All From Favorites
+      </ECButton>
     </View>
   );
 };

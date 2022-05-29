@@ -23,7 +23,7 @@ export const OrderHeader = () => {
             onPress={() => {
               Alert.alert(
                 'Discard Order',
-                'You may have some changes that are not saved. Are you sure you wwant to go back?',
+                'You may have some changes that are not saved. Are you sure you want to go back?',
                 [
                   {
                     text: 'Cancel',

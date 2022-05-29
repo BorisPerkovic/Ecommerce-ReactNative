@@ -4,7 +4,7 @@ import {ECEmailInputField} from '../components/ECEmailInputField';
 import {Controller, useForm} from 'react-hook-form';
 import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {useDispatch, useSelector} from 'react-redux';
-import {ECButton} from '../components/ECButton';
+import {ECButton} from '../components/button/ECButton';
 import {addUserLocationToOrder} from './ordersSlice';
 import {RootState} from '../store';
 
@@ -157,12 +157,12 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
       </View>
       <View style={styles.button}>
         <ECButton
-          labelText="Next"
+          mode="contained"
           disabled={!isValid}
-          buttonMode={!isValid ? disabledButton : primaryButtonContained}
-          labelColor="#FFFFFF"
-          onPress={handleSubmit(onSubmitHandler)}
-        />
+          variant={!isValid ? disabledButton : primaryButtonContained}
+          onPress={handleSubmit(onSubmitHandler)}>
+          Next
+        </ECButton>
       </View>
     </>
   );

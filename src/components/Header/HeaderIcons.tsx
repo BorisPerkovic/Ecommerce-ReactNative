@@ -1,30 +1,22 @@
-/* eslint-disable react-native/no-inline-styles */
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {TouchableRipple} from 'react-native-paper';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+import {IconButton} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
 
-const {iconRippleColor, openDrawerIconColor} = ECOMMERCE_THEME.colors;
-
 export const HeaderIconsMenu = () => {
   const navigation = useNavigation();
-
   return (
-    <TouchableRipple
-      borderless
-      rippleColor={iconRippleColor}
-      accessibilityRole="button"
-      style={{borderRadius: 10}}
-      onPress={() => {
-        navigation.dispatch(DrawerActions.openDrawer());
-      }}>
-      <Ionicons name="menu" style={styles.icon} size={25} color={'#004666'} />
-    </TouchableRipple>
+    <View style={styles.menuBtn}>
+      <IconButton
+        icon="menu"
+        rippleColor="rgba(0, 17, 26, 0.6)"
+        size={25}
+        color={'#004666'}
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer)}
+      />
+    </View>
   );
 };
 
@@ -41,30 +33,29 @@ export const HeaderIconsFilter = () => {
     filters.system.length > 0;
 
   return (
-    <TouchableRipple
-      borderless
-      rippleColor={iconRippleColor}
-      accessibilityRole="button"
-      style={{borderRadius: 10}}
-      onPress={() => {
-        navigation.navigate('Filters');
-      }}>
-      <MaterialCommunityIcons
-        name={isFilterEmpty ? 'filter-check-outline' : 'filter-outline'}
-        style={styles.icon}
+    <View style={styles.filterButton}>
+      <IconButton
+        rippleColor="rgba(0, 17, 26, 0.6)"
+        icon={isFilterEmpty ? 'filter-check-outline' : 'filter-outline'}
         size={25}
         color={'#004666'}
+        onPress={() => {
+          navigation.navigate('Filters');
+        }}
       />
-    </TouchableRipple>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  icon: {
-    alignSelf: 'center',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: openDrawerIconColor,
-    padding: 7,
+  menuBtn: {
+    borderRightWidth: 1,
+    borderRightColor: '#004666',
+    justifyContent: 'center',
+  },
+  filterButton: {
+    borderLeftWidth: 1,
+    borderLeftColor: '#004666',
+    justifyContent: 'center',
   },
 });

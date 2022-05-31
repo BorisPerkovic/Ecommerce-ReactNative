@@ -26,29 +26,32 @@ export const ProductsScreen = () => {
   }; */
 
   return (
-    <>
+    <View style={styles.container}>
       <Header />
       <ScrollView
         style={styles.safeAreaView}
         showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
+        <View style={styles.wrapper}>
           <ProductsReview />
           <ProductsItems />
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
   safeAreaView: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: white,
   },
-  container: {
+  wrapper: {
     flex: 1,
-    paddingBottom: 32,
     backgroundColor: white,
     padding: 15,
   },

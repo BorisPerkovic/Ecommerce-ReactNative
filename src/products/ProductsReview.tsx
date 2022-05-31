@@ -22,8 +22,7 @@ const styles = StyleSheet.create({
     color: black,
     fontWeight: '500',
     letterSpacing: 1,
-    marginVertical: 10,
-    marginTop: 1,
+    marginBottom: 10,
   },
   text: {
     fontSize: 14,

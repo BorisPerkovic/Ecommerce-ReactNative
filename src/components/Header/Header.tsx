@@ -2,13 +2,10 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {HeaderIconsFilter, HeaderIconsMenu} from './HeaderIcons';
 import {HeaderSearch} from './HeaderSearch';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
-
-const {white} = ECOMMERCE_THEME.colors;
 
 export const Header = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.topBar}>
       <HeaderIconsMenu />
       <HeaderSearch />
       <HeaderIconsFilter />
@@ -17,12 +14,14 @@ export const Header = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: white,
+  topBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 15,
-    paddingTop: 20,
+    alignItems: 'stretch',
+    borderWidth: 1,
+    borderColor: '#004666',
+    borderRadius: 16,
+    height: 47,
+    margin: 20,
   },
 });

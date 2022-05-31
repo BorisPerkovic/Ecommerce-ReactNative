@@ -1,15 +1,13 @@
-import {Pressable, StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {ECText} from '../ECText';
 import {useNavigation} from '@react-navigation/native';
-
-const {searchBorderColor} = ECOMMERCE_THEME.colors;
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export const HeaderSearch = () => {
   const {navigate} = useNavigation();
   return (
-    <Pressable
+    <TouchableOpacity
       style={styles.container}
       onPress={() => {
         navigate('Search');
@@ -17,17 +15,18 @@ export const HeaderSearch = () => {
       <ECText textColor="#004666" fontSize={15}>
         Search...
       </ECText>
-    </Pressable>
+      <Ionicons name="search-outline" size={20} color="#004666" />
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: '70%',
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: searchBorderColor,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderColor: '#004666',
     padding: 10,
-    marginHorizontal: 10,
   },
 });

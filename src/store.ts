@@ -15,6 +15,7 @@ import orderReducer from './order/ordersSlice';
 import myOrdersReducer from './my-orders/myOrdersSlice';
 import registrationReducer from './account/registration/registrationSlice';
 import searchReducer from './search/searchSlice';
+import filterReducer from './filters/filtersSlice';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   myOrders: myOrdersReducer,
   registration: registrationReducer,
   search: searchReducer,
+  filter: filterReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

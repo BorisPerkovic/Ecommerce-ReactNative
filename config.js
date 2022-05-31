@@ -12,6 +12,7 @@ import {
   MY_ORDERS,
   ORDER,
   SEARCH,
+  FILTERS_PRODUCTS,
 } from '@env';
 
 export default {
@@ -28,4 +29,5 @@ export default {
   MY_ORDERS,
   ORDER,
   SEARCH,
+  FILTERS_PRODUCTS,
 };

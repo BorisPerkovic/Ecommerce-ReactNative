@@ -1,0 +1,50 @@
+import {StyleSheet, View} from 'react-native';
+import React from 'react';
+import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
+import {ECButton} from '../components/button/ECButton';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store';
+import {useNavigation} from '@react-navigation/native';
+import {alertService} from '../alertService';
+
+const {primaryButtonContained} = ecommerceButtonTheme;
+
+export const ApplyFiltersButton = () => {
+  const filterItems = useSelector((state: RootState) => state.filter);
+  const {navigate} = useNavigation();
+
+  const onFiltersHandler = () => {
+    if (
+      filterItems.startPrice !== 0 ||
+      filterItems.endPrice !== 2500 ||
+      filterItems.brand.length > 0 ||
+      filterItems.ram.length > 0 ||
+      filterItems.internal.length > 0 ||
+      filterItems.system.length > 0
+    ) {
+      navigate('FiltersResults');
+    } else {
+      alertService.alert('warning', 'You have no selected filters!');
+    }
+  };
+
+  return (
+    <View style={styles.button}>
+      <ECButton
+        mode="outlined"
+        variant={primaryButtonContained}
+        onPress={onFiltersHandler}>
+        Apply Filters
+      </ECButton>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    padding: 20,
+    paddingBottom: 25,
+    borderTopColor: '#cccccc',
+    borderTopWidth: 2,
+  },
+});

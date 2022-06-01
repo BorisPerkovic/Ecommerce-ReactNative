@@ -17,6 +17,7 @@ import RegistrationScreen from './account/registration/RegistrationScreen';
 import SearchScreen from './search/SearchScreen';
 import {FiltersScreen} from './filters/FiltersScreen';
 import {FiltersResultsScreen} from './filters/filter-results/FiltersResultsScreen';
+import {EditProfileScreen} from './account/edit-profile.tsx/EditProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -63,6 +64,7 @@ export const RootStack = () => {
             name="FiltersResults"
             component={FiltersResultsScreen}
           />
+          <Stack.Screen name="EditProfile" component={EditProfileScreen} />
         </>
       )}
     </Stack.Navigator>

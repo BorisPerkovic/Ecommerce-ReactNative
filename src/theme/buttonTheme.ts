@@ -3,7 +3,7 @@ import {StyleProp, ViewStyle} from 'react-native';
 type ButtonVariant =
   | 'primaryButtonContained'
   | 'primaryButtonOutlined'
-  | 'secondaryButtonContained'
+  | 'deleteAccountButton'
   | 'secondaryButtonOutlined'
   | 'tertiaryButtonContained'
   | 'tertiaryButtonOutlined'

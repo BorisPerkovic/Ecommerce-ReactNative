@@ -30,14 +30,14 @@ export const ecommerceButtonTheme: ButtonTheme = {
       color: '#004666',
     },
   },
-  secondaryButtonContained: {
+  deleteAccountButton: {
     containerStyle: {
       borderRadius: 12,
       borderWidth: 1,
-      borderColor: '#cccccc',
+      borderColor: '#CC334D',
     },
     labelStyle: {
-      color: 'white',
+      color: '#CC334D',
     },
   },
   secondaryButtonOutlined: {

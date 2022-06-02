@@ -11,7 +11,7 @@ interface ChipFilterProps {
 
 export const ChipFilter: FunctionComponent<ChipFilterProps> = ({
   title,
-  isSelected = false,
+  isSelected,
   onFilter,
 }) => {
   return (

@@ -20,6 +20,8 @@ import {FiltersResultsScreen} from './filters/filter-results/FiltersResultsScree
 import {EditProfileScreen} from './account/edit-profile/EditProfileScreen';
 import {EditProfileChangeEmail} from './account/edit-profile/change-email/EditProfileChangeEmail';
 import {ChangeEmailSuccess} from './account/edit-profile/change-email/ChangeEmailSuccess';
+import {EditProfileChangePassword} from './account/edit-profile/change-password/EditProfileChangePassword';
+import {ChangePasswordSuccess} from './account/edit-profile/change-password/ChangePasswordSucces';
 
 const Stack = createStackNavigator();
 
@@ -69,8 +71,16 @@ export const RootStack = () => {
           <Stack.Screen name="EditProfile" component={EditProfileScreen} />
           <Stack.Screen name="ChangeEmail" component={EditProfileChangeEmail} />
           <Stack.Screen
+            name="ChangePassword"
+            component={EditProfileChangePassword}
+          />
+          <Stack.Screen
             name="ChangeEmailSuccess"
             component={ChangeEmailSuccess}
+          />
+          <Stack.Screen
+            name="ChangePasswordSuccess"
+            component={ChangePasswordSuccess}
           />
         </>
       )}

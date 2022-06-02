@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-virtualized-view';
-import {Header} from '../components/Header/Header';
+import {Header} from '../components/Header/home-page-header/Header';
 import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ProductsItems} from './ProductsItems';
 import {ProductsReview} from './ProductsReview';

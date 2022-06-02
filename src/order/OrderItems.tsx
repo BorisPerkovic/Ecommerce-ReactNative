@@ -43,9 +43,9 @@ export const OrderItems = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingHorizontal: 10,
   },
   containerContent: {
     flexGrow: 1,
+    paddingHorizontal: 5,
   },
 });

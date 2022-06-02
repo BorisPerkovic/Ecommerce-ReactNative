@@ -13,7 +13,7 @@ export const EditProfileHeader = () => {
   const {goBack} = useNavigation();
   return (
     <View style={styles.headerContainer}>
-      <View style={{width: '20%'}}>
+      <View style={{width: '25%'}}>
         <View>
           <TouchableRipple
             borderless
@@ -30,7 +30,7 @@ export const EditProfileHeader = () => {
           Edit Profile
         </ECText>
       </View>
-      <View style={{width: '25%'}}></View>
+      <View style={{width: '25%'}} />
     </View>
   );
 };
@@ -38,6 +38,7 @@ export const EditProfileHeader = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     padding: 20,
+    paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

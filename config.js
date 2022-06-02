@@ -13,6 +13,7 @@ import {
   ORDER,
   SEARCH,
   FILTERS_PRODUCTS,
+  CHANGE_EMAIL,
 } from '@env';
 
 export default {
@@ -30,4 +31,5 @@ export default {
   ORDER,
   SEARCH,
   FILTERS_PRODUCTS,
+  CHANGE_EMAIL,
 };

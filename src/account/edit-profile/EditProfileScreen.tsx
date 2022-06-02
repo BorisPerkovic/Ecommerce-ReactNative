@@ -21,19 +21,19 @@ export const EditProfileScreen = () => {
         <EditProfileItem
           label="Email"
           value={user.email}
-          navigateTo="EditEmail"
+          navigateTo="ChangeEmail"
           icon="ios-pencil-outline"
         />
         <EditProfileItem
           label="Password"
           value={'******************'}
-          navigateTo="EditPassword"
+          navigateTo="ChangePassword"
           icon="ios-pencil-outline"
         />
         <EditProfileItem
           label="Language"
           value={'English'}
-          navigateTo="EditLanguage"
+          navigateTo="ChangeLanguage"
           icon="chevron-forward-outline"
         />
         <EditProfilePushNotification />

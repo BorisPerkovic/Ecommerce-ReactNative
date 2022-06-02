@@ -3,7 +3,7 @@ import React from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {IconButton} from 'react-native-paper';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../store';
+import {RootState} from '../../../store';
 
 export const HeaderIconsMenu = () => {
   const navigation = useNavigation();

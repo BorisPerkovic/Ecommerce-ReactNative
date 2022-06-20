@@ -3,7 +3,6 @@ import React, {FunctionComponent, useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import {ECButton} from '../../components/button/ECButton';
-import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 import {Controller, useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import {passwordSchema} from './setSchema';
@@ -11,6 +10,7 @@ import {registerUserThunk} from './registrationSlice';
 import config from '../../../config';
 import {ECPasswordInputField} from '../../components/ECPasswordInputField';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {useAppTheme} from '../../theme';
 
 interface RegistrationUserPasswordProps {
   position: number;
@@ -26,11 +26,12 @@ const createAccountPasswordSchema = yup.object().shape({
   ...passwordSchema,
 });
 
-const {primaryButtonContained, disabledButton} = ecommerceButtonTheme;
-
 export const RegistrationUserPassword: FunctionComponent<
   RegistrationUserPasswordProps
 > = ({position, setPosition}) => {
+  const {
+    buttons: {primaryButtonContained, disabledButton},
+  } = useAppTheme();
   const {
     handleSubmit,
     control,
@@ -129,6 +130,7 @@ export const RegistrationUserPassword: FunctionComponent<
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+    paddingHorizontal: 6,
   },
   inputs: {
     marginBottom: 20,

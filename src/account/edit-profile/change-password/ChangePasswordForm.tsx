@@ -5,13 +5,13 @@ import {Controller, useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {ecommerceButtonTheme} from '../../../theme/ecommerce/ecommerceButtonTheme';
 import {ECButton} from '../../../components/button/ECButton';
 import {RootState} from '../../../store';
 import {passwordSchema} from '../../registration/setSchema';
 import {useNavigation} from '@react-navigation/native';
 import {ECPasswordInputField} from '../../../components/ECPasswordInputField';
 import {changePasswordThunk} from './changePasswordSlice';
+import {useAppTheme} from '../../../theme';
 
 interface FormData {
   password: string;
@@ -22,9 +22,11 @@ const changePasswordSchema = yup.object().shape({
   ...passwordSchema,
 });
 
-const {primaryButtonContained, disabledButton} = ecommerceButtonTheme;
-
 export const ChangePasswordForm = () => {
+  const {
+    colors: {primaryTextColor},
+    buttons: {primaryButtonContained, disabledButton},
+  } = useAppTheme();
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
   const isLoading = useSelector(
     (state: RootState) => state.changePassword.loading,
@@ -66,7 +68,7 @@ export const ChangePasswordForm = () => {
       <View>
         <ECText
           fontSize={17}
-          textColor="#004666"
+          textColor={primaryTextColor}
           textAlign="center"
           style={styles.text}>
           Please enter the password you would like to use for your E-commerce

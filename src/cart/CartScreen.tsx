@@ -1,15 +1,18 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
-import CartHeader from './CartHeader';
 import {Cartitems} from './Cartitems';
+import {ECHeader} from '../components/Header/ECHeader';
+import {useAppTheme} from '../theme';
 
 export const CartScreen: FunctionComponent<{}> = () => {
+  const {
+    colors: {backgroundColor},
+  } = useAppTheme();
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <CartHeader />
+    <View style={[styles.container, {backgroundColor}]}>
+      <ECHeader screenTitle="My Cart" />
       <Cartitems />
-    </ScrollView>
+    </View>
   );
 };
 

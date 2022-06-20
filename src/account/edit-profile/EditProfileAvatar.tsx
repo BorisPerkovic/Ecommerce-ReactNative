@@ -2,6 +2,7 @@ import {StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {ECText} from '../../components/ECText';
+import {useAppTheme} from '../../theme';
 
 interface EditProfileAvatarProps {
   name: string;
@@ -12,13 +13,16 @@ export const EditProfileAvatar: FunctionComponent<EditProfileAvatarProps> = ({
   name,
   lastName,
 }) => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   return (
     <View style={styles.container}>
-      <FontAwesome name="user-circle-o" size={120} color="#004666" />
+      <FontAwesome name="user-circle-o" size={100} color={primaryTextColor} />
       <ECText
         fontSize={24}
         bold
-        textColor="#004666"
+        textColor={primaryTextColor}
         style={styles.text}
         numberOfLines={1}>
         {name}
@@ -26,7 +30,7 @@ export const EditProfileAvatar: FunctionComponent<EditProfileAvatarProps> = ({
       <ECText
         fontSize={24}
         bold
-        textColor="#004666"
+        textColor={primaryTextColor}
         style={styles.text}
         numberOfLines={1}>
         {lastName}
@@ -37,11 +41,11 @@ export const EditProfileAvatar: FunctionComponent<EditProfileAvatarProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 15,
+    paddingVertical: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
-    lineHeight: 32,
+    lineHeight: 30,
   },
 });

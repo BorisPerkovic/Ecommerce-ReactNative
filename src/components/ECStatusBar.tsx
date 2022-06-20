@@ -1,22 +1,19 @@
 import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
+import {useAppTheme} from '../theme';
 
-interface MyStatusBarProps {
-  backColor: string;
-  themeStyle: 'dark-content' | 'light-content' | 'default';
-}
-
-export const MyStatusBar: FunctionComponent<MyStatusBarProps> = ({
-  backColor,
-  themeStyle = 'default',
-}) => {
+export const MyStatusBar: FunctionComponent<{}> = ({}) => {
+  const {
+    colors: {statusBarBackgroundColor},
+  } = useAppTheme();
   return (
-    <View style={[styles.container, {backgroundColor: backColor}]}>
+    <View
+      style={[styles.container, {backgroundColor: statusBarBackgroundColor}]}>
       <SafeAreaView>
         <StatusBar
           translucent
-          backgroundColor={backColor}
-          barStyle={themeStyle}
+          backgroundColor={statusBarBackgroundColor}
+          barStyle="light-content"
         />
       </SafeAreaView>
     </View>

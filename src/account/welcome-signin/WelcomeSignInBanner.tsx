@@ -2,42 +2,49 @@ import React from 'react';
 import {StyleSheet, View, ImageBackground} from 'react-native';
 import {ECText} from '../../components/ECText';
 import {useNavigation} from '@react-navigation/core';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
-import {TouchableRipple} from 'react-native-paper';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {IconButton} from 'react-native-paper';
+import {useAppTheme} from '../../theme';
 
 const imagePath = require('../../../assets/images/overview_intro.png');
 
-const {
-  white,
-  bannerImageBackgroundColor,
-  iconRippleColor,
-  singleProductBackIconColor,
-} = ECOMMERCE_THEME.colors;
-
 export const WelcomeSignInBanner = () => {
+  const {
+    colors: {welcomeBannerBackgroundColor, welcomeBannerTextColor},
+  } = useAppTheme();
   const {goBack} = useNavigation();
 
   return (
     <View style={styles.container}>
-      <TouchableRipple
-        borderless
-        style={styles.backIcon}
-        rippleColor={iconRippleColor}
-        accessibilityRole="button"
-        onPress={() => goBack()}>
-        <Ionicons name="close" size={35} color={singleProductBackIconColor} />
-      </TouchableRipple>
+      <View style={styles.backIcon}>
+        <IconButton
+          icon="close"
+          color={welcomeBannerBackgroundColor}
+          onPress={() => goBack()}
+          size={32}
+        />
+      </View>
+
       <ImageBackground
         source={imagePath}
         resizeMode="cover"
         style={styles.image}
       />
-      <View style={styles.bannerText}>
-        <ECText textColor={white} style={styles.heading} fontSize={32} bold>
+      <View
+        style={[
+          styles.bannerText,
+          {backgroundColor: welcomeBannerBackgroundColor},
+        ]}>
+        <ECText
+          textColor={welcomeBannerTextColor}
+          style={styles.heading}
+          fontSize={32}
+          bold>
           Welcome
         </ECText>
-        <ECText style={styles.bannerSmallText} textColor={white} fontSize={15}>
+        <ECText
+          style={styles.bannerSmallText}
+          textColor={welcomeBannerTextColor}
+          fontSize={15}>
           You are only a few steps away from your Ecommerce account.
         </ECText>
       </View>
@@ -58,7 +65,6 @@ const styles = StyleSheet.create({
     top: 2,
     left: 25,
     zIndex: 10,
-    padding: 5,
     borderRadius: 50,
   },
   heading: {
@@ -72,8 +78,7 @@ const styles = StyleSheet.create({
     bottom: 36,
     width: '80%',
     paddingRight: 30,
-    backgroundColor: bannerImageBackgroundColor,
-    opacity: 0.9,
+    opacity: 0.8,
   },
   bannerSmallText: {
     lineHeight: 20,

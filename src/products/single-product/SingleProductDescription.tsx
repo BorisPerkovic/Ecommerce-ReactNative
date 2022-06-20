@@ -1,31 +1,32 @@
 import {StyleSheet} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../../components/ECText';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
+import {useAppTheme} from '../../theme';
 
 interface SingleProductDescriptionProps {
   title: string;
   description: string;
 }
 
-const {singleProductTextColor} = ECOMMERCE_THEME.colors;
-
 export const SingleProductDescription: FunctionComponent<
   SingleProductDescriptionProps
 > = ({title, description}) => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   return (
     <>
       <ECText
         style={styles.title}
         fontSize={26}
         bold
-        textColor={singleProductTextColor}>
+        textColor={primaryTextColor}>
         {title}
       </ECText>
       <ECText
         style={styles.description}
         fontSize={16}
-        textColor={singleProductTextColor}>
+        textColor={primaryTextColor}>
         {description}
       </ECText>
     </>

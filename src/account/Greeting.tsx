@@ -1,7 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {boolean} from 'yup';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import {useAppTheme} from '../theme';
 import {AccountNavigationItemDivider} from './AccountNavigationItemDivider';
 import {GuestGreeting} from './GuestGreeting';
 import {UserGreeting} from './UserGreeting';
@@ -10,14 +9,15 @@ interface GreetingProps {
   loggedIn: boolean;
 }
 
-const {white} = ECOMMERCE_THEME.colors;
-
 export const Greeting: FunctionComponent<GreetingProps> = ({loggedIn}) => {
+  const {
+    colors: {sideMenuDividerColor},
+  } = useAppTheme();
   return (
     <View style={styles.container}>
       {loggedIn ? <UserGreeting /> : <GuestGreeting />}
       <View style={styles.divider}>
-        <AccountNavigationItemDivider color={white} />
+        <AccountNavigationItemDivider color={sideMenuDividerColor} />
       </View>
     </View>
   );

@@ -1,16 +1,17 @@
 import React from 'react';
 import {Dimensions} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import {MyStatusBar} from '../../components/ECStatusBar';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
-
-const {singleProductSkeletonColor, singleProductStatusBarColor} =
-  ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../../theme';
 
 export const SingleProductSkeleton = () => {
+  const {
+    colors: {skeletonHighlightColor, skeletonBackgroundColor},
+  } = useAppTheme();
   return (
     <>
-      <SkeletonPlaceholder backgroundColor={singleProductSkeletonColor}>
+      <SkeletonPlaceholder
+        backgroundColor={skeletonBackgroundColor}
+        highlightColor={skeletonHighlightColor}>
         <SkeletonPlaceholder.Item
           width="100%"
           height={(Dimensions.get('screen').height / 100) * 40}

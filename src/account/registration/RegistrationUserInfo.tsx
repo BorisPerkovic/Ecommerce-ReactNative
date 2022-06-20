@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import * as yup from 'yup';
 import {ECButton} from '../../components/button/ECButton';
-import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 import {Controller, useForm} from 'react-hook-form';
 import {ECEmailInputField} from '../../components/ECEmailInputField';
 import {
@@ -15,6 +14,7 @@ import {
 import config from '../../../config';
 import {emailSchema} from './setSchema';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {useAppTheme} from '../../theme';
 
 interface RegistrationUserInfoprops {
   position: number;
@@ -31,11 +31,12 @@ const createAccountEmailSchema = yup.object().shape({
   ...emailSchema,
 });
 
-const {primaryButtonContained, disabledButton} = ecommerceButtonTheme;
-
 export const RegistrationUserInfo: FunctionComponent<
   RegistrationUserInfoprops
 > = ({position, setPosition}) => {
+  const {
+    buttons: {primaryButtonContained, disabledButton},
+  } = useAppTheme();
   const isLoading = useSelector(
     (state: RootState) => state.registration.loading,
   );
@@ -160,6 +161,7 @@ export const RegistrationUserInfo: FunctionComponent<
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+    paddingHorizontal: 6,
   },
   inputs: {
     marginBottom: 20,

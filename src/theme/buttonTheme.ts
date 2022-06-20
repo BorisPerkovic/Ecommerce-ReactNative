@@ -4,12 +4,8 @@ type ButtonVariant =
   | 'primaryButtonContained'
   | 'primaryButtonOutlined'
   | 'deleteAccountButton'
-  | 'secondaryButtonOutlined'
-  | 'tertiaryButtonContained'
-  | 'tertiaryButtonOutlined'
   | 'loginButton'
   | 'logoutButton'
-  | 'checkoutButton'
   | 'disabledButton';
 
 export type ButtonTheme = {

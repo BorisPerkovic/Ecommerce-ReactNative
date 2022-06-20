@@ -18,6 +18,7 @@ import searchReducer from './search/searchSlice';
 import filterReducer from './filters/filtersSlice';
 import changeEmailReducer from './account/edit-profile/change-email/changeEmailSlice';
 import changePasswordReducer from './account/edit-profile/change-password/changePasswordSlice';
+import themeReducer from './theme/themeSlice';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   filter: filterReducer,
   changeEmail: changeEmailReducer,
   changePassword: changePasswordReducer,
+  theme: themeReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -40,7 +42,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['cart', 'favorites', 'signIn', 'myOrders'],
+  whitelist: ['cart', 'favorites', 'signIn', 'theme'],
 };
 
 const middleware = [

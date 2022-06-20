@@ -1,15 +1,19 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {MyStatusBar} from '../components/ECStatusBar';
-import {SearchHeader} from './SearchHeader';
 import SearchInputField from './SearchInputField';
 import SearchItems from './SearchItems';
+import {useAppTheme} from '../theme';
+import {ECHeader} from '../components/Header/ECHeader';
 
 const SearchScreen = () => {
+  const {
+    colors: {backgroundColor},
+  } = useAppTheme();
   return (
-    <View style={styles.container}>
-      <MyStatusBar backColor="#004666" themeStyle="light-content" />
-      <SearchHeader />
+    <View style={[styles.container, {backgroundColor}]}>
+      <MyStatusBar />
+      <ECHeader screenTitle="Search" />
       <SearchInputField />
       <SearchItems />
     </View>
@@ -21,6 +25,5 @@ export default SearchScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
 });

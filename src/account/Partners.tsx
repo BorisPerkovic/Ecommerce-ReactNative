@@ -2,12 +2,14 @@ import React, {FunctionComponent} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {AccountNavigationItem} from './AccountNavigationItem';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const Partners: FunctionComponent = () => {
   const navigation = useNavigation();
+
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
 
   return (
     <AccountNavigationItem

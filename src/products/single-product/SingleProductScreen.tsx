@@ -1,15 +1,16 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {ProductItem} from './ProductItem';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {MyStatusBar} from '../../components/ECStatusBar';
-
-const {white} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../../theme';
 
 export const SingleProductScreen = () => {
+  const {
+    colors: {backgroundColor},
+  } = useAppTheme();
   return (
-    <View style={styles.container}>
-      <MyStatusBar backColor="#004666" themeStyle="light-content" />
+    <View style={[styles.container, {backgroundColor: backgroundColor}]}>
+      <MyStatusBar />
       <ProductItem />
     </View>
   );
@@ -17,7 +18,6 @@ export const SingleProductScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: white,
+    flexGrow: 1,
   },
 });

@@ -1,33 +1,31 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {TouchableRipple} from 'react-native-paper';
-import Entypo from 'react-native-vector-icons/Entypo';
+import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {ECText} from '../components/ECText';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {FiltersResetButton} from './FiltersResetButton';
-
-const {black, headerIconColor, iconRippleColor, white} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const FiltersHeader = () => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   const {goBack} = useNavigation();
   return (
     <View style={styles.headerContainer}>
       <View style={{width: '20%'}}>
         <View>
-          <TouchableRipple
-            borderless
-            style={styles.backIcon}
-            rippleColor={iconRippleColor}
-            accessibilityRole="button"
-            onPress={() => goBack()}>
-            <Entypo name="chevron-left" size={30} color={headerIconColor} />
-          </TouchableRipple>
+          <IconButton
+            icon="chevron-left"
+            color={primaryTextColor}
+            onPress={() => goBack()}
+            size={35}
+          />
         </View>
       </View>
       <View style={{width: '50%'}}>
-        <ECText textColor={black} bold fontSize={25}>
+        <ECText bold fontSize={25}>
           Filters
         </ECText>
       </View>
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: white,
   },
   backIcon: {
     padding: 5,

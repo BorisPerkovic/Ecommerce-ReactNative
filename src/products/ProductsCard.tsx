@@ -1,13 +1,11 @@
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import React, {FunctionComponent} from 'react';
+import {ECText} from '../components/ECText';
 import {TouchableRipple} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {ProductsStackParams} from './ProductsStack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {iconRippleColor, productsImageBackgroundColor, black} =
-  ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export type SingleProductNavigationType = StackNavigationProp<
   ProductsStackParams,
@@ -27,6 +25,9 @@ export const ProductsCard: FunctionComponent<ProductsProps> = ({
   price,
   title,
 }) => {
+  const {
+    colors: {iconRippleColor, cartImageBackgroundColor},
+  } = useAppTheme();
   const {navigate} = useNavigation<SingleProductNavigationType>();
   return (
     <View style={styles.rippleContainer}>
@@ -39,13 +40,21 @@ export const ProductsCard: FunctionComponent<ProductsProps> = ({
         onPress={() => {
           navigate('SingleProduct', {productId: productId});
         }}>
-        <View style={styles.container}>
+        <View
+          style={[
+            styles.container,
+            {backgroundColor: cartImageBackgroundColor},
+          ]}>
           <Image source={{uri: image}} style={styles.image} />
         </View>
       </TouchableRipple>
 
-      <Text style={styles.title}>{title}</Text>
-      <Text>$ {price}</Text>
+      <ECText fontSize={13} style={styles.title}>
+        {title}
+      </ECText>
+      <ECText fontSize={14} bold>
+        $ {price}
+      </ECText>
     </View>
   );
 };
@@ -62,7 +71,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 10,
-    backgroundColor: productsImageBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
@@ -75,8 +83,7 @@ const styles = StyleSheet.create({
   title: {
     width: 150,
     fontSize: 12,
-    color: black,
     fontWeight: '600',
-    marginBottom: 2,
+    marginVertical: 2,
   },
 });

@@ -4,46 +4,60 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {ECText} from '../components/ECText';
 import {ECButton} from '../components/button/ECButton';
-import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {addUserToOrder} from './ordersSlice';
+import {useAppTheme} from '../theme';
 
 interface OrderLocationprops {
   position: number;
   setPosition: (num: number) => void;
 }
 
-const {primaryButtonContained} = ecommerceButtonTheme;
-
 export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
   position,
   setPosition,
 }) => {
+  const {
+    colors: {primaryTextColor},
+    buttons: {primaryButtonContained},
+  } = useAppTheme();
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
   const dispatch = useDispatch();
 
   return (
-    <View>
-      <ECText fontSize={16} textColor="#4C5356">
+    <View style={styles.container}>
+      <ECText fontSize={16} textColor={primaryTextColor}>
         Name
       </ECText>
-      <ECText fontSize={19} textColor="#000000" style={styles.userInfo}>
+      <ECText
+        fontSize={19}
+        textColor={primaryTextColor}
+        bold
+        style={styles.userInfo}>
         {user.firstName}
       </ECText>
-      <ECText fontSize={16} textColor="#4C5356">
+      <ECText fontSize={16} textColor={primaryTextColor}>
         Lastname
       </ECText>
-      <ECText fontSize={19} textColor="#000000" style={styles.userInfo}>
+      <ECText
+        fontSize={19}
+        textColor={primaryTextColor}
+        bold
+        style={styles.userInfo}>
         {user.lastName}
       </ECText>
-      <ECText fontSize={16} textColor="#4C5356">
+      <ECText fontSize={16} textColor={primaryTextColor}>
         E-mail
       </ECText>
-      <ECText fontSize={19} textColor="#000000" style={styles.userInfo}>
+      <ECText
+        fontSize={19}
+        textColor={primaryTextColor}
+        bold
+        style={styles.userInfo}>
         {user.email}
       </ECText>
       <View style={styles.button}>
         <ECButton
-          mode="contained"
+          mode="outlined"
           variant={primaryButtonContained}
           onPress={() => {
             dispatch(
@@ -63,6 +77,9 @@ export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 15,
+  },
   userInfo: {
     marginTop: 5,
     marginBottom: 15,

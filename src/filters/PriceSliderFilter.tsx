@@ -6,8 +6,12 @@ import {RootState} from '../store';
 import {StyleSheet, View} from 'react-native';
 import {useDebouncedCallback} from 'use-debounce';
 import {addPriceToFilter} from './filtersSlice';
+import {useAppTheme} from '../theme';
 
 export const PriceSliderFilter = () => {
+  const {
+    colors: {priceRangeStrokeColor, priceRangeTextColor},
+  } = useAppTheme();
   const filtersPrice = useSelector((state: RootState) => state.filter);
   const dispatch = useDispatch();
 
@@ -24,10 +28,10 @@ export const PriceSliderFilter = () => {
           max={2500}
           selectedMinimum={filtersPrice.startPrice}
           selectedMaximum={filtersPrice.endPrice}
-          tintColor="#004666"
-          handleColor="#004666"
-          handlePressedColor="#f368e0"
-          tintColorBetweenHandles="#f2f2f2"
+          tintColor={priceRangeTextColor}
+          handleColor={priceRangeTextColor}
+          handlePressedColor={priceRangeStrokeColor}
+          tintColorBetweenHandles={priceRangeStrokeColor}
           minLabelFontSize={17}
           maxLabelFontSize={17}
           suffix="$"

@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {forwardRef, FunctionComponent, useRef, useState} from 'react';
 import {
   StyleSheet,
@@ -10,6 +9,7 @@ import {
   ReturnKeyTypeOptions,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useAppTheme} from '../theme';
 import {ECText} from './ECText';
 
 interface ECTextFieldProps extends TextInputProps {
@@ -39,32 +39,52 @@ export const ECTextField = forwardRef<TextInput, ECTextFieldProps>(
       onBlur,
     } = props;
 
+    const {
+      colors: {
+        primaryInputLabel,
+        errorBorderInputField,
+        errorInputText,
+        focusedInputField,
+        unFocusedInputField,
+        primaryTextColor,
+        placeholderTextColor,
+        selectionCursorColor,
+      },
+    } = useAppTheme();
+
     const paddingRight = ActionComponent ? 70 : 16;
 
     return (
       <View>
         <View style={styles.labelContainer}>
           <View style={styles.primaryLabel}>
-            <ECText fontSize={14} textColor={error ? '#EC3654' : '#004666'}>
+            <ECText
+              fontSize={14}
+              textColor={error ? errorInputText : primaryInputLabel}>
               {primaryLabel}
             </ECText>
             {info ? (
-              <ECTextFieldInfo color={error ? '#EC3654' : '#004666'} />
+              <ECTextFieldInfo
+                color={error ? errorInputText : primaryInputLabel}
+              />
             ) : null}
           </View>
         </View>
         <View>
           <TextInput
             placeholder={primaryPlaceholder}
+            placeholderTextColor={placeholderTextColor}
+            selectionColor={selectionCursorColor}
             style={[
               styles.input,
               {
                 borderColor: error
-                  ? '#EC3654'
+                  ? errorBorderInputField
                   : isFocused
-                  ? '#004666'
-                  : '#A3A8AE',
+                  ? focusedInputField
+                  : unFocusedInputField,
                 paddingRight,
+                color: primaryTextColor,
               },
             ]}
             returnKeyLabel={returnKeyLabel}
@@ -90,7 +110,10 @@ export const ECTextField = forwardRef<TextInput, ECTextFieldProps>(
             <View style={styles.iconWrapper}>{ActionComponent}</View>
           ) : null}
           {error ? (
-            <ECText style={styles.error} fontSize={11} textColor={'#EC3654'}>
+            <ECText
+              style={styles.error}
+              fontSize={11}
+              textColor={errorInputText}>
               {error}
             </ECText>
           ) : null}
@@ -129,7 +152,6 @@ const styles = StyleSheet.create({
   input: {
     height: 56,
     fontSize: 18,
-    color: '#004666',
     paddingLeft: 16,
     borderWidth: 1,
     borderRadius: 7,

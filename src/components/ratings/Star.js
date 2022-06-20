@@ -1,18 +1,15 @@
 import React, {PureComponent} from 'react';
 import {StyleSheet, Animated, TouchableOpacity} from 'react-native';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 
 const STAR_IMAGE = require('./images/airbnb-star.png');
 const STAR_SELECTED_IMAGE = require('./images/airbnb-star-selected.png');
 
 const STAR_SIZE = 40;
 
-const {starSelectedColor, starUnselectedColor} = ECOMMERCE_THEME.colors;
-
 export default class Star extends PureComponent {
   static defaultProps = {
-    selectedColor: starSelectedColor,
-    unselectedColor: starUnselectedColor,
+    selectedColor: '#004666',
+    unselectedColor: '#cccccc',
   };
 
   constructor() {

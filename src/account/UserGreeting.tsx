@@ -6,11 +6,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 import {ECText} from '../components/ECText';
 import {RootState} from '../store';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const UserGreeting: FunctionComponent<{}> = () => {
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
   const {navigate} = useNavigation();
   return (
@@ -36,9 +37,14 @@ export const UserGreeting: FunctionComponent<{}> = () => {
       <View>
         <IconButton
           icon={() => (
-            <Ionicons name="ios-settings-outline" size={25} color="white" />
+            <Ionicons
+              name="ios-settings-outline"
+              size={25}
+              color={sideMenuTextColor}
+            />
           )}
-          rippleColor="rgba(0, 17, 26, 0.6)"
+          size={35}
+          color={sideMenuTextColor}
           onPress={() => navigate('EditProfile')}
         />
       </View>

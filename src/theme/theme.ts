@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {ECOMMERCE_THEME as DEFAULT_APP_THEME} from './ecommerce/ecommerceTheme';
+import {ECOMMERCE_THEME as DEFAULT_APP_THEME} from './light-theme/ecommerceTheme';
 import {AppTheme} from './appTheme';
 
 // ==============Custom Theme React Context =================

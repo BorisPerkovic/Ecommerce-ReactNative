@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {CartItem} from './CartItem';
@@ -18,9 +20,12 @@ export const Cartitems = () => {
   }, [dispatch, cartItem]);
 
   return (
-    <>
+    <View style={styles.container}>
       {cartItem.length > 0 ? (
-        <>
+        <ScrollView
+          contentContainerStyle={styles.wrapper}
+          bounces={false}
+          showsVerticalScrollIndicator={false}>
           {cartItem.map(item => {
             return (
               <CartItem
@@ -34,10 +39,19 @@ export const Cartitems = () => {
             );
           })}
           <CartOrderInfo cartTotal={cartTotal} />
-        </>
+        </ScrollView>
       ) : (
         <CartNoItems />
       )}
-    </>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  wrapper: {
+    flexGrow: 1,
+  },
+});

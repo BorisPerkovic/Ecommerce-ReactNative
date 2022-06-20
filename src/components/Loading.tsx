@@ -4,17 +4,12 @@ import {
   ActivityIndicator,
   ImageBackground,
   Text,
-  StatusBar,
 } from 'react-native';
 import React from 'react';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {splashScreenStatusBarColor} = ECOMMERCE_THEME.colors;
 
 export const Loading = () => {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={splashScreenStatusBarColor} />
       <ImageBackground
         source={require('../../assets/images/preparingApp.png')}
         resizeMode="cover"

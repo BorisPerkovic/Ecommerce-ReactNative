@@ -4,29 +4,24 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {ProductsStackParams} from '../ProductsStack';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import {singleProduct} from './singleProductsSlice';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {TouchableRipple} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import {SingleProductSkeleton} from './SingleProductSkeleton';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {SingleProductDescription} from './SingleProductDescription';
 import {SingleProductRating} from './SingleProductRating';
 import {SingleProductButton} from './SingleProductButton';
 import SingleProductNoItem from './SingleProductNoItem';
 import config from '../../../config';
-
-const {
-  singleProductImageBackgroundColor,
-  iconRippleColor,
-  singleProductBackIconColor,
-  black,
-} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../../theme';
 
 export const ProductItem = () => {
+  const {
+    colors: {cartImageBackgroundColor, primaryTextColor},
+  } = useAppTheme();
   const {params} = useRoute<RouteProp<ProductsStackParams, 'SingleProduct'>>();
   const product = useSelector((state: RootStateOrAny) => state.singleProduct);
 
   const dispatch = useDispatch();
-  const {navigate} = useNavigation();
+  const {goBack} = useNavigation();
 
   useEffect(() => {
     dispatch(singleProduct(`${config.SINGLE_PRODUCT}${params.productId}`));
@@ -36,24 +31,25 @@ export const ProductItem = () => {
     <>
       <ScrollView
         contentContainerStyle={styles.container}
+        bounces={false}
         showsVerticalScrollIndicator={false}>
         {product.loading === 'pending' ? <SingleProductSkeleton /> : null}
         {product.loading === 'failed' ? <SingleProductNoItem /> : null}
         {product.loading === 'succeeded' ? (
           <>
-            <View style={styles.imageContainer}>
-              <TouchableRipple
-                borderless
-                style={styles.backIcon}
-                rippleColor={iconRippleColor}
-                accessibilityRole="button"
-                onPress={() => navigate('Home')}>
-                <Entypo
-                  name="chevron-left"
-                  size={30}
-                  color={singleProductBackIconColor}
+            <View
+              style={[
+                styles.imageContainer,
+                {backgroundColor: cartImageBackgroundColor},
+              ]}>
+              <View style={styles.backIcon}>
+                <IconButton
+                  icon="chevron-left"
+                  color={primaryTextColor}
+                  onPress={() => goBack()}
+                  size={35}
                 />
-              </TouchableRipple>
+              </View>
               <Image
                 source={{
                   uri: product.product.image,
@@ -61,7 +57,7 @@ export const ProductItem = () => {
                 style={styles.image}
               />
             </View>
-            <View style={styles.someContent}>
+            <View style={styles.description}>
               <View style={styles.textWrapper}>
                 <SingleProductDescription
                   title={product.product.title}
@@ -96,7 +92,6 @@ const styles = StyleSheet.create({
     height: (Dimensions.get('screen').height / 100) * 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: singleProductImageBackgroundColor,
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,
     padding: 10,
@@ -106,7 +101,7 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
   },
-  someContent: {
+  description: {
     flex: 1,
   },
   textWrapper: {
@@ -116,7 +111,6 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: black,
     marginVertical: 10,
   },
 });

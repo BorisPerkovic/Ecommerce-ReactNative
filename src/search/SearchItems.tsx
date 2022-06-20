@@ -35,11 +35,7 @@ const SearchItems = () => {
           />
         </View>
       ) : (
-        <ECText
-          textColor="#004666"
-          fontSize={18}
-          textAlign="center"
-          style={{padding: 20}}>
+        <ECText fontSize={18} textAlign="center" style={{padding: 20}}>
           Your items will appear here if products met your search term
         </ECText>
       )}

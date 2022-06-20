@@ -9,19 +9,19 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from '../../favorites/favoritesSlice';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {StaticRatings} from '../../components/ratings/StaticRatings';
+import {useAppTheme} from '../../theme';
 
 interface SingleProductRatingProps {
   product: SingleProduct;
 }
 
-const {singleProductTextColor, favoriteHeartBorderColor, favoriteHeartColor} =
-  ECOMMERCE_THEME.colors;
-
 export const SingleProductRating: FunctionComponent<
   SingleProductRatingProps
 > = ({product}) => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   const dispatch = useDispatch();
 
   const favorites = useSelector(
@@ -42,7 +42,7 @@ export const SingleProductRating: FunctionComponent<
   return (
     <View style={styles.favoritesWrapper}>
       <View>
-        <ECText fontSize={23} bold textColor={singleProductTextColor}>
+        <ECText fontSize={23} bold textColor={primaryTextColor}>
           ${product.price}
         </ECText>
         <StaticRatings
@@ -51,22 +51,18 @@ export const SingleProductRating: FunctionComponent<
           starStyle={styles.stars}
         />
       </View>
-      <View style={styles.favoritesIcon}>
+      <View style={[styles.favoritesIcon, {borderColor: primaryTextColor}]}>
         {isFavorite >= 0 ? (
           <TouchableOpacity
             activeOpacity={0}
             onPress={() => handleRemoveFromFavorites(product.id)}>
-            <Ionicons name="heart" size={38} color={favoriteHeartColor} />
+            <Ionicons name="heart" size={38} color={primaryTextColor} />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             activeOpacity={0}
             onPress={() => handleAddToFavorites(product)}>
-            <Ionicons
-              name="heart-outline"
-              size={38}
-              color={favoriteHeartColor}
-            />
+            <Ionicons name="heart-outline" size={38} color={primaryTextColor} />
           </TouchableOpacity>
         )}
       </View>
@@ -84,7 +80,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingHorizontal: 15,
     borderWidth: 1,
-    borderColor: favoriteHeartBorderColor,
     borderRadius: 10,
   },
   stars: {

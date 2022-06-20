@@ -1,13 +1,14 @@
 import React, {FunctionComponent} from 'react';
 import {Divider} from '../components/Divider';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {AppFeedbackNavigationItem} from './AppFeedbackNavigationItem';
 import {MyReviewsNavigationItem} from './MyReviewsNavigationItem';
 import {MyOrdersNavigationItem} from './MyOrdersNavigationItem';
-
-const {sideMenuDividerColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const UserAccount: FunctionComponent<{}> = () => {
+  const {
+    colors: {sideMenuDividerColor},
+  } = useAppTheme();
   return (
     <>
       <MyOrdersNavigationItem />

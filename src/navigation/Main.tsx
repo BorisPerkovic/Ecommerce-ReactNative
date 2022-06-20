@@ -3,15 +3,17 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Account} from '../account/Account';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {BottomTabs} from './BottomTabs';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useAppTheme} from '../theme';
 
 const Drawer = createDrawerNavigator();
 
-const {sideMenuBackgroundColor, sideMenuTextColor} = ECOMMERCE_THEME.colors;
-
 export const Main = () => {
+  const {
+    colors: {sideMenuBackgroundColor, sideMenuTextColor},
+  } = useAppTheme();
+
   const {top} = useSafeAreaInsets();
   return (
     <Drawer.Navigator
@@ -20,7 +22,10 @@ export const Main = () => {
         activeTintColor: sideMenuTextColor,
         inactiveTintColor: sideMenuTextColor,
       }}
-      drawerStyle={[styles.drawerStyle, {paddingTop: top}]}
+      drawerStyle={[
+        styles.drawerStyle,
+        {backgroundColor: sideMenuBackgroundColor, paddingTop: top},
+      ]}
       drawerContent={() => <Account />}>
       <Drawer.Screen
         options={{
@@ -38,7 +43,6 @@ export const Main = () => {
 
 const styles = StyleSheet.create({
   drawerStyle: {
-    backgroundColor: sideMenuBackgroundColor,
     width: '80%',
     height: '100%',
   },

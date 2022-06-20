@@ -1,28 +1,25 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {MyOrdersItems} from './MyOrdersItems';
-import {MyOrdersHeader} from './MyOrdersHeader';
+import {useAppTheme} from '../theme';
+import {ECHeader} from '../components/Header/ECHeader';
 import {MyStatusBar} from '../components/ECStatusBar';
 
 export const MyOrders = () => {
+  const {
+    colors: {backgroundColor},
+  } = useAppTheme();
   return (
-    <View style={styles.container}>
-      <MyStatusBar backColor="#004666" themeStyle="light-content" />
-      <ScrollView contentContainerStyle={styles.wrapper}>
-        <MyOrdersHeader />
-        <MyOrdersItems />
-      </ScrollView>
+    <View style={[styles.container, {backgroundColor: backgroundColor}]}>
+      <MyStatusBar />
+      <ECHeader screenTitle="My Orders" />
+      <MyOrdersItems />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  wrapper: {
     flexGrow: 1,
-    paddingHorizontal: 20,
   },
 });

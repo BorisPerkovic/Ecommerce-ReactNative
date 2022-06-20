@@ -6,11 +6,11 @@ import {ECEmailInputField} from '../../../components/ECEmailInputField';
 import {useDispatch, useSelector} from 'react-redux';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {ecommerceButtonTheme} from '../../../theme/ecommerce/ecommerceButtonTheme';
 import {ECButton} from '../../../components/button/ECButton';
 import {changeEmailThunk} from './changeEmailSlice';
 import {RootState} from '../../../store';
 import {useNavigation} from '@react-navigation/native';
+import {useAppTheme} from '../../../theme';
 
 interface FormData {
   email: string;
@@ -31,9 +31,11 @@ const changeEmailSchema = yup.object().shape({
   ...emailSchema,
 });
 
-const {primaryButtonContained, disabledButton} = ecommerceButtonTheme;
-
 export const ChangeEMailForm = () => {
+  const {
+    colors: {primaryTextColor},
+    buttons: {primaryButtonContained, disabledButton},
+  } = useAppTheme();
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
   const isLoading = useSelector(
     (state: RootState) => state.changeEmail.loading,
@@ -71,7 +73,7 @@ export const ChangeEMailForm = () => {
       <View>
         <ECText
           fontSize={17}
-          textColor="#004666"
+          textColor={primaryTextColor}
           textAlign="center"
           style={styles.text}>
           Please enter the e-mail address you would like to use for your

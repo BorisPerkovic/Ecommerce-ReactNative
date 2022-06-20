@@ -3,12 +3,14 @@ import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Text} from 'react-native';
 import {AccountNavigationItem} from './AccountNavigationItem';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const AppFeedbackNavigationItem: FunctionComponent = () => {
   const navigation = useNavigation();
+
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
 
   return (
     <AccountNavigationItem

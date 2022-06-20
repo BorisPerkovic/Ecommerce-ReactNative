@@ -2,14 +2,17 @@ import React, {FunctionComponent} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {AccountNavigationItem} from './AccountNavigationItem';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const LanguageSettingsNavigationItem: FunctionComponent<{
   title: string;
 }> = ({title}) => {
   const navigation = useNavigation();
+
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
+
   return (
     <AccountNavigationItem
       primaryIcon={

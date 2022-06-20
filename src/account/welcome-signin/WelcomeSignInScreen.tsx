@@ -1,18 +1,19 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {WelcomeSignInBanner} from './WelcomeSignInBanner';
 import WelcomeSignInLogo from './WelcomeSignInLogo';
 import {WelcomeSignInActions} from './WelcomSignInActions';
 import {MyStatusBar} from '../../components/ECStatusBar';
-
-const {white} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../../theme';
 
 export const WelcomeSignInScreen = () => {
+  const {
+    colors: {backgroundColor},
+  } = useAppTheme();
   return (
     <>
-      <MyStatusBar backColor={'#004666'} themeStyle={'light-content'} />
-      <View style={styles.container}>
+      <MyStatusBar />
+      <View style={[styles.container, {backgroundColor}]}>
         <View style={styles.bannerContainer}>
           <WelcomeSignInBanner />
         </View>
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 32,
     paddingBottom: 36,
-    backgroundColor: white,
   },
   logoContainer: {
     flex: 1,

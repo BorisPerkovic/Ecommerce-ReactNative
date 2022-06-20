@@ -1,5 +1,6 @@
 import React, {FunctionComponent, PropsWithChildren} from 'react';
 import {Text, TextProps} from 'react-native';
+import {useAppTheme} from '../theme';
 
 export interface ECText extends TextProps {
   bold?: boolean;
@@ -13,6 +14,9 @@ export interface ECText extends TextProps {
 export const ECText: FunctionComponent<ECText> = (
   props: PropsWithChildren<ECText>,
 ) => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   const {
     style: customStyle,
     bold,
@@ -32,7 +36,7 @@ export const ECText: FunctionComponent<ECText> = (
         {
           fontWeight: fontWeight,
           fontSize,
-          color: textColor,
+          color: textColor ? textColor : primaryTextColor,
           textAlign,
         },
       ]}>

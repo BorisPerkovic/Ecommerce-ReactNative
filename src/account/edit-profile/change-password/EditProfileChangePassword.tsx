@@ -1,14 +1,18 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {MyStatusBar} from '../../../components/ECStatusBar';
-import {EditProfileChangePasswordHeader} from './EditProfileChangePasswordHeader';
 import {ChangePasswordForm} from './ChangePasswordForm';
+import {ECHeader} from '../../../components/Header/ECHeader';
+import {useAppTheme} from '../../../theme';
 
 export const EditProfileChangePassword = () => {
+  const {
+    colors: {backgroundColor},
+  } = useAppTheme();
   return (
-    <View style={styles.container}>
-      <MyStatusBar backColor="#004666" themeStyle="light-content" />
-      <EditProfileChangePasswordHeader />
+    <View style={[styles.container, {backgroundColor}]}>
+      <MyStatusBar />
+      <ECHeader screenTitle="Change Password" />
       <ChangePasswordForm />
     </View>
   );
@@ -17,6 +21,5 @@ export const EditProfileChangePassword = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
 });

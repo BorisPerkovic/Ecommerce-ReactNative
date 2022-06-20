@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {StyleSheet, View} from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 
-import {OrderLabels, customStyles} from '../../util/stepper';
+import {OrderLabels, useCustomStyles} from '../../util/stepper';
 
 interface OrderStepperProps {
   position: number;
@@ -11,6 +11,7 @@ interface OrderStepperProps {
 export const OrderStepper: FunctionComponent<OrderStepperProps> = ({
   position,
 }) => {
+  const customStyles = useCustomStyles();
   return (
     <View style={styles.headerContainer}>
       <StepIndicator

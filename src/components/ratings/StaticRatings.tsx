@@ -1,6 +1,5 @@
 import React, {FunctionComponent, useMemo} from 'react';
 import {ImageStyle} from 'react-native';
-import {ECOMMERCE_THEME} from '../../theme/ecommerce/ecommerceTheme';
 import {ECRatingStars} from './ECRatings';
 
 interface StaticRatingsProps {
@@ -8,8 +7,6 @@ interface StaticRatingsProps {
   size?: number;
   starStyle?: ImageStyle;
 }
-
-const {starSelectedColor, starUnselectedColor} = ECOMMERCE_THEME.colors;
 
 export const StaticRatings: FunctionComponent<StaticRatingsProps> = ({
   stars = 0,
@@ -24,8 +21,8 @@ export const StaticRatings: FunctionComponent<StaticRatingsProps> = ({
         initialRating={stars}
         count={5}
         isDisabled
-        selectedColor={starSelectedColor}
-        unselectedColor={starUnselectedColor}
+        selectedColor={'#004666'}
+        unselectedColor={'#cccccc'}
         size={size}
       />
     ),

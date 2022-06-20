@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {TouchableOpacity, StyleSheet, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {ECText} from '../components/ECText';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import {useAppTheme} from '../theme';
 
 export interface AccountNavigationItemProps {
   primaryIcon: Element;
@@ -10,11 +10,12 @@ export interface AccountNavigationItemProps {
   onPress: () => void;
 }
 
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
-
 export const AccountNavigationItem: FunctionComponent<
   AccountNavigationItemProps
 > = props => {
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
   const {primaryIcon, labelColor = sideMenuTextColor, children} = props;
 
   return (

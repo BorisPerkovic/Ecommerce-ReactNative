@@ -1,13 +1,14 @@
 import React, {FunctionComponent} from 'react';
 import {StyleSheet} from 'react-native';
 import {ECText} from '../components/ECText';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
+import {useAppTheme} from '../theme';
 
 interface GuestGreetingProps {}
 
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
-
 export const GuestGreeting: FunctionComponent<GuestGreetingProps> = () => {
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
   return (
     <>
       <ECText

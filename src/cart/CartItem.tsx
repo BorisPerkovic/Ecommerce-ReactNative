@@ -2,9 +2,7 @@ import {StyleSheet, View, Image} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {CartQuantityItem} from './CartQuantityItem';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {black, cartImageBackgroundColor, white} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 interface CartItemProps {
   id: number;
@@ -21,8 +19,15 @@ export const CartItem: FunctionComponent<CartItemProps> = ({
   price,
   quantity,
 }) => {
+  const {
+    colors: {primaryTextColor, cartImageBackgroundColor},
+  } = useAppTheme();
   return (
-    <View style={styles.itemContainer}>
+    <View
+      style={[
+        styles.itemContainer,
+        {backgroundColor: cartImageBackgroundColor},
+      ]}>
       <View style={styles.contentWrapper}>
         <View style={styles.imageWrapper}>
           <Image
@@ -34,10 +39,13 @@ export const CartItem: FunctionComponent<CartItemProps> = ({
         </View>
         <View style={styles.infoWrapper}>
           <View>
-            <ECText fontSize={16} textColor={black}>
+            <ECText fontSize={16} textColor={primaryTextColor}>
               {title.slice(0, 25)}...
             </ECText>
-            <ECText style={styles.textStyle} fontSize={14} textColor={black}>
+            <ECText
+              style={styles.textStyle}
+              fontSize={14}
+              textColor={primaryTextColor}>
               ${price}
             </ECText>
           </View>
@@ -50,8 +58,9 @@ export const CartItem: FunctionComponent<CartItemProps> = ({
 
 const styles = StyleSheet.create({
   itemContainer: {
-    paddingHorizontal: 20,
-    backgroundColor: white,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    borderRadius: 10,
   },
   contentWrapper: {
     marginVertical: 8,
@@ -61,7 +70,6 @@ const styles = StyleSheet.create({
     width: '30%',
     height: 100,
     padding: 14,
-    backgroundColor: cartImageBackgroundColor,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',

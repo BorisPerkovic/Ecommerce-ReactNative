@@ -1,15 +1,17 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {ECButton} from '../components/button/ECButton';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {useNavigation} from '@react-navigation/native';
 import {alertService} from '../alertService';
-
-const {primaryButtonContained} = ecommerceButtonTheme;
+import {useAppTheme} from '../theme';
 
 export const ApplyFiltersButton = () => {
+  const {
+    colors: {divideColor},
+    buttons: {primaryButtonContained},
+  } = useAppTheme();
   const filterItems = useSelector((state: RootState) => state.filter);
   const {navigate} = useNavigation();
 
@@ -29,7 +31,7 @@ export const ApplyFiltersButton = () => {
   };
 
   return (
-    <View style={styles.button}>
+    <View style={[styles.button, {borderTopColor: divideColor}]}>
       <ECButton
         mode="outlined"
         variant={primaryButtonContained}
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
   button: {
     padding: 20,
     paddingBottom: 25,
-    borderTopColor: '#cccccc',
-    borderTopWidth: 2,
+    borderTopWidth: 1,
   },
 });

@@ -3,12 +3,14 @@ import {DrawerActions, useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Text} from 'react-native';
 import {AccountNavigationItem} from './AccountNavigationItem';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const MyOrdersNavigationItem: FunctionComponent = () => {
   const navigation = useNavigation();
+
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
 
   return (
     <AccountNavigationItem

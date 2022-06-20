@@ -4,11 +4,12 @@ import {LanguageSettingsNavigationItem} from './LanguageSettingsNavigationItem';
 import {CallSupportNavigationItem} from './CallSupportNavigationItem';
 import {Partners} from './Partners';
 import {Divider} from '../components/Divider';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {sideMenuDividerColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const GuestAccount: FunctionComponent<{}> = () => {
+  const {
+    colors: {sideMenuDividerColor},
+  } = useAppTheme();
   return (
     <>
       <DataProtectionNavigationItem />

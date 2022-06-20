@@ -28,7 +28,7 @@ export const OrderItems = () => {
           </KeyboardAwareScrollView>
         );
       case 2:
-        return <OrderCart position={position} setPosition={setPosition} />;
+        return <OrderCart />;
     }
   };
 
@@ -46,6 +46,5 @@ const styles = StyleSheet.create({
   },
   containerContent: {
     flexGrow: 1,
-    paddingHorizontal: 5,
   },
 });

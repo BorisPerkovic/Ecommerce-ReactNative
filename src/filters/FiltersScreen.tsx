@@ -9,13 +9,17 @@ import {InternalStorageFilter} from './InternalStorageFilter';
 import {OperatingSystemFilter} from './OperatingSystemFilter';
 import {ApplyFiltersButton} from './ApplyFiltersButton';
 import {PriceSliderFilter} from './PriceSliderFilter';
+import {useAppTheme} from '../theme';
 
 export const FiltersScreen = () => {
+  const {
+    colors: {backgroundColor},
+  } = useAppTheme();
   return (
-    <View style={styles.container}>
-      <MyStatusBar backColor="#004666" themeStyle="light-content" />
+    <View style={[styles.container, {backgroundColor}]}>
+      <MyStatusBar />
       <FiltersHeader />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
         <PriceSliderFilter />
         <BrandFilter />
         <RamMemoryFilter />
@@ -30,6 +34,5 @@ export const FiltersScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
 });

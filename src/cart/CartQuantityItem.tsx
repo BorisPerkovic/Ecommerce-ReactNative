@@ -4,9 +4,7 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {ECText} from '../components/ECText';
 import {useDispatch} from 'react-redux';
 import {decreaseCart, increaseCart, removeFromCart} from './cartSlice';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {black, cartTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 interface CartQuantityItemProps {
   id: number;
@@ -17,6 +15,9 @@ export const CartQuantityItem: FunctionComponent<CartQuantityItemProps> = ({
   id,
   quantity,
 }) => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   const dispatch = useDispatch();
   return (
     <View style={styles.quantityWrapper}>
@@ -25,23 +26,26 @@ export const CartQuantityItem: FunctionComponent<CartQuantityItemProps> = ({
           onPress={() => {
             dispatch(decreaseCart(id));
           }}>
-          <EvilIcons name="minus" size={33} color={cartTextColor} />
+          <EvilIcons name="minus" size={33} color={primaryTextColor} />
         </TouchableOpacity>
-        <ECText fontSize={20} textColor={black} style={{marginHorizontal: 15}}>
+        <ECText
+          fontSize={20}
+          textColor={primaryTextColor}
+          style={{marginHorizontal: 15}}>
           {quantity}
         </ECText>
         <TouchableOpacity
           onPress={() => {
             dispatch(increaseCart(id));
           }}>
-          <EvilIcons name="plus" size={33} color={cartTextColor} />
+          <EvilIcons name="plus" size={33} color={primaryTextColor} />
         </TouchableOpacity>
       </View>
       <TouchableOpacity
         onPress={() => {
           dispatch(removeFromCart(id));
         }}>
-        <EvilIcons name="trash" size={33} color={cartTextColor} />
+        <EvilIcons name="trash" size={33} color={primaryTextColor} />
       </TouchableOpacity>
     </View>
   );
@@ -60,7 +64,6 @@ const styles = StyleSheet.create({
   quantityIcons: {
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: cartTextColor,
     borderRadius: 10,
   },
 });

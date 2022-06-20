@@ -5,6 +5,7 @@ import {FavoritesNoItems} from './FavoritesNoItems';
 import {RootState} from '../store';
 import {FavoritesItem} from './FavoritesItem';
 import {FavoriteRemoveAllButton} from './FavoriteRemoveAllButton';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export const FavoritesItems = () => {
   const favorites = useSelector(
@@ -12,7 +13,10 @@ export const FavoritesItems = () => {
   );
 
   return (
-    <>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      bounces={false}
+      showsVerticalScrollIndicator={false}>
       {favorites.length > 0 ? (
         <>
           <View style={styles.container}>
@@ -34,13 +38,12 @@ export const FavoritesItems = () => {
       ) : (
         <FavoritesNoItems />
       )}
-    </>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'white',
+    flexGrow: 1,
   },
 });

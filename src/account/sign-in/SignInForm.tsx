@@ -3,7 +3,6 @@ import React, {FunctionComponent, useEffect, useRef} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {ECButton} from '../../components/button/ECButton';
-import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
 import {ECEmailInputField} from '../../components/ECEmailInputField';
 import {ECPasswordInputField} from '../../components/ECPasswordInputField';
 import {RootState} from '../../store';
@@ -11,15 +10,17 @@ import {useNavigation} from '@react-navigation/native';
 import {signInThunk} from './signInSlice';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {setSignInEmailSchema} from '../registration/setSchema';
+import {useAppTheme} from '../../theme';
 
 type FormData = {
   email: string;
   password: string;
 };
 
-const {primaryButtonContained, disabledButton} = ecommerceButtonTheme;
-
 export const SignInForm: FunctionComponent = () => {
+  const {
+    buttons: {primaryButtonContained, disabledButton},
+  } = useAppTheme();
   const {
     handleSubmit,
     control,
@@ -96,6 +97,7 @@ export const SignInForm: FunctionComponent = () => {
       </View>
       <View style={styles.buttonWrapper}>
         <ECButton
+          mode="outlined"
           disabled={!isValid}
           variant={!isValid ? disabledButton : primaryButtonContained}
           onPress={handleSubmit(onSubmitHandler)}
@@ -110,10 +112,12 @@ export const SignInForm: FunctionComponent = () => {
 const styles = StyleSheet.create({
   inputWrapper: {
     marginBottom: 24,
+    paddingHorizontal: 16,
   },
   buttonWrapper: {
     marginBottom: 12,
     marginTop: 24,
+    paddingHorizontal: 16,
   },
   forgotPassword: {alignSelf: 'flex-start'},
 });

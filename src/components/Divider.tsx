@@ -1,13 +1,20 @@
-import React, {FunctionComponent, useMemo} from 'react';
+import React, {FunctionComponent} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {useAppTheme} from '../theme';
 
 interface DividerProps {
   color?: string;
 }
 
 export const Divider: FunctionComponent<DividerProps> = ({color}) => {
-  const dividerColor = useMemo(() => (color ? color : '#d8d8d8'), [color]);
-  return <View style={[styles.divider, {backgroundColor: dividerColor}]} />;
+  const {
+    colors: {divideColor},
+  } = useAppTheme();
+  return (
+    <View
+      style={[styles.divider, {backgroundColor: color ? color : divideColor}]}
+    />
+  );
 };
 
 const styles = StyleSheet.create({

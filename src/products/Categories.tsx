@@ -1,10 +1,8 @@
 import React, {FunctionComponent, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Chip} from 'react-native-paper';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import config from '../../config';
-
-const {categoriesBackgroundColor, categorisTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 const CATEGORIES = [
   {
@@ -38,6 +36,9 @@ interface CategoriesProps {
 
 export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
   const [selectedCategory, setSelectedCategory] = useState('home');
+  const {
+    colors: {primaryChipColor, primaryChipTextColor},
+  } = useAppTheme();
   return (
     <View style={styles.container}>
       <FlatList
@@ -46,9 +47,12 @@ export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
           <Chip
             mode="outlined"
             selected={selectedCategory === itemData.item.name}
-            selectedColor={categorisTextColor}
-            style={styles.renderItemContainer}
-            textStyle={styles.renderItemText}
+            selectedColor={primaryChipTextColor}
+            style={[
+              styles.renderItemContainer,
+              {backgroundColor: primaryChipColor},
+            ]}
+            textStyle={[styles.renderItemText, {color: primaryChipTextColor}]}
             onPress={() => {
               setUrl(itemData.item.url);
               setSelectedCategory(itemData.item.name);
@@ -72,12 +76,10 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   renderItemContainer: {
-    backgroundColor: categoriesBackgroundColor,
     marginRight: 5,
     marginVertical: 10,
   },
   renderItemText: {
-    color: categorisTextColor,
     fontSize: 14,
     fontWeight: '500',
   },

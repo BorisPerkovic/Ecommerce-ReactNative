@@ -4,16 +4,19 @@ import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {IconButton} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store';
+import {useAppTheme} from '../../../theme';
 
 export const HeaderIconsMenu = () => {
   const navigation = useNavigation();
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   return (
-    <View style={styles.menuBtn}>
+    <View style={[styles.menuBtn, {borderRightColor: primaryTextColor}]}>
       <IconButton
         icon="menu"
-        rippleColor="rgba(0, 17, 26, 0.6)"
         size={25}
-        color={'#004666'}
+        color={primaryTextColor}
         onPress={() => navigation.dispatch(DrawerActions.openDrawer)}
       />
     </View>
@@ -21,6 +24,9 @@ export const HeaderIconsMenu = () => {
 };
 
 export const HeaderIconsFilter = () => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   const navigation = useNavigation();
   const filters = useSelector((state: RootState) => state.filter);
 
@@ -33,12 +39,11 @@ export const HeaderIconsFilter = () => {
     filters.system.length > 0;
 
   return (
-    <View style={styles.filterButton}>
+    <View style={[styles.filterButton, {borderLeftColor: primaryTextColor}]}>
       <IconButton
-        rippleColor="rgba(0, 17, 26, 0.6)"
         icon={isFilterEmpty ? 'filter-check-outline' : 'filter-outline'}
         size={25}
-        color={'#004666'}
+        color={primaryTextColor}
         onPress={() => {
           navigation.navigate('Filters');
         }}
@@ -50,12 +55,10 @@ export const HeaderIconsFilter = () => {
 const styles = StyleSheet.create({
   menuBtn: {
     borderRightWidth: 1,
-    borderRightColor: '#004666',
     justifyContent: 'center',
   },
   filterButton: {
     borderLeftWidth: 1,
-    borderLeftColor: '#004666',
     justifyContent: 'center',
   },
 });

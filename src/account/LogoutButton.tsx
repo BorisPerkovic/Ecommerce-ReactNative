@@ -1,18 +1,19 @@
 import React, {FunctionComponent} from 'react';
 import {ECButton} from '../components/button/ECButton';
-import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {logout} from './sign-in/signInSlice';
 import {useDispatch} from 'react-redux';
 import {clearUserData} from '../order/ordersSlice';
-
-const {logoutButton} = ecommerceButtonTheme;
+import {useAppTheme} from '../theme';
 
 export const LogoutButton: FunctionComponent<{}> = () => {
+  const {
+    buttons: {logoutButton},
+  } = useAppTheme();
   const dispatch = useDispatch();
 
   return (
     <ECButton
-      mode="contained"
+      mode="outlined"
       variant={logoutButton}
       onPress={() => {
         dispatch(clearUserData());

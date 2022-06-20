@@ -2,18 +2,19 @@ import React, {FunctionComponent} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ECButton} from '../../components/button/ECButton';
 import {useNavigation} from '@react-navigation/core';
-import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
-
-const {primaryButtonContained, primaryButtonOutlined} = ecommerceButtonTheme;
+import {useAppTheme} from '../../theme';
 
 export const WelcomeSignInActions: FunctionComponent<{}> = () => {
+  const {
+    buttons: {primaryButtonContained, primaryButtonOutlined},
+  } = useAppTheme();
   const {navigate} = useNavigation();
 
   return (
     <>
       <View style={styles.buttonWrapper}>
         <ECButton
-          mode="contained"
+          mode="outlined"
           variant={primaryButtonContained}
           onPress={() => navigate('Registration')}>
           Create Account

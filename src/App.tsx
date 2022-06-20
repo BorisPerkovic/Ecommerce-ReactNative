@@ -7,8 +7,8 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {RootStack} from './RootStack';
 import FlashMessage from 'react-native-flash-message';
 import {ECFlashMessage} from './components/ECFlashMessage';
-import {MyStatusBar} from './components/ECStatusBar';
-import {ECOMMERCE_THEME} from './theme/ecommerce/ecommerceTheme';
+import {ThemeContext} from './theme/theme';
+import {useTheme} from './theme/useTheme';
 
 enableScreens();
 
@@ -20,18 +20,24 @@ if (
 }
 
 const App = () => {
+  const {appTheme} = useTheme();
+
   return (
-    <SafeAreaProvider>
-      <PaperProvider>
-        <NavigationContainer>
-          <RootStack />
-        </NavigationContainer>
-        <FlashMessage
-          position={'top'}
-          MessageComponent={props => <ECFlashMessage {...props} />}
-        />
-      </PaperProvider>
-    </SafeAreaProvider>
+    <>
+      <ThemeContext.Provider value={appTheme}>
+        <SafeAreaProvider>
+          <PaperProvider>
+            <NavigationContainer>
+              <RootStack />
+            </NavigationContainer>
+            <FlashMessage
+              position={'top'}
+              MessageComponent={props => <ECFlashMessage {...props} />}
+            />
+          </PaperProvider>
+        </SafeAreaProvider>
+      </ThemeContext.Provider>
+    </>
   );
 };
 

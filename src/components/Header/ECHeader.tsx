@@ -1,57 +1,64 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Alert, StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
-import {ECText} from '../ECText';
+import {Alert, StyleSheet, View} from 'react-native';
 import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
+import {useAppTheme} from '../../theme';
+import {ECText} from '../ECText';
 
-interface ECHeaderProps {
-  title: string;
-  discard?: boolean;
+export const SCREEN_HEADER_HEIGHT = 50;
+
+export interface ScreenHeaderProps {
+  screenTitle: string;
+  preventGoBack?: boolean;
 }
 
-export const ECHeader: FunctionComponent<ECHeaderProps> = ({
-  title,
-  discard = false,
-}) => {
-  const {goBack} = useNavigation();
+export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
+  const {
+    colors: {backgroundColor, primaryTextColor},
+  } = useAppTheme();
+  const {screenTitle, preventGoBack = false} = props;
 
-  const onPressHandler = () => {
-    if (discard) {
-      Alert.alert(
-        'Discard',
-        'You may have some changes that are not saved. Are you sure you want to go back?',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => null,
-            style: 'cancel',
-          },
-          {
-            text: 'YES',
-            onPress: () => goBack(),
-          },
-        ],
-      );
-    } else {
-      goBack();
-    }
-  };
+  const {goBack, navigate} = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <View style={styles.iconContainer}>
         <IconButton
           icon="chevron-left"
-          rippleColor="rgba(0, 17, 26, 0.6)"
-          size={40}
-          color={'#004666'}
-          onPress={onPressHandler}
+          color={primaryTextColor}
+          onPress={() => {
+            if (preventGoBack) {
+              Alert.alert(
+                'Discard Changes?',
+                'You may have some changes that are not saved. Are you sure you want to go back?',
+                [
+                  {
+                    text: 'Cancel',
+                    onPress: () => null,
+                    style: 'cancel',
+                  },
+                  {
+                    text: 'YES',
+                    style: 'destructive',
+                    onPress: () => navigate('Home'),
+                  },
+                ],
+              );
+            } else {
+              goBack();
+            }
+          }}
+          size={35}
         />
       </View>
-      <View style={styles.title}>
-        <ECText textAlign="center" textColor={'black'} bold fontSize={25}>
-          {title}
+      <View style={styles.screenTitle}>
+        <ECText
+          bold
+          textColor={primaryTextColor}
+          fontSize={26}
+          textAlign="center">
+          {screenTitle}
         </ECText>
       </View>
       <View style={{width: '25%'}} />
@@ -64,16 +71,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 16,
+    paddingVertical: 20,
   },
-  icon: {margin: 0},
   iconContainer: {
-    flexBasis: '10%',
+    width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
     height: 45,
   },
-  title: {
-    flexBasis: '80%',
+  screenTitle: {
+    flex: 1,
   },
 });

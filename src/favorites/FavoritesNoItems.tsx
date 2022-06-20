@@ -2,15 +2,16 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ECText} from '../components/ECText';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {black, white} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const FavoritesNoItems = () => {
+  const {
+    colors: {backgroundColor, primaryTextColor},
+  } = useAppTheme();
   return (
-    <View style={styles.container}>
-      <Ionicons name="heart-dislike" size={50} color={black} />
-      <ECText textColor={black} bold fontSize={30}>
+    <View style={[styles.container, {backgroundColor: backgroundColor}]}>
+      <Ionicons name="heart-dislike" size={50} color={primaryTextColor} />
+      <ECText textColor={primaryTextColor} bold fontSize={30}>
         You have no favorite items.
       </ECText>
     </View>
@@ -22,6 +23,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: white,
   },
 });

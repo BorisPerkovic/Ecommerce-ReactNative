@@ -2,10 +2,14 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {HeaderIconsFilter, HeaderIconsMenu} from './HeaderIcons';
 import {HeaderSearch} from './HeaderSearch';
+import {useAppTheme} from '../../../theme';
 
 export const Header = () => {
+  const {
+    colors: {mainScreenHeaderBorderColor},
+  } = useAppTheme();
   return (
-    <View style={styles.topBar}>
+    <View style={[styles.topBar, {borderColor: mainScreenHeaderBorderColor}]}>
       <HeaderIconsMenu />
       <HeaderSearch />
       <HeaderIconsFilter />
@@ -19,7 +23,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'stretch',
     borderWidth: 1,
-    borderColor: '#004666',
     borderRadius: 16,
     height: 47,
     margin: 20,

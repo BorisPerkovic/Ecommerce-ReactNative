@@ -2,11 +2,11 @@ import {Keyboard, Platform, StyleSheet, TextInput, View} from 'react-native';
 import React, {FunctionComponent, useRef} from 'react';
 import {ECEmailInputField} from '../components/ECEmailInputField';
 import {Controller, useForm} from 'react-hook-form';
-import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {useDispatch, useSelector} from 'react-redux';
 import {ECButton} from '../components/button/ECButton';
 import {addUserLocationToOrder} from './ordersSlice';
 import {RootState} from '../store';
+import {useAppTheme} from '../theme';
 
 interface Orderlocationprops {
   position: number;
@@ -20,12 +20,13 @@ type FormData = {
   address: string;
 };
 
-const {primaryButtonContained, disabledButton} = ecommerceButtonTheme;
-
 export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
   position,
   setPosition,
 }) => {
+  const {
+    buttons: {primaryButtonContained, disabledButton},
+  } = useAppTheme();
   const userLocation = useSelector((state: RootState) => state.order.location);
   const {
     handleSubmit,
@@ -59,7 +60,7 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
   };
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.inputs}>
         <Controller
           control={control}
@@ -171,20 +172,20 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
       </View>
       <View style={styles.button}>
         <ECButton
-          mode="contained"
+          mode="outlined"
           disabled={!isValid}
           variant={!isValid ? disabledButton : primaryButtonContained}
           onPress={handleSubmit(onSubmitHandler)}>
           Next
         </ECButton>
       </View>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    paddingHorizontal: 10,
   },
   inputs: {
     marginBottom: 20,

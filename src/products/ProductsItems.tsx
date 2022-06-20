@@ -5,10 +5,7 @@ import {useDispatch, useSelector, RootStateOrAny} from 'react-redux';
 import {SkeletonMapped} from './ProductsSkeleton';
 import {Categories} from './Categories';
 import {getProducts} from './productsSlice';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import config from '../../config';
-
-const {black} = ECOMMERCE_THEME.colors;
 
 export const ProductsItems = () => {
   const [url, setUrl] = useState(config.BASE_URL);
@@ -56,12 +53,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  productsText: {
-    fontSize: 20,
-    color: black,
-    fontWeight: '500',
-    letterSpacing: 1,
-    marginTop: 20,
   },
 });

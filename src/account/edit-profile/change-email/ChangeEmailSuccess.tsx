@@ -5,26 +5,32 @@ import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ECText} from '../../../components/ECText';
 import {ECButton} from '../../../components/button/ECButton';
-import {ecommerceButtonTheme} from '../../../theme/ecommerce/ecommerceButtonTheme';
 import {useDispatch} from 'react-redux';
 import {logout} from '../../sign-in/signInSlice';
 import {resetChangeEmailFLow} from './changeEmailSlice';
-
-const {primaryButtonContained} = ecommerceButtonTheme;
+import {useAppTheme} from '../../../theme';
 
 export const ChangeEmailSuccess = () => {
+  const {
+    colors: {backgroundColor, primaryTextColor},
+    buttons: {primaryButtonContained},
+  } = useAppTheme();
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor}]}>
       <View style={styles.contentWrapper}>
         <Ionicons name="checkmark" size={60} color={'lime'} />
-        <ECText textColor={'black'} bold fontSize={30} textAlign="center">
+        <ECText
+          textColor={primaryTextColor}
+          bold
+          fontSize={30}
+          textAlign="center">
           Your e-mail has been successfully changed.
         </ECText>
         <ECText
-          textColor={'black'}
+          textColor={primaryTextColor}
           fontSize={25}
           textAlign="center"
           style={{marginTop: 20}}>
@@ -51,7 +57,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: 'white',
     padding: 20,
     paddingBottom: 25,
   },

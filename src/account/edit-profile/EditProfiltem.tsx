@@ -5,6 +5,7 @@ import {ECText} from '../../components/ECText';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {Divider} from '../../components/Divider';
+import {useAppTheme} from '../../theme';
 
 interface EditProfileItemProps {
   label: string;
@@ -19,12 +20,15 @@ export const EditProfileItem: FunctionComponent<EditProfileItemProps> = ({
   navigateTo,
   icon,
 }) => {
+  const {
+    colors: {primaryTextColor},
+  } = useAppTheme();
   const {navigate} = useNavigation();
 
   return (
     <>
       <View style={styles.container}>
-        <ECText fontSize={15} textColor="#6e757c" style={styles.label}>
+        <ECText fontSize={15} textColor={primaryTextColor} style={styles.label}>
           {label}
         </ECText>
         <TouchableOpacity
@@ -32,13 +36,17 @@ export const EditProfileItem: FunctionComponent<EditProfileItemProps> = ({
             navigate(navigateTo);
           }}>
           <View style={styles.wrapper}>
-            <ECText fontSize={15} textColor="#00111A" style={styles.value}>
+            <ECText
+              fontSize={15}
+              textColor={primaryTextColor}
+              bold
+              style={styles.value}>
               {value}
             </ECText>
             <Ionicons
               name={icon}
               size={25}
-              color="#004666"
+              color={primaryTextColor}
               style={{marginRight: 10}}
             />
           </View>

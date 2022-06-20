@@ -4,17 +4,18 @@ import {ECButton} from '../../components/button/ECButton';
 import {SingleProductDTO} from './singleProductsSlice';
 import {useDispatch} from 'react-redux';
 import {addToCart} from '../../cart/cartSlice';
-import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
+import {useAppTheme} from '../../theme';
 
 interface SingleProductButtonProps {
   product: SingleProductDTO;
 }
 
-const {primaryButtonContained} = ecommerceButtonTheme;
-
 export const SingleProductButton: FunctionComponent<
   SingleProductButtonProps
 > = ({product}) => {
+  const {
+    buttons: {primaryButtonContained},
+  } = useAppTheme();
   const dispatch = useDispatch();
 
   const handleAddToCart = (item: SingleProductDTO) => {

@@ -1,14 +1,13 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View, Image} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {FavoritesRemove} from './FavoritesRemove';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {TouchableRipple} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {SingleProductNavigationType} from '../products/ProductsCard';
-
-const {black, cartImageBackgroundColor, white, iconRippleColor} =
-  ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme/theme';
+import {StaticRatings} from '../components/ratings/StaticRatings';
 
 interface FavoritesItemProps {
   id: number;
@@ -25,61 +24,70 @@ export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
   price,
   ratings,
 }) => {
+  const {
+    colors: {cartImageBackgroundColor, iconRippleColor, primaryTextColor},
+  } = useAppTheme();
   const {navigate} = useNavigation<SingleProductNavigationType>();
 
   return (
-    <View style={styles.itemContainer}>
+    <TouchableRipple
+      borderless
+      rippleColor={iconRippleColor}
+      accessibilityRole="button"
+      style={[
+        styles.itemContainer,
+        {backgroundColor: cartImageBackgroundColor},
+      ]}
+      onPress={() => {
+        navigate('SingleProduct', {productId: id});
+      }}>
       <View style={styles.contentWrapper}>
-        <TouchableRipple
-          borderless
-          rippleColor={iconRippleColor}
-          accessibilityRole="button"
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={[styles.imageWrapper, {borderRadius: 10}]}
-          onPress={() => {
-            navigate('SingleProduct', {productId: id});
-          }}>
+        <View style={styles.imageWrapper}>
           <Image
             source={{
               uri: image,
             }}
             style={styles.image}
           />
-        </TouchableRipple>
+        </View>
         <View style={styles.infoWrapper}>
-          <View>
-            <ECText fontSize={16} textColor={black}>
+          <View style={{alignItems: 'flex-start'}}>
+            <ECText fontSize={16} textColor={primaryTextColor}>
               {title.slice(0, 20)}...
             </ECText>
-            <ECText style={styles.textStyle} fontSize={14} textColor={black}>
+            <ECText
+              style={styles.textStyle}
+              fontSize={14}
+              textColor={primaryTextColor}>
               ${price}
             </ECText>
+            <StaticRatings stars={+ratings.toFixed(1)} size={18} />
           </View>
-          <FavoritesRemove id={id} ratings={ratings} />
+          <FavoritesRemove id={id} />
         </View>
       </View>
-    </View>
+    </TouchableRipple>
   );
 };
 
 const styles = StyleSheet.create({
   itemContainer: {
-    paddingHorizontal: 20,
-    backgroundColor: white,
+    width: '93%',
+    borderRadius: 10,
+    alignSelf: 'center',
+    marginVertical: 5,
   },
   contentWrapper: {
-    marginVertical: 8,
     flexDirection: 'row',
   },
   imageWrapper: {
-    width: '30%',
+    width: '25%',
     height: 100,
-    padding: 14,
-    backgroundColor: cartImageBackgroundColor,
+    padding: 10,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 22,
+    marginRight: 15,
   },
   image: {
     width: '100%',
@@ -87,7 +95,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   infoWrapper: {
-    width: '60%',
+    width: '65%',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 5,
   },

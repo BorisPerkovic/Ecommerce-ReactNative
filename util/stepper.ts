@@ -1,25 +1,39 @@
+import {useAppTheme} from '../src/theme';
+
 export const OrderLabels = ['User', 'Location', 'Items'];
 export const RegistrationLabels = ['User', 'Set Password', 'Success'];
-export const customStyles = {
-  stepIndicatorSize: 50,
-  currentStepIndicatorSize: 60,
-  separatorStrokeWidth: 1,
-  currentStepStrokeWidth: 1,
-  stepStrokeCurrentColor: '#66E4EE',
-  stepStrokeWidth: 1,
-  stepStrokeFinishedColor: '#20c997',
-  stepStrokeUnFinishedColor: '#66E4EE',
-  separatorFinishedColor: '#20c997',
-  separatorUnFinishedColor: '#A3A8AE',
-  stepIndicatorFinishedColor: '#ffffff',
-  stepIndicatorUnFinishedColor: '#ffffff',
-  stepIndicatorCurrentColor: '#66E4EE',
-  stepIndicatorLabelFontSize: 16,
-  currentStepIndicatorLabelFontSize: 16,
-  stepIndicatorLabelCurrentColor: '#004666',
-  stepIndicatorLabelFinishedColor: '#4C5356',
-  stepIndicatorLabelUnFinishedColor: '#4C5356',
-  labelColor: '#4C5356',
-  labelSize: 14,
-  currentStepLabelColor: '#004666',
+export const useCustomStyles = () => {
+  const {
+    colors: {
+      backgroundColor,
+      stepperCurrentColor,
+      stepperCurrentTextColor,
+      stepperUnfinishedColor,
+      stepperUnfinishedTextColor,
+    },
+  } = useAppTheme();
+  const customStyles = {
+    stepIndicatorSize: 50,
+    currentStepIndicatorSize: 60,
+    separatorStrokeWidth: 1,
+    currentStepStrokeWidth: 1,
+    stepStrokeCurrentColor: stepperCurrentColor,
+    stepStrokeWidth: 1,
+    stepStrokeFinishedColor: stepperCurrentColor,
+    stepStrokeUnFinishedColor: stepperCurrentColor,
+    separatorFinishedColor: stepperCurrentColor,
+    separatorUnFinishedColor: stepperUnfinishedTextColor,
+    stepIndicatorFinishedColor: stepperCurrentColor,
+    stepIndicatorUnFinishedColor: stepperUnfinishedColor,
+    stepIndicatorCurrentColor: stepperCurrentColor,
+    stepIndicatorLabelFontSize: 16,
+    currentStepIndicatorLabelFontSize: 16,
+    stepIndicatorLabelCurrentColor: backgroundColor,
+    stepIndicatorLabelFinishedColor: stepperUnfinishedColor,
+    stepIndicatorLabelUnFinishedColor: stepperCurrentColor,
+    labelColor: stepperUnfinishedTextColor,
+    labelSize: 14,
+    currentStepLabelColor: stepperCurrentTextColor,
+  };
+  return customStyles;
 };

@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {StyleSheet, View} from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 
-import {RegistrationLabels, customStyles} from '../../../util/stepper';
+import {RegistrationLabels, useCustomStyles} from '../../../util/stepper';
 
 interface RegistrationStepperProps {
   position: number;
@@ -11,6 +11,7 @@ interface RegistrationStepperProps {
 export const RegistrationStepper: FunctionComponent<
   RegistrationStepperProps
 > = ({position}) => {
+  const customStyles = useCustomStyles();
   return (
     <View style={styles.headerContainer}>
       <StepIndicator

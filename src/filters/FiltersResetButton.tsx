@@ -1,25 +1,28 @@
 import {StyleSheet} from 'react-native';
 import React from 'react';
 import {TouchableRipple} from 'react-native-paper';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ECText} from '../components/ECText';
 import {useDispatch} from 'react-redux';
 import {resetAllFilters} from './filtersSlice';
-
-const {iconRippleColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const FiltersResetButton = () => {
+  const {
+    colors: {primaryTextColor, backgroundColor},
+  } = useAppTheme();
   const dispatch = useDispatch();
   return (
     <TouchableRipple
       borderless
-      style={styles.resetButton}
-      rippleColor={iconRippleColor}
+      style={[
+        styles.resetButton,
+        {backgroundColor, borderColor: primaryTextColor},
+      ]}
       accessibilityRole="button"
       onPress={() => {
         dispatch(resetAllFilters());
       }}>
-      <ECText textColor="#004666" fontSize={16} textAlign="center">
+      <ECText textColor={primaryTextColor} fontSize={16} textAlign="center">
         Reset All
       </ECText>
     </TouchableRipple>
@@ -31,7 +34,5 @@ const styles = StyleSheet.create({
     padding: 7,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#004666',
-    backgroundColor: 'white',
   },
 });

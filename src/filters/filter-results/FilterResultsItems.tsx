@@ -42,6 +42,7 @@ export const FilterResultsItems = () => {
       {isLoading === 'succeeded' ? (
         <View style={styles.container}>
           <FlatList
+            bounces={false}
             scrollEnabled={true}
             data={filterItemsResults}
             renderItem={itemData => (

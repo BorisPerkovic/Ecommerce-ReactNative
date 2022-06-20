@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {FunctionComponent} from 'react';
 import {StyleSheet, TouchableOpacity, View, Platform} from 'react-native';
 import {
@@ -5,22 +6,11 @@ import {
   MessageComponentProps,
   MessageType,
 } from 'react-native-flash-message';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
 import {ECText} from './ECText';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
-import {toPairs} from 'lodash';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
-const {
-  flashMessageDangerBackgroundColors,
-  flashMessageInfoBackgroundColors,
-  flashMessageSuccessBackgroundColors,
-  flashMessageTextColor,
-  flashMessageWarningBackgroundColors,
-  flashMessageWarningTextColor,
-  white,
-} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme/theme';
 
 type FlashMessageColorModel = {[key in MessageType]: string};
 
@@ -30,6 +20,18 @@ export const ECFlashMessage: FunctionComponent<
   const {
     message: {message, type},
   } = props;
+
+  const {
+    colors: {
+      flashMessageDangerBackgroundColors,
+      flashMessageInfoBackgroundColors,
+      flashMessageSuccessBackgroundColors,
+      flashMessageTextColor,
+      flashMessageWarningBackgroundColors,
+      flashMessageWarningTextColor,
+      white,
+    },
+  } = useAppTheme();
 
   const {top} = useSafeAreaInsets();
 

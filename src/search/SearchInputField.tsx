@@ -1,18 +1,15 @@
-/* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
-import React, {FunctionComponent, useState} from 'react';
-import {TextInput} from 'react-native-gesture-handler';
+import {Keyboard, StyleSheet, View} from 'react-native';
+import React, {FunctionComponent} from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {ECText} from '../components/ECText';
 import {useDispatch} from 'react-redux';
 import {searchProductsThunk} from './searchSlice';
+import {ECEmailInputField} from '../components/ECEmailInputField';
 
 interface FormData {
   search: string;
 }
 
 const SearchInputField: FunctionComponent<{}> = () => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
   const {
     handleSubmit,
     control,
@@ -39,39 +36,25 @@ const SearchInputField: FunctionComponent<{}> = () => {
             message: "field can't be empty",
           },
         }}
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            style={[
-              styles.searchInput,
-              {
-                borderColor: errors.search
-                  ? '#EC3654'
-                  : isFocused
-                  ? '#004666'
-                  : '#A3A8AE',
-              },
-            ]}
+        render={({field: {onChange, onBlur, value}}) => (
+          <ECEmailInputField
+            label="Search Products"
+            style={styles.searchInput}
             placeholder="Type Search Term...."
             onChangeText={e => onChange(e)}
             returnKeyLabel="search"
             returnKeyType="search"
-            onFocus={() => {
-              setIsFocused(true);
-            }}
-            onBlur={() => {
-              setIsFocused(false);
-            }}
             value={value}
-            onSubmitEditing={handleSubmit(onSubmitHandler)}
+            onBlur={onBlur}
+            onSubmitEditing={() => {
+              Keyboard.dismiss();
+              handleSubmit(onSubmitHandler)();
+            }}
+            error={errors.search?.message}
           />
         )}
         name="search"
       />
-      {errors.search ? (
-        <ECText textColor={'#EC3654'} fontSize={15}>
-          {errors.search.message}
-        </ECText>
-      ) : null}
     </View>
   );
 };

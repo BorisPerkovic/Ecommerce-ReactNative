@@ -1,11 +1,12 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {ECButton} from '../../components/button/ECButton';
-import {ecommerceButtonTheme} from '../../theme/ecommerce/ecommerceButtonTheme';
-
-const {deleteAccountButton} = ecommerceButtonTheme;
+import {useAppTheme} from '../../theme';
 
 export const DeleceAccountButton = () => {
+  const {
+    buttons: {deleteAccountButton},
+  } = useAppTheme();
   return (
     <View style={styles.button}>
       <ECButton

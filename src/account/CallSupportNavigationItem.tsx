@@ -1,12 +1,14 @@
 import {AccountNavigationItem} from './AccountNavigationItem';
 import React, {FunctionComponent} from 'react';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {sideMenuTextColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const CallSupportNavigationItem: FunctionComponent = props => {
   const {children} = props;
+
+  const {
+    colors: {sideMenuTextColor},
+  } = useAppTheme();
   return (
     <AccountNavigationItem
       primaryIcon={

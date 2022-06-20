@@ -1,11 +1,12 @@
 import React, {FunctionComponent} from 'react';
 import {DrawerActions, useNavigation} from '@react-navigation/core';
 import {ECButton} from '../components/button/ECButton';
-import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
-
-const {loginButton} = ecommerceButtonTheme;
+import {useAppTheme} from '../theme';
 
 export const LoginButton: FunctionComponent<{}> = () => {
+  const {
+    buttons: {loginButton},
+  } = useAppTheme();
   const navigation = useNavigation();
 
   return (

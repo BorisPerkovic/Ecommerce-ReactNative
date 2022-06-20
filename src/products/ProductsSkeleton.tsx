@@ -1,14 +1,17 @@
 import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import {ECOMMERCE_THEME} from '../theme/ecommerce/ecommerceTheme';
-
-const {productsSkeletonColor} = ECOMMERCE_THEME.colors;
+import {useAppTheme} from '../theme';
 
 export const ProductsSkeleton = () => {
+  const {
+    colors: {skeletonBackgroundColor, skeletonHighlightColor},
+  } = useAppTheme();
   return (
     <View style={styles.container}>
-      <SkeletonPlaceholder backgroundColor={productsSkeletonColor}>
+      <SkeletonPlaceholder
+        backgroundColor={skeletonBackgroundColor}
+        highlightColor={skeletonHighlightColor}>
         <SkeletonPlaceholder.Item
           width={'100%'}
           height={150}

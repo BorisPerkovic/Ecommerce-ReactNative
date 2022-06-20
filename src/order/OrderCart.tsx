@@ -6,22 +6,16 @@ import {RootState} from '../store';
 import {ECText} from '../components/ECText';
 import {Divider} from '../components/Divider';
 import {ECButton} from '../components/button/ECButton';
-import {ecommerceButtonTheme} from '../theme/ecommerce/ecommerceButtonTheme';
 import {clearCart} from '../cart/cartSlice';
 import {useNavigation} from '@react-navigation/native';
 import {createOrderThunk} from './ordersSlice';
+import {useAppTheme} from '../theme';
 
-interface OrderCartprops {
-  position: number;
-  setPosition: (num: number) => void;
-}
-
-const {primaryButtonContained} = ecommerceButtonTheme;
-
-export const OrderCart: FunctionComponent<OrderCartprops> = ({
-  position,
-  setPosition,
-}) => {
+export const OrderCart: FunctionComponent<{}> = () => {
+  const {
+    colors: {primaryTextColor},
+    buttons: {primaryButtonContained},
+  } = useAppTheme();
   const userOrder = useSelector((state: RootState) => state.order);
   const loggedUser = useSelector((state: RootState) => state.signIn.loggedUser);
   const isLoading = useSelector((state: RootState) => state.order.loading);
@@ -40,26 +34,29 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
   }, [isLoading, dispatch]);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      bounces={false}
+      contentContainerStyle={styles.container}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         {userOrder.user.name}
       </ECText>
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         {userOrder.user.lastName}
       </ECText>
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         {userOrder.user.email}
       </ECText>
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         {userOrder.location.city}
       </ECText>
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         {userOrder.location.country}
       </ECText>
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         {userOrder.location.zipCode}
       </ECText>
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         {userOrder.location.address}
       </ECText>
       <Divider />
@@ -68,15 +65,21 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
           <View key={item.id}>
             <ECText
               fontSize={16}
-              textColor={'#004666'}
+              textColor={primaryTextColor}
               style={styles.orderItem}>
               {item.title}
             </ECText>
             <View style={styles.orderItems}>
-              <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+              <ECText
+                fontSize={16}
+                textColor={primaryTextColor}
+                style={styles.text}>
                 Quantity: {item.cartQuantity}
               </ECText>
-              <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+              <ECText
+                fontSize={16}
+                textColor={primaryTextColor}
+                style={styles.text}>
                 Price: {(item.price * item.cartQuantity).toFixed(2)}
               </ECText>
             </View>
@@ -84,20 +87,10 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
         );
       })}
       <Divider />
-      <ECText fontSize={16} textColor={'#004666'} style={styles.text}>
+      <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
         Total Price: {totalPrice}$
       </ECText>
       <Divider />
-      <View style={styles.buttons}>
-        <ECButton
-          mode="outlined"
-          variant={primaryButtonContained}
-          onPress={() => {
-            setPosition(position - 1);
-          }}>
-          Back
-        </ECButton>
-      </View>
       <View style={styles.buttons}>
         <ECButton
           mode="outlined"
@@ -138,6 +131,10 @@ export const OrderCart: FunctionComponent<OrderCartprops> = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    paddingHorizontal: 10,
+  },
   text: {
     marginVertical: 5,
   },

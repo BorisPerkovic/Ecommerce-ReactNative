@@ -1,7 +1,7 @@
-/* eslint-disable react-native/no-inline-styles */
 import {Pressable, StyleSheet} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
+import {useAppTheme} from '../theme';
 
 interface ChipFilterProps {
   title: string;
@@ -14,15 +14,26 @@ export const ChipFilter: FunctionComponent<ChipFilterProps> = ({
   isSelected,
   onFilter,
 }) => {
+  const {
+    colors: {
+      selectedChipBackroundColor,
+      unselectedChipbackgroundColor,
+      chipText,
+    },
+  } = useAppTheme();
   return (
     <Pressable
       style={[
         styles.chip,
-        {backgroundColor: isSelected ? '#C2E1F0' : '#f2f2f2'},
+        {
+          backgroundColor: isSelected
+            ? selectedChipBackroundColor
+            : unselectedChipbackgroundColor,
+        },
       ]}
       onPress={onFilter}>
       <ECText
-        textColor={'#004666'}
+        textColor={chipText}
         fontSize={13}
         textAlign="center"
         bold
@@ -38,8 +49,8 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
     paddingHorizontal: 15,
     borderRadius: 20,
-    marginVertical: 5,
-    marginRight: 10,
+    marginHorizontal: 5,
+    marginVertical: 10,
   },
   title: {
     lineHeight: 20,

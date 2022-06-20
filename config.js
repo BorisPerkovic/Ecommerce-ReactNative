@@ -15,6 +15,7 @@ import {
   FILTERS_PRODUCTS,
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
+  DELETE_ACCOUNT,
 } from '@env';
 
 export default {
@@ -34,4 +35,5 @@ export default {
   FILTERS_PRODUCTS,
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
+  DELETE_ACCOUNT,
 };

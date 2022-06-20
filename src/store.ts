@@ -19,6 +19,7 @@ import filterReducer from './filters/filtersSlice';
 import changeEmailReducer from './account/edit-profile/change-email/changeEmailSlice';
 import changePasswordReducer from './account/edit-profile/change-password/changePasswordSlice';
 import themeReducer from './theme/themeSlice';
+import deleteAccountReducer from './account/edit-profile/deleteAccountSlice';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   filter: filterReducer,
   changeEmail: changeEmailReducer,
   changePassword: changePasswordReducer,
+  deleteAccount: deleteAccountReducer,
   theme: themeReducer,
 });
 

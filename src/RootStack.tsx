@@ -23,6 +23,8 @@ import {ChangeEmailSuccess} from './account/edit-profile/change-email/ChangeEmai
 import {EditProfileChangePassword} from './account/edit-profile/change-password/EditProfileChangePassword';
 import {ChangePasswordSuccess} from './account/edit-profile/change-password/ChangePasswordSucces';
 import {EditProfileChangeTheme} from './account/edit-profile/change-theme/EditProfileChangeTheme';
+import {FeedbackScreen} from './app-feedback/FeedbackScreen';
+import {FeedbackSucces} from './app-feedback/FeedbackSucces';
 
 const Stack = createStackNavigator();
 
@@ -84,6 +86,8 @@ export const RootStack = () => {
             name="ChangePasswordSuccess"
             component={ChangePasswordSuccess}
           />
+          <Stack.Screen name="Feedback" component={FeedbackScreen} />
+          <Stack.Screen name="FeedbackSuccess" component={FeedbackSucces} />
         </>
       )}
     </Stack.Navigator>

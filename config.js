@@ -16,6 +16,7 @@ import {
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
   DELETE_ACCOUNT,
+  APP_FEEDBACK,
 } from '@env';
 
 export default {
@@ -36,4 +37,5 @@ export default {
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
   DELETE_ACCOUNT,
+  APP_FEEDBACK,
 };

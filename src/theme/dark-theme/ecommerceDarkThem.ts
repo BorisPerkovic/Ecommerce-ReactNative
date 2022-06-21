@@ -60,6 +60,8 @@ export const ECOMMERCE_DARK_THEME: AppTheme = {
     flashMessageTextColor: DarkThemeColors.WHITE,
     flashMessageWarningTextColor: DarkThemeColors.WARNING_TEXT_COLOR,
     splashScreenStatusBarColor: DarkThemeColors.SPLASH_COLOR,
+    starSelectedColor: DarkThemeColors.STAR_SELECTED,
+    starUnseletedColor: DarkThemeColors.STAR_UNSELECTED,
   },
   buttons: {
     primaryButtonContained: {

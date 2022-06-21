@@ -73,8 +73,8 @@ export enum DarkThemeColors {
 
   SPLASH_COLOR = '#302d2d',
 
-  STAR_SELECTED = '#004666',
-  STAR_UNSELECTED = '#D4D6D9',
+  STAR_SELECTED = '#fed84a',
+  STAR_UNSELECTED = '#777065',
 
   BANNER_IMAGE_TEXT_BACKGROUND = '#004666',
 }

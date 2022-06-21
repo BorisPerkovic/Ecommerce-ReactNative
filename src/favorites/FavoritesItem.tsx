@@ -61,7 +61,9 @@ export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
               textColor={primaryTextColor}>
               ${price}
             </ECText>
-            <StaticRatings stars={+ratings.toFixed(1)} size={18} />
+            <View style={styles.ratings}>
+              <StaticRatings stars={+ratings.toFixed(1)} size={18} />
+            </View>
           </View>
           <FavoritesRemove id={id} />
         </View>
@@ -99,6 +101,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 5,
+  },
+  ratings: {
+    marginTop: 10,
   },
   textStyle: {
     fontWeight: '400',

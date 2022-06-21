@@ -18,7 +18,7 @@ export const AppFeedbackNavigationItem: FunctionComponent = () => {
         <AntDesign name="like2" size={25} color={sideMenuTextColor} />
       }
       onPress={() => {
-        navigation.navigate('DataProtection');
+        navigation.navigate('Feedback');
       }}>
       <Text>App Feedback</Text>
     </AccountNavigationItem>

@@ -27,7 +27,7 @@ export const ECText: FunctionComponent<ECText> = (
     textAlign,
   } = props;
 
-  const fontWeight = bold ? '700' : '400';
+  const fontFamily = bold ? 'Montserrat-Bold' : 'Montserrat-Regular';
 
   return (
     <Text
@@ -35,8 +35,7 @@ export const ECText: FunctionComponent<ECText> = (
       style={[
         customStyle,
         {
-          fontFamily: 'Montserrat-Regular',
-          fontWeight: fontWeight,
+          fontFamily: fontFamily,
           fontSize,
           color: textColor ? textColor : primaryTextColor,
           textAlign,

@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {RegistrationItems} from './RegistrationItems';
 import {ECHeader} from '../../components/Header/ECHeader';
@@ -12,13 +12,10 @@ const RegistrationScreen = () => {
   return (
     <View style={[styles.container, {backgroundColor}]}>
       <MyStatusBar />
-      <ScrollView
-        bounces={false}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.container}>
-        <ECHeader screenTitle="Registration" preventGoBack={true} />
+      <ECHeader screenTitle="Registration" preventGoBack={true} />
+      <View style={styles.wrapper}>
         <RegistrationItems />
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -27,6 +24,9 @@ export default RegistrationScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  wrapper: {
     flexGrow: 1,
   },
 });

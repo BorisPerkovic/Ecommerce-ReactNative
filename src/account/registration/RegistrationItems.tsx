@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {RegistrationStepper} from './RegistrationStepper';
 import {RegistrationUserInfo} from './RegistrationUserInfo';
@@ -15,11 +16,10 @@ export const RegistrationItems = () => {
         return (
           <KeyboardAwareScrollView
             enableOnAndroid
-            scrollEnabled={false}
             showsVerticalScrollIndicator={false}
             bounces={false}
-            extraHeight={Platform.OS === 'ios' ? 85 : 80}
-            extraScrollHeight={70}
+            extraHeight={Platform.OS === 'ios' ? 85 : 0}
+            extraScrollHeight={40}
             keyboardOpeningTime={0}
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={styles.containerContent}>
@@ -35,8 +35,8 @@ export const RegistrationItems = () => {
             enableOnAndroid
             showsVerticalScrollIndicator={false}
             bounces={false}
-            extraHeight={Platform.OS === 'ios' ? 85 : 30}
-            extraScrollHeight={32}
+            extraHeight={Platform.OS === 'ios' ? 85 : 0}
+            extraScrollHeight={40}
             keyboardOpeningTime={0}
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={styles.containerContent}>
@@ -54,14 +54,18 @@ export const RegistrationItems = () => {
   return (
     <View style={styles.container}>
       <RegistrationStepper position={position} />
-      <View style={styles.containerContent}>{Stepper()}</View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.containerContent}>
+        {Stepper()}
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
   },
   containerContent: {
     flexGrow: 1,

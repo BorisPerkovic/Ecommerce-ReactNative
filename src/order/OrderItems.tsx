@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {OrderCart} from './OrderCart';
 import {OrderLocation} from './OrderLocation';
@@ -35,14 +36,18 @@ export const OrderItems = () => {
   return (
     <View style={styles.container}>
       <OrderStepper position={position} />
-      <View style={styles.containerContent}>{Stepper()}</View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.containerContent}>
+        {Stepper()}
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
   },
   containerContent: {
     flexGrow: 1,

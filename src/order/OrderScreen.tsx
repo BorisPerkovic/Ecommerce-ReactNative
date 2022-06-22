@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {MyStatusBar} from '../components/ECStatusBar';
 import {OrderItems} from './OrderItems';
@@ -10,19 +10,21 @@ export const OrderScreen = () => {
     colors: {backgroundColor},
   } = useAppTheme();
   return (
-    <ScrollView
-      bounces={false}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={[styles.container, {backgroundColor}]}>
+    <View style={[styles.container, {backgroundColor}]}>
       <MyStatusBar />
       <ECHeader screenTitle="Order" preventGoBack={true} />
-      <OrderItems />
-    </ScrollView>
+      <View style={styles.wrapper}>
+        <OrderItems />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  wrapper: {
     flexGrow: 1,
   },
 });

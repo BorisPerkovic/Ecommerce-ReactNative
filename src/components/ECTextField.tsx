@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   ReturnKeyTypeOptions,
+  Dimensions,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useAppTheme} from '../theme';
@@ -22,6 +23,9 @@ interface ECTextFieldProps extends TextInputProps {
   primaryPlaceholder: string;
   error?: string;
 }
+
+const deviceHeight = Dimensions.get('screen').height;
+console.log(deviceHeight);
 
 export const ECTextField = forwardRef<TextInput, ECTextFieldProps>(
   (props, ref) => {
@@ -150,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   input: {
-    height: 56,
+    height: deviceHeight < 700 ? 45 : 56,
     fontSize: 18,
     paddingLeft: 16,
     borderWidth: 1,

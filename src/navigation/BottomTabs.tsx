@@ -63,6 +63,7 @@ export const BottomTabs = () => {
             marginTop: -5,
             marginBottom: 5,
             fontSize: 14,
+            fontFamily: 'Montserrat-Regular',
           },
         }}>
         <Tab.Screen name="Home" component={ProductsScreen} />

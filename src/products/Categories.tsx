@@ -2,6 +2,7 @@ import React, {FunctionComponent, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Chip} from 'react-native-paper';
 import config from '../../config';
+import {ECText} from '../components/ECText';
 import {useAppTheme} from '../theme';
 
 const CATEGORIES = [
@@ -57,7 +58,9 @@ export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
               setUrl(itemData.item.url);
               setSelectedCategory(itemData.item.name);
             }}>
-            {itemData.item.name.toLocaleUpperCase()}
+            <ECText fontSize={13} textColor={primaryChipTextColor}>
+              {itemData.item.name.toLocaleUpperCase()}
+            </ECText>
           </Chip>
         )}
         keyExtractor={item => item.name.toString()}

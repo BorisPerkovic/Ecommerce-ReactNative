@@ -12,7 +12,7 @@ const WelcomeSignInLogo = () => {
   } = useAppTheme();
   return (
     <View style={[styles.container, {backgroundColor}]}>
-      <ECText fontSize={30} textColor={primaryTextColor}>
+      <ECText fontSize={27} textColor={primaryTextColor}>
         Ecommerce App
       </ECText>
       <Image

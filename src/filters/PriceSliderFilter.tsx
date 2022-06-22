@@ -1,41 +1,52 @@
 import React from 'react';
-import RangeSlider from '@jesster2k10/react-native-range-slider';
+import {RangeSlider} from '@sharcoux/slider';
 import {FiltersSection} from './FiltersSection';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import {useDebouncedCallback} from 'use-debounce';
 import {addPriceToFilter} from './filtersSlice';
 import {useAppTheme} from '../theme';
+import {ECText} from '../components/ECText';
 
 export const PriceSliderFilter = () => {
   const {
-    colors: {priceRangeStrokeColor, priceRangeTextColor},
+    colors: {priceRangeStrokeColor, priceRangeTextColor, primaryTextColor},
   } = useAppTheme();
   const filtersPrice = useSelector((state: RootState) => state.filter);
   const dispatch = useDispatch();
 
-  const debounced = useDebouncedCallback((min: number, max: number) => {
-    dispatch(addPriceToFilter({startPrice: min, endPrice: max}));
+  const debounced = useDebouncedCallback(range => {
+    dispatch(
+      addPriceToFilter({
+        startPrice: +range[0].toFixed(0),
+        endPrice: +range[1].toFixed(0),
+      }),
+    );
   }, 200);
 
   return (
     <FiltersSection title="Price Range">
       <View style={styles.wrapper}>
+        <View style={styles.sliderValues}>
+          <ECText fontSize={15} textColor={primaryTextColor}>
+            ${filtersPrice.startPrice}
+          </ECText>
+          <ECText fontSize={15} textColor={primaryTextColor}>
+            ${filtersPrice.endPrice}
+          </ECText>
+        </View>
         <RangeSlider
-          type="range"
-          min={0}
-          max={2500}
-          selectedMinimum={filtersPrice.startPrice}
-          selectedMaximum={filtersPrice.endPrice}
-          tintColor={priceRangeTextColor}
-          handleColor={priceRangeTextColor}
-          handlePressedColor={priceRangeStrokeColor}
-          tintColorBetweenHandles={priceRangeStrokeColor}
-          minLabelFontSize={17}
-          maxLabelFontSize={17}
-          suffix="$"
-          onChange={(min, max) => debounced(min, max)}
+          range={[filtersPrice.startPrice, filtersPrice.endPrice]}
+          minimumValue={0}
+          maximumValue={2500}
+          crossingAllowed={false}
+          outboundColor={priceRangeTextColor}
+          inboundColor={priceRangeStrokeColor}
+          thumbTintColor={priceRangeTextColor}
+          trackHeight={7}
+          thumbSize={18}
+          onSlidingComplete={(range: [number, number]) => debounced(range)}
           style={styles.slider}
         />
       </View>
@@ -44,10 +55,18 @@ export const PriceSliderFilter = () => {
 };
 const styles = StyleSheet.create({
   wrapper: {
+    width: '100%',
     paddingHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sliderValues: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: Platform.OS === 'android' ? '100%' : '95%',
   },
   slider: {
-    width: 320,
-    alignSelf: 'center',
+    width: Platform.OS === 'android' ? '100%' : '95%',
   },
 });

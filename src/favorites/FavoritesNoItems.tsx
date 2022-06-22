@@ -11,7 +11,7 @@ export const FavoritesNoItems = () => {
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <Ionicons name="heart-dislike" size={50} color={primaryTextColor} />
-      <ECText textColor={primaryTextColor} bold fontSize={30}>
+      <ECText textColor={primaryTextColor} fontSize={25} textAlign="center">
         You have no favorite items.
       </ECText>
     </View>

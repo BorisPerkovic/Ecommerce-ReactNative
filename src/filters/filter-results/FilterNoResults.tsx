@@ -15,7 +15,7 @@ export const FilterNoResults = () => {
         size={50}
         color={primaryTextColor}
       />
-      <ECText textColor={primaryTextColor} fontSize={27} textAlign="center">
+      <ECText textColor={primaryTextColor} fontSize={25} textAlign="center">
         We were unable to find products that match your filters requirements
       </ECText>
     </View>

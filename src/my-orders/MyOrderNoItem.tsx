@@ -10,7 +10,7 @@ export const MyOrderNoItem = () => {
   } = useAppTheme();
   return (
     <View style={styles.container}>
-      <ECText fontSize={35} bold textColor={primaryTextColor}>
+      <ECText fontSize={30} textAlign="center" textColor={primaryTextColor}>
         No Orders Yet!
       </ECText>
       <ECText

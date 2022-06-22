@@ -15,10 +15,11 @@ export const RegistrationItems = () => {
         return (
           <KeyboardAwareScrollView
             enableOnAndroid
+            scrollEnabled={false}
             showsVerticalScrollIndicator={false}
             bounces={false}
-            extraHeight={Platform.OS === 'ios' ? 85 : 0}
-            extraScrollHeight={32}
+            extraHeight={Platform.OS === 'ios' ? 85 : 80}
+            extraScrollHeight={70}
             keyboardOpeningTime={0}
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={styles.containerContent}>
@@ -34,7 +35,7 @@ export const RegistrationItems = () => {
             enableOnAndroid
             showsVerticalScrollIndicator={false}
             bounces={false}
-            extraHeight={Platform.OS === 'ios' ? 85 : 0}
+            extraHeight={Platform.OS === 'ios' ? 85 : 30}
             extraScrollHeight={32}
             keyboardOpeningTime={0}
             keyboardShouldPersistTaps="handled"

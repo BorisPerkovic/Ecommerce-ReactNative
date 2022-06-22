@@ -5,7 +5,7 @@ import {ECText} from '../components/ECText';
 export const ProductsReview = () => {
   return (
     <View>
-      <ECText fontSize={26} style={styles.title}>
+      <ECText fontSize={24} style={styles.title}>
         Ecommerce Shop &amp; Service
       </ECText>
       <ECText fontSize={14} style={styles.text}>

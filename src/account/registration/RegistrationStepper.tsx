@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {FunctionComponent} from 'react';
 import {StyleSheet, View} from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
@@ -16,7 +17,7 @@ export const RegistrationStepper: FunctionComponent<
     <View style={styles.headerContainer}>
       <StepIndicator
         stepCount={3}
-        customStyles={customStyles}
+        customStyles={{...customStyles, labelFontFamily: 'Montserrat-Regular'}}
         currentPosition={position}
         labels={RegistrationLabels}
       />

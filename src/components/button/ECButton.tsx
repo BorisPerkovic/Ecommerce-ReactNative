@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     letterSpacing: 0,
     fontSize: 15,
+    fontFamily: 'Montserrat-Regular',
   },
 });

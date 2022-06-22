@@ -152,7 +152,7 @@ export const FeedbackForm = () => {
           disabled={!canSaveReview}
           variant={!canSaveReview ? disabledButton : primaryButtonContained}
           onPress={handleSubmit(onSubmit)}>
-          Save review
+          Save Review
         </ECButton>
       </View>
     </>

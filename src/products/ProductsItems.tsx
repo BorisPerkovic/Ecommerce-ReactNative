@@ -6,6 +6,8 @@ import {SkeletonMapped} from './ProductsSkeleton';
 import {Categories} from './Categories';
 import {getProducts} from './productsSlice';
 import config from '../../config';
+import SplashScreen from 'react-native-splash-screen';
+import {alertService} from '../alertService';
 
 export const ProductsItems = () => {
   const [url, setUrl] = useState(config.BASE_URL);
@@ -17,6 +19,16 @@ export const ProductsItems = () => {
   useEffect(() => {
     dispatch(getProducts(url));
   }, [dispatch, url]);
+
+  if (productsStatus.loading === 'succeeded') {
+    SplashScreen.hide();
+  } else if (productsStatus.loading === 'failed') {
+    SplashScreen.hide();
+    alertService.alert(
+      'warning',
+      'Something went wrong. Please, try again later!',
+    );
+  }
 
   return (
     <>

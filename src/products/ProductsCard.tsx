@@ -49,7 +49,7 @@ export const ProductsCard: FunctionComponent<ProductsProps> = ({
         </View>
       </TouchableRipple>
 
-      <ECText fontSize={13} style={styles.title}>
+      <ECText fontSize={13} style={styles.title} numberOfLines={1}>
         {title}
       </ECText>
       <ECText fontSize={14} bold>

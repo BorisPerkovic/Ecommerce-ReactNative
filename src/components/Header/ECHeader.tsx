@@ -56,7 +56,7 @@ export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
         <ECText
           bold
           textColor={primaryTextColor}
-          fontSize={26}
+          fontSize={23}
           textAlign="center">
           {screenTitle}
         </ECText>

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {FunctionComponent, PropsWithChildren} from 'react';
 import {Text, TextProps} from 'react-native';
 import {useAppTheme} from '../theme';
@@ -34,6 +35,7 @@ export const ECText: FunctionComponent<ECText> = (
       style={[
         customStyle,
         {
+          fontFamily: 'Montserrat-Regular',
           fontWeight: fontWeight,
           fontSize,
           color: textColor ? textColor : primaryTextColor,

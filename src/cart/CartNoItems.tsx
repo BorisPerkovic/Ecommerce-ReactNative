@@ -15,7 +15,7 @@ export const CartNoItems = () => {
         size={50}
         color={primaryTextColor}
       />
-      <ECText textColor={primaryTextColor} bold fontSize={30}>
+      <ECText textColor={primaryTextColor} fontSize={25} textAlign="center">
         You have no items in cart.
       </ECText>
     </View>

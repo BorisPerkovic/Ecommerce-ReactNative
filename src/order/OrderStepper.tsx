@@ -16,7 +16,8 @@ export const OrderStepper: FunctionComponent<OrderStepperProps> = ({
     <View style={styles.headerContainer}>
       <StepIndicator
         stepCount={3}
-        customStyles={customStyles}
+        // eslint-disable-next-line react-native/no-inline-styles
+        customStyles={{...customStyles, labelFontFamily: 'Montserrat-Regular'}}
         currentPosition={position}
         labels={OrderLabels}
       />

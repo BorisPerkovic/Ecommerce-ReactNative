@@ -90,5 +90,13 @@
   "sameEmail": "El usuario con la dirección de correo electrónico seleccionada ya existe",
   "forbidenCharacters": "¡Uno de sus campos contiene caracteres prohibidos!",
   "oneAppFeedback": "¡Puede agregar comentarios sobre la aplicación solo una vez!",
-  "emailInUse": "¡Este correo electrónico ya está en uso! ¡Por favor ingrese un nuevo correo electrónico válido!"
+  "emailInUse": "¡Este correo electrónico ya está en uso! ¡Por favor ingrese un nuevo correo electrónico válido!",
+  "respected": "Estimados usuarios",
+  "respectedDescription": "Este proyecto o aplicación se realiza de acuerdo con ejercicios mientras se aprenden tecnologías Front End, como JavaScript, React Native, Redux, etc.",
+  "nonComercial": "Quisiera mencionar que este proyecto fue realizado con fines NO COMERCIALES, lo que significa que todos los usuarios son ficticios, los productos también son ficticios y no existe una compra real de productos en ningún lado, de hecho nada es real, todo está hecho como un ejercicio. Por favor, DE NINGURA MANERA deje su información personal real, sin embargo, esta solicitud se realiza como un ejercicio.",
+  "atention": "La intención del proyecto no fue de ninguna manera robar la propiedad intelectual de otra persona, así como los materiales utilizados en el proyecto. Tenga en cuenta que este es un proyecto NO COMERCIALES.",
+  "literature": "Usos de la literatura",
+  "contact": "Para cualquier información adicional, puede contactarme al correo electrónico borisperkovic89@yahoo.com, o al número de teléfono +381695382477",
+  "bestRegards": "Saludos",
+  "terms": "Términos y Condiciones"
 }

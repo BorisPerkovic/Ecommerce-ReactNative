@@ -21,6 +21,7 @@ import {FeedbackScreen} from './app-feedback/FeedbackScreen';
 import {FeedbackSucces} from './app-feedback/FeedbackSucces';
 import {EditProfileChangeLanguage} from './account/edit-profile/change-language/EditProfileCangeLanguage';
 import {PartnersScreen} from './partners/PartnersScreen';
+import {Terms} from './terms-and-conditions/TermsScreen';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,7 @@ export const RootStack = () => {
       <Stack.Screen name="Feedback" component={FeedbackScreen} />
       <Stack.Screen name="FeedbackSuccess" component={FeedbackSucces} />
       <Stack.Screen name="Partners" component={PartnersScreen} />
+      <Stack.Screen name="Terms" component={Terms} />
     </Stack.Navigator>
   );
 };

@@ -90,5 +90,13 @@
   "sameEmail": "User with selected E-mail address already exists",
   "forbidenCharacters": "One of your fields contains forbidden characters!",
   "oneAppFeedback": "You can add App Feedback only once!",
-  "emailInUse": "This e-mail is already in use! Please enter new valid e-mail!"
+  "emailInUse": "This e-mail is already in use! Please enter new valid e-mail!",
+  "respected": "Dear Users",
+  "respectedDescription": "This project or application is made according to exercises while learning Front End technologies, such as JavaScript, React Native, Redux and so on.",
+  "nonComercial": "I would like to mention that this project was made for NON COMERCIAL purposes, which means that all users are fictitious, the products are also fictitious and there is no real purchase of products anywhere, in fact nothing is real, everything is made as an exercise. Please DO NOT leave your real personal information, however this application is made as an exercise.",
+  "atention": "The intention of the project was in no way to steal someone else's intellectual property as well as the materials used within the project. Please note, this is a NON COMERCIAL project.",
+  "literature": "Uses of literature",
+  "contact": "For all additional information you can contact me at E-mail borisperkovic89@yahoo.com, or at the phone number +381695382477",
+  "bestRegards": "Best Regards",
+  "terms": "Terms And Conditions"
 }

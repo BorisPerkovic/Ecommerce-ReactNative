@@ -23,7 +23,7 @@ export const DataProtectionNavigationItem: FunctionComponent = () => {
         />
       }
       onPress={() => {
-        navigation.navigate('DataProtection');
+        navigation.navigate('Terms');
       }}>
       <Text>{t('aboutEcommerce')}</Text>
     </AccountNavigationItem>

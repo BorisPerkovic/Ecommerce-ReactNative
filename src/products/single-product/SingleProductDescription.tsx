@@ -41,5 +41,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: '400',
     opacity: 0.6,
+    lineHeight: 24,
   },
 });

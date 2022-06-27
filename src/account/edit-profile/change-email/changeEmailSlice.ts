@@ -46,7 +46,7 @@ export const changeEmailSlice = createSlice({
         state.loading = 'succeeded';
 
         if (action.payload !== 'Success') {
-          alertService.alert('warning', action.payload);
+          alertService.alert('warning', action.payload, 'account');
         } else {
           state.error = 'accept';
         }

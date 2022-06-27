@@ -89,5 +89,6 @@
   "delete": "Delete",
   "sameEmail": "User with selected E-mail address already exists",
   "forbidenCharacters": "One of your fields contains forbidden characters!",
-  "oneAppFeedback": "You can add App Feedback only once!"
+  "oneAppFeedback": "You can add App Feedback only once!",
+  "emailInUse": "This e-mail is already in use! Please enter new valid e-mail!"
 }

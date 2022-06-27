@@ -89,5 +89,6 @@
   "delete": "Borrar",
   "sameEmail": "El usuario con la dirección de correo electrónico seleccionada ya existe",
   "forbidenCharacters": "¡Uno de sus campos contiene caracteres prohibidos!",
-  "oneAppFeedback": "¡Puede agregar comentarios sobre la aplicación solo una vez!"
+  "oneAppFeedback": "¡Puede agregar comentarios sobre la aplicación solo una vez!",
+  "emailInUse": "¡Este correo electrónico ya está en uso! ¡Por favor ingrese un nuevo correo electrónico válido!"
 }

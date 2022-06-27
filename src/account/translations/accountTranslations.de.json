@@ -89,5 +89,6 @@
   "delete": "Löschen",
   "sameEmail": "Benutzer mit ausgewählter E-Mail-Adresse existiert bereits",
   "forbidenCharacters": "Eines Ihrer Felder enthält verbotene Zeichen!",
-  "oneAppFeedback": "Sie können App-Feedback nur einmal hinzufügen!"
+  "oneAppFeedback": "Sie können App-Feedback nur einmal hinzufügen!",
+  "emailInUse": "Diese E-Mail wird bereits verwendet! Bitte geben Sie eine neue gültige E-Mail ein!"
 }

@@ -39,5 +39,7 @@
   "searcProducst": "Buscar Productos",
   "searchTerm": "Escriba término de búsqueda...",
   "itemsAppear": "Sus artículos aparecerán aquí si los productos cumplen con su término de búsqueda",
-  "emptyField": "el campo no puede estar vacio"
+  "emptyField": "el campo no puede estar vacio",
+  "noSelectedFilters": "¡No tienes filtros seleccionados!",
+  "technologies": "Tecnologías"
 }

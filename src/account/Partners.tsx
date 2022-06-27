@@ -3,6 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import {AccountNavigationItem} from './AccountNavigationItem';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const Partners: FunctionComponent = () => {
   const navigation = useNavigation();
@@ -10,6 +11,7 @@ export const Partners: FunctionComponent = () => {
   const {
     colors: {sideMenuTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
 
   return (
     <AccountNavigationItem
@@ -17,9 +19,9 @@ export const Partners: FunctionComponent = () => {
         <FontAwesome name="handshake-o" size={25} color={sideMenuTextColor} />
       }
       onPress={() => {
-        navigation.navigate('NetworkOverviewListScreen');
+        navigation.navigate('Partners');
       }}>
-      Partners
+      {t('partners')}
     </AccountNavigationItem>
   );
 };

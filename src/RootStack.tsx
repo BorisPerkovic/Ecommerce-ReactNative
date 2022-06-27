@@ -20,6 +20,7 @@ import {EditProfileChangeTheme} from './account/edit-profile/change-theme/EditPr
 import {FeedbackScreen} from './app-feedback/FeedbackScreen';
 import {FeedbackSucces} from './app-feedback/FeedbackSucces';
 import {EditProfileChangeLanguage} from './account/edit-profile/change-language/EditProfileCangeLanguage';
+import {PartnersScreen} from './partners/PartnersScreen';
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,7 @@ export const RootStack = () => {
       />
       <Stack.Screen name="Feedback" component={FeedbackScreen} />
       <Stack.Screen name="FeedbackSuccess" component={FeedbackSucces} />
+      <Stack.Screen name="Partners" component={PartnersScreen} />
     </Stack.Navigator>
   );
 };

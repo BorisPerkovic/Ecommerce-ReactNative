@@ -28,7 +28,7 @@ export const ApplyFiltersButton = () => {
     ) {
       navigate('FiltersResults');
     } else {
-      alertService.alert('warning', 'You have no selected filters!');
+      alertService.alert('warning', 'noSelectedFilters', 'products');
     }
   };
 

@@ -39,5 +39,7 @@
   "searcProducst": "Search Products",
   "searchTerm": "Type Search Term...",
   "itemsAppear": "Your items will appear here if products met your search term",
-  "emptyField": "field can not be empty"
+  "emptyField": "field can not be empty",
+  "noSelectedFilters": "You have no selected filters!",
+  "technologies": "Technologies"
 }

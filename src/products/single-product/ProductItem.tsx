@@ -2,7 +2,7 @@ import {StyleSheet, View, ScrollView, Image, Dimensions} from 'react-native';
 import React, {useEffect} from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {ProductsStackParams} from '../ProductsStack';
-import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {singleProduct} from './singleProductsSlice';
 import {IconButton} from 'react-native-paper';
 import {SingleProductSkeleton} from './SingleProductSkeleton';
@@ -12,13 +12,17 @@ import {SingleProductButton} from './SingleProductButton';
 import SingleProductNoItem from './SingleProductNoItem';
 import config from '../../../config';
 import {useAppTheme} from '../../theme';
+import {RootState} from '../../store';
 
 export const ProductItem = () => {
   const {
     colors: {cartImageBackgroundColor, primaryTextColor},
   } = useAppTheme();
   const {params} = useRoute<RouteProp<ProductsStackParams, 'SingleProduct'>>();
-  const product = useSelector((state: RootStateOrAny) => state.singleProduct);
+  const product = useSelector((state: RootState) => state.singleProduct);
+  const languageTag = useSelector(
+    (state: RootState) => state.language.applanguage,
+  );
 
   const dispatch = useDispatch();
   const {goBack} = useNavigation();
@@ -61,7 +65,7 @@ export const ProductItem = () => {
               <View style={styles.textWrapper}>
                 <SingleProductDescription
                   title={product.product.title}
-                  description={product.product.description}
+                  description={product.product[languageTag]}
                 />
                 <View style={styles.divider} />
                 <SingleProductRating product={product.product} />

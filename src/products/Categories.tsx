@@ -1,5 +1,6 @@
 import React, {FunctionComponent, useState} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {View, StyleSheet, FlatList, Dimensions} from 'react-native';
 import {Chip} from 'react-native-paper';
 import config from '../../config';
 import {ECText} from '../components/ECText';
@@ -27,7 +28,7 @@ const CATEGORIES = [
     url: config.AUDIO,
   },
   {
-    name: 'photo-cameras',
+    name: 'photoCameras',
     url: config.PHOTO_CAMERAS,
   },
 ];
@@ -35,11 +36,14 @@ interface CategoriesProps {
   setUrl: (url: string) => void;
 }
 
+const deviceHeight = Dimensions.get('screen').height;
+
 export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
   const [selectedCategory, setSelectedCategory] = useState('home');
   const {
     colors: {primaryChipColor, primaryChipTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('products');
   return (
     <View style={styles.container}>
       <FlatList
@@ -58,8 +62,10 @@ export const Categories: FunctionComponent<CategoriesProps> = ({setUrl}) => {
               setUrl(itemData.item.url);
               setSelectedCategory(itemData.item.name);
             }}>
-            <ECText fontSize={13} textColor={primaryChipTextColor}>
-              {itemData.item.name.toLocaleUpperCase()}
+            <ECText
+              fontSize={deviceHeight < 700 ? 10 : 13}
+              textColor={primaryChipTextColor}>
+              {t(itemData.item.name).toUpperCase()}
             </ECText>
           </Chip>
         )}
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
   },
   renderItemContainer: {
     marginRight: 5,
-    marginVertical: 10,
+    marginVertical: deviceHeight < 700 ? 5 : 10,
   },
   renderItemText: {
     fontSize: 14,

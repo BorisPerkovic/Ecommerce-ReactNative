@@ -53,10 +53,7 @@ export const changeEmailSlice = createSlice({
       })
       .addCase(changeEmailThunk.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          'Something went wrong. Please, try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

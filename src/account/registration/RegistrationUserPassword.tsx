@@ -11,6 +11,7 @@ import config from '../../../config';
 import {ECPasswordInputField} from '../../components/ECPasswordInputField';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 interface RegistrationUserPasswordProps {
   position: number;
@@ -40,6 +41,7 @@ export const RegistrationUserPassword: FunctionComponent<
     resolver: yupResolver(createAccountPasswordSchema),
     mode: 'onTouched',
   });
+  const {t} = useTranslation('account');
 
   const isLoading = useSelector(
     (state: RootState) => state.registration.loading,
@@ -76,8 +78,8 @@ export const RegistrationUserPassword: FunctionComponent<
           }}
           render={({field: {onChange, onBlur}}) => (
             <ECPasswordInputField
-              label="Password"
-              placeholder="Enter Password"
+              label={t('password')}
+              placeholder={t('enterPassword')}
               returnKeyLabel="next"
               returnKeyType="next"
               onChangeText={e => onChange(e)}
@@ -99,8 +101,8 @@ export const RegistrationUserPassword: FunctionComponent<
           render={({field: {onChange, onBlur}}) => (
             <ECPasswordInputField
               ref={repasswordRef}
-              label="Repeat Password"
-              placeholder="Enter Repeat Password"
+              label={t('repeatPassword')}
+              placeholder={t('enterRepeatPassword')}
               onChangeText={e => onChange(e)}
               onBlur={onBlur}
               returnKeyLabel="done"
@@ -120,7 +122,7 @@ export const RegistrationUserPassword: FunctionComponent<
           variant={!isValid ? disabledButton : primaryButtonContained}
           activityIndicatorColor={primaryButtonContained.labelStyle?.color}
           onPress={handleSubmit(onSubmitHandler)}>
-          Next
+          {t('next')}
         </ECButton>
       </View>
     </View>

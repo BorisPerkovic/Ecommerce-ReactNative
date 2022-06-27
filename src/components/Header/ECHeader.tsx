@@ -5,6 +5,7 @@ import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {useAppTheme} from '../../theme';
 import {ECText} from '../ECText';
+import {useTranslation} from 'react-i18next';
 
 export const SCREEN_HEADER_HEIGHT = 50;
 
@@ -17,6 +18,7 @@ export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
   const {
     colors: {backgroundColor, primaryTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   const {screenTitle, preventGoBack = false} = props;
 
   const {goBack, navigate} = useNavigation();
@@ -29,22 +31,18 @@ export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
           color={primaryTextColor}
           onPress={() => {
             if (preventGoBack) {
-              Alert.alert(
-                'Discard Changes?',
-                'You may have some changes that are not saved. Are you sure you want to go back?',
-                [
-                  {
-                    text: 'Cancel',
-                    onPress: () => null,
-                    style: 'cancel',
-                  },
-                  {
-                    text: 'YES',
-                    style: 'destructive',
-                    onPress: () => navigate('Home'),
-                  },
-                ],
-              );
+              Alert.alert(t('discardTitle'), t('discardText'), [
+                {
+                  text: t('stay'),
+                  onPress: () => null,
+                  style: 'cancel',
+                },
+                {
+                  text: t('discard'),
+                  style: 'destructive',
+                  onPress: () => navigate('Home'),
+                },
+              ]);
             } else {
               goBack();
             }

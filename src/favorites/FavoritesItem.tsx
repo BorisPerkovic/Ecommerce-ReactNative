@@ -53,7 +53,7 @@ export const FavoritesItem: FunctionComponent<FavoritesItemProps> = ({
         <View style={styles.infoWrapper}>
           <View style={{alignItems: 'flex-start'}}>
             <ECText fontSize={16} textColor={primaryTextColor}>
-              {title.slice(0, 20)}...
+              {title.slice(0, 15)}...
             </ECText>
             <ECText
               style={styles.textStyle}

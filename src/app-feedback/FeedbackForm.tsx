@@ -13,13 +13,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {appFeedbackThunk} from './appFeedbackSlice';
 import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 const commentSchema = {
   comment: yup
     .string()
     .trim()
-    .required('comment is required')
-    .max(6000, 'maximum number of characters is 6000'),
+    .required('commentRequired')
+    .max(6000, 'maxNumbers'),
 };
 
 const createCommentPasswordSchema = yup.object().shape({
@@ -46,6 +47,7 @@ export const FeedbackForm = () => {
     },
     buttons: {primaryButtonContained, disabledButton},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
@@ -65,7 +67,7 @@ export const FeedbackForm = () => {
   const onSubmit = (data: FormData) => {
     dispatch(
       appFeedbackThunk({
-        users_id: user.id,
+        users_id: +user.id,
         ratings: rating,
         comment: data.comment,
       }),
@@ -106,7 +108,7 @@ export const FeedbackForm = () => {
             }}
             render={({field: {onChange, onBlur}}) => (
               <TextInput
-                placeholder="I found this app very useful..."
+                placeholder={t('appFeedbackPlaceholder')}
                 placeholderTextColor={placeholderTextColor}
                 selectionColor={selectionCursorColor}
                 returnKeyLabel="done"
@@ -140,7 +142,7 @@ export const FeedbackForm = () => {
               style={styles.error}
               fontSize={12}
               textColor={errorInputText}>
-              {errors.comment?.message}
+              {t(errors.comment?.message)}
             </ECText>
           ) : null}
         </View>
@@ -152,7 +154,7 @@ export const FeedbackForm = () => {
           disabled={!canSaveReview}
           variant={!canSaveReview ? disabledButton : primaryButtonContained}
           onPress={handleSubmit(onSubmit)}>
-          Save Review
+          {t('saveReview')}
         </ECButton>
       </View>
     </>

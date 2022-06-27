@@ -7,11 +7,13 @@ import {deleteAccountThunk} from './deleteAccountSlice';
 import {RootState} from '../../store';
 import {logout} from '../sign-in/signInSlice';
 import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 export const DeleceAccountButton = () => {
   const {
     buttons: {deleteAccountButton},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
@@ -33,26 +35,22 @@ export const DeleceAccountButton = () => {
         variant={deleteAccountButton}
         loading={isLoading === 'pending'}
         onPress={async () => {
-          Alert.alert(
-            'Delete Account?',
-            'This action is permament. Are you sure you want to delete your account?',
-            [
-              {
-                text: 'Cancel',
-                onPress: () => null,
-                style: 'cancel',
+          Alert.alert(t('deleteAccount'), t('deleteAccountModal'), [
+            {
+              text: t('cancel'),
+              onPress: () => null,
+              style: 'cancel',
+            },
+            {
+              text: t('delete'),
+              style: 'destructive',
+              onPress: () => {
+                dispatch(deleteAccountThunk({id: +user.id}));
               },
-              {
-                text: 'YES',
-                style: 'destructive',
-                onPress: () => {
-                  dispatch(deleteAccountThunk({id: user.id}));
-                },
-              },
-            ],
-          );
+            },
+          ]);
         }}>
-        Delete Account
+        {t('deleteAccount')}
       </ECButton>
     </View>
   );

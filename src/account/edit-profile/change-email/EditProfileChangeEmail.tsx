@@ -4,15 +4,17 @@ import {MyStatusBar} from '../../../components/ECStatusBar';
 import {ChangeEMailForm} from './ChangeEMailForm';
 import {ECHeader} from '../../../components/Header/ECHeader';
 import {useAppTheme} from '../../../theme';
+import {useTranslation} from 'react-i18next';
 
 export const EditProfileChangeEmail = () => {
   const {
     colors: {backgroundColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   return (
     <View style={[styles.container, {backgroundColor}]}>
       <MyStatusBar />
-      <ECHeader screenTitle="Change E-mail" />
+      <ECHeader screenTitle={t('changeEmail')} />
       <ChangeEMailForm />
     </View>
   );

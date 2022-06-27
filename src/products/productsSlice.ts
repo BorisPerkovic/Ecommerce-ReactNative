@@ -36,10 +36,7 @@ export const productsSlice = createSlice({
       })
       .addCase(getProducts.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          'Something went wrong. Please, try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

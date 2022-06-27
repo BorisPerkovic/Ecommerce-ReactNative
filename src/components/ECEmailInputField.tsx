@@ -1,4 +1,5 @@
 import React, {forwardRef} from 'react';
+import {useTranslation} from 'react-i18next';
 import {ReturnKeyTypeOptions, TextInput, TextInputProps} from 'react-native';
 import {ECTextField} from './ECTextField';
 
@@ -25,6 +26,7 @@ export const ECEmailInputField = forwardRef<TextInput, EmailInputFieldProps>(
       onSubmitEditing,
       onBlur,
     } = props;
+    const {t} = useTranslation('account');
     return (
       <ECTextField
         primaryPlaceholder={placeholder}
@@ -35,7 +37,7 @@ export const ECEmailInputField = forwardRef<TextInput, EmailInputFieldProps>(
         onSubmitEditing={onSubmitEditing}
         onBlur={onBlur}
         ref={ref}
-        error={error}
+        error={error ? t(error) : ''}
       />
     );
   },

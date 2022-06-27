@@ -12,6 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ECPasswordInputField} from '../../../components/ECPasswordInputField';
 import {changePasswordThunk} from './changePasswordSlice';
 import {useAppTheme} from '../../../theme';
+import {useTranslation} from 'react-i18next';
 
 interface FormData {
   password: string;
@@ -44,6 +45,7 @@ export const ChangePasswordForm = () => {
     resolver: yupResolver(changePasswordSchema),
     mode: 'onTouched',
   });
+  const {t} = useTranslation('account');
 
   const repasswordRef = useRef<TextInput>(null);
 
@@ -71,8 +73,7 @@ export const ChangePasswordForm = () => {
           textColor={primaryTextColor}
           textAlign="center"
           style={styles.text}>
-          Please enter the password you would like to use for your E-commerce
-          account in the future.
+          {t('pleaseEnterNewPassword')}
         </ECText>
         <View style={styles.inputs}>
           <Controller
@@ -82,8 +83,8 @@ export const ChangePasswordForm = () => {
             }}
             render={({field: {onChange, onBlur}}) => (
               <ECPasswordInputField
-                label="Password"
-                placeholder="Enter Password"
+                label={t('repeatPassword')}
+                placeholder={t('password')}
                 returnKeyLabel="next"
                 returnKeyType="next"
                 onChangeText={e => onChange(e)}
@@ -105,8 +106,8 @@ export const ChangePasswordForm = () => {
             render={({field: {onChange, onBlur}}) => (
               <ECPasswordInputField
                 ref={repasswordRef}
-                label="Repeat Password"
-                placeholder="Enter Repeat Password"
+                label={t('repeatPassword')}
+                placeholder={t('enterRepeatPassword')}
                 onChangeText={e => onChange(e)}
                 onBlur={onBlur}
                 returnKeyLabel="done"
@@ -127,7 +128,7 @@ export const ChangePasswordForm = () => {
           variant={!isValid ? disabledButton : primaryButtonContained}
           activityIndicatorColor={primaryButtonContained.labelStyle?.color}
           onPress={handleSubmit(onSubmitHandler)}>
-          Save
+          {t('save')}
         </ECButton>
       </View>
     </View>

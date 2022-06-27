@@ -7,6 +7,7 @@ import {ECButton} from '../components/button/ECButton';
 import {addUserLocationToOrder} from './ordersSlice';
 import {RootState} from '../store';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 interface Orderlocationprops {
   position: number;
@@ -27,6 +28,7 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
   const {
     buttons: {primaryButtonContained, disabledButton},
   } = useAppTheme();
+  const {t} = useTranslation('order');
   const userLocation = useSelector((state: RootState) => state.order.location);
   const {
     handleSubmit,
@@ -67,13 +69,13 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
           rules={{
             required: {
               value: true,
-              message: 'City is required',
+              message: t('cityRequired'),
             },
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECEmailInputField
-              label="City"
-              placeholder="Enter City"
+              label={t('city')}
+              placeholder={t('enterCity')}
               onChangeText={e => onChange(e)}
               returnKeyLabel="next"
               returnKeyType="next"
@@ -92,14 +94,14 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
           rules={{
             required: {
               value: true,
-              message: 'Country is required',
+              message: t('countryRequired'),
             },
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECEmailInputField
               ref={countryInputRef}
-              label="Country"
-              placeholder="Enter Country"
+              label={t('country')}
+              placeholder={t('enterCountry')}
               returnKeyLabel="next"
               returnKeyType="next"
               onChangeText={e => onChange(e)}
@@ -118,14 +120,14 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
           rules={{
             required: {
               value: true,
-              message: 'Zip Code is required',
+              message: t('zipCodeRequired'),
             },
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECEmailInputField
               ref={zipCodeInputRef}
-              label="Zip Code"
-              placeholder="Enter Zip Code"
+              label={t('zipCode')}
+              placeholder={t('enterZipCode')}
               returnKeyLabel="default"
               returnKeyType="default"
               onChangeText={e => onChange(e)}
@@ -150,13 +152,13 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
           rules={{
             required: {
               value: true,
-              message: 'Address is required',
+              message: t('addressRequired'),
             },
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECEmailInputField
-              label="Address"
-              placeholder="Enter Address"
+              label={t('address')}
+              placeholder={t('enterAddress')}
               returnKeyLabel="done"
               returnKeyType="done"
               onChangeText={e => onChange(e)}
@@ -176,7 +178,7 @@ export const OrderLocation: FunctionComponent<Orderlocationprops> = ({
           disabled={!isValid}
           variant={!isValid ? disabledButton : primaryButtonContained}
           onPress={handleSubmit(onSubmitHandler)}>
-          Next
+          {t('next')}
         </ECButton>
       </View>
     </View>

@@ -17,10 +17,7 @@ export const favortesSlice = createSlice({
   reducers: {
     addToFavorites(state, {payload}) {
       state.favoritesItems.push(payload);
-      alertService.alert(
-        'success',
-        `${payload.title}\nItem added to favorites`,
-      );
+      alertService.alert('success', 'addedToFavorites', 'products');
       const setStorage = async () => {
         await AsyncStorage.setItem(
           'favoritesItems',
@@ -34,7 +31,7 @@ export const favortesSlice = createSlice({
         item => item.id !== payload,
       );
       state.favoritesItems = tempItems;
-      alertService.alert('danger', 'Item removed from favorites');
+      alertService.alert('danger', 'removeFromFavorites', 'products');
 
       const setStorage = async () => {
         await AsyncStorage.setItem(

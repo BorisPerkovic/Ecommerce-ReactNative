@@ -4,11 +4,13 @@ import {ECText} from '../../ECText';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useAppTheme} from '../../../theme';
+import {useTranslation} from 'react-i18next';
 
 export const HeaderSearch = () => {
   const {
     colors: {primaryTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('products');
   const {navigate} = useNavigation();
   return (
     <TouchableOpacity
@@ -16,7 +18,7 @@ export const HeaderSearch = () => {
       onPress={() => {
         navigate('Search');
       }}>
-      <ECText fontSize={15}>Search...</ECText>
+      <ECText fontSize={15}>{t('search')}...</ECText>
       <Ionicons name="search-outline" size={20} color={primaryTextColor} />
     </TouchableOpacity>
   );

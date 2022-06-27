@@ -7,32 +7,34 @@ import {ECText} from '../components/ECText';
 import {ECButton} from '../components/button/ECButton';
 import {useDispatch} from 'react-redux';
 import {resetfeedbackState} from './appFeedbackSlice';
+import {useTranslation} from 'react-i18next';
 
 export const FeedbackSucces = () => {
   const {
     colors: {backgroundColor},
     buttons: {primaryButtonContained},
   } = useAppTheme();
-  const {goBack} = useNavigation();
+  const {t} = useTranslation('account');
+  const {navigate} = useNavigation();
   const dispatch = useDispatch();
 
   return (
     <View style={[styles.container, {backgroundColor}]}>
       <Ionicons name="checkmark" size={60} color={'lime'} />
       <ECText bold fontSize={30} textAlign="center">
-        Your feedback has been successfully accepted.
+        {t('feedbackSucces')}
       </ECText>
       <ECText fontSize={25} textAlign="center" style={styles.text}>
-        Thank you for using our shop and services.
+        {t('feedbackSuccessSubtitle')}
       </ECText>
       <ECButton
         mode="outlined"
         variant={primaryButtonContained}
         onPress={() => {
           dispatch(resetfeedbackState());
-          goBack();
+          navigate('Home');
         }}>
-        Done
+        OK
       </ECButton>
     </View>
   );

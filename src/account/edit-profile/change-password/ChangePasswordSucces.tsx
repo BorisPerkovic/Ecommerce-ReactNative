@@ -9,6 +9,7 @@ import {useDispatch} from 'react-redux';
 import {logout} from '../../sign-in/signInSlice';
 import {resetChangePasswordFLow} from './changePasswordSlice';
 import {useAppTheme} from '../../../theme';
+import {useTranslation} from 'react-i18next';
 
 export const ChangePasswordSuccess = () => {
   const {
@@ -17,6 +18,7 @@ export const ChangePasswordSuccess = () => {
   } = useAppTheme();
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
+  const {t} = useTranslation('account');
 
   return (
     <View style={[styles.container, {backgroundColor}]}>
@@ -27,14 +29,14 @@ export const ChangePasswordSuccess = () => {
           bold
           fontSize={30}
           textAlign="center">
-          Your password has been successfully changed.
+          {t('passwordSuccess')}
         </ECText>
         <ECText
           textColor={primaryTextColor}
           fontSize={25}
           textAlign="center"
           style={{marginTop: 20}}>
-          Now, you need to log in with your new password to proceed shoping.
+          {t('passwordSuccessSubtitle')}
         </ECText>
       </View>
       <View style={styles.button}>

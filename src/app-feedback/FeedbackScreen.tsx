@@ -4,15 +4,17 @@ import {useAppTheme} from '../theme';
 import {MyStatusBar} from '../components/ECStatusBar';
 import {ECHeader} from '../components/Header/ECHeader';
 import {FeedbackForm} from './FeedbackForm';
+import {useTranslation} from 'react-i18next';
 
 export const FeedbackScreen = () => {
   const {
     colors: {backgroundColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   return (
     <View style={[styles.container, {backgroundColor}]}>
       <MyStatusBar />
-      <ECHeader screenTitle="App Feedback" />
+      <ECHeader screenTitle={t('appFeedback')} />
       <View style={styles.wrapper}>
         <FeedbackForm />
       </View>

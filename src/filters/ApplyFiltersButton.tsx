@@ -6,12 +6,14 @@ import {RootState} from '../store';
 import {useNavigation} from '@react-navigation/native';
 import {alertService} from '../alertService';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const ApplyFiltersButton = () => {
   const {
     colors: {divideColor},
     buttons: {primaryButtonContained},
   } = useAppTheme();
+  const {t} = useTranslation('products');
   const filterItems = useSelector((state: RootState) => state.filter);
   const {navigate} = useNavigation();
 
@@ -36,7 +38,7 @@ export const ApplyFiltersButton = () => {
         mode="outlined"
         variant={primaryButtonContained}
         onPress={onFiltersHandler}>
-        Apply Filters
+        {t('applyFilters')}
       </ECButton>
     </View>
   );

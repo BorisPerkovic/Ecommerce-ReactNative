@@ -56,17 +56,14 @@ export const registrationSlice = createSlice({
         state.loading = 'succeeded';
 
         if (action.payload !== 'Proceed') {
-          alertService.alert('warning', action.payload);
+          alertService.alert('warning', action.payload, 'account');
         } else {
           state.error = 'accept';
         }
       })
       .addCase(registerUserThunk.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          'Something went wrong. Please, try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

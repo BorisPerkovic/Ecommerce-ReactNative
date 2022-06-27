@@ -4,12 +4,14 @@ import {logout} from './sign-in/signInSlice';
 import {useDispatch} from 'react-redux';
 import {clearUserData} from '../order/ordersSlice';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const LogoutButton: FunctionComponent<{}> = () => {
   const {
     buttons: {logoutButton},
   } = useAppTheme();
   const dispatch = useDispatch();
+  const {t} = useTranslation('account');
 
   return (
     <ECButton
@@ -19,7 +21,7 @@ export const LogoutButton: FunctionComponent<{}> = () => {
         dispatch(clearUserData());
         dispatch(logout());
       }}>
-      Sign Out
+      {t('signOut')}
     </ECButton>
   );
 };

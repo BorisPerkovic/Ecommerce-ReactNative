@@ -1,4 +1,4 @@
-import {StyleSheet, View, FlatList, Text} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ProductsCard} from './ProductsCard';
 import {useDispatch, useSelector, RootStateOrAny} from 'react-redux';
@@ -7,7 +7,7 @@ import {Categories} from './Categories';
 import {getProducts} from './productsSlice';
 import config from '../../config';
 import SplashScreen from 'react-native-splash-screen';
-import {alertService} from '../alertService';
+import {ECText} from '../components/ECText';
 
 export const ProductsItems = () => {
   const [url, setUrl] = useState(config.BASE_URL);
@@ -24,10 +24,6 @@ export const ProductsItems = () => {
     SplashScreen.hide();
   } else if (productsStatus.loading === 'failed') {
     SplashScreen.hide();
-    alertService.alert(
-      'warning',
-      'Something went wrong. Please, try again later!',
-    );
   }
 
   return (
@@ -35,7 +31,9 @@ export const ProductsItems = () => {
       <Categories setUrl={setUrl} />
       {productsStatus.loading === 'pending' ? <SkeletonMapped /> : null}
       {productsStatus.loading === 'failed' ? (
-        <Text>Something went wrong!</Text>
+        <ECText fontSize={15} textAlign="center">
+          Something Went Wrong!
+        </ECText>
       ) : null}
       {productsStatus.loading === 'succeeded' ? (
         <View style={styles.containerContent}>
@@ -50,7 +48,7 @@ export const ProductsItems = () => {
                 title={itemData.item.products_title}
               />
             )}
-            keyExtractor={item => item.products_id.toString()}
+            keyExtractor={item => item.products_id}
             maxToRenderPerBatch={30}
             numColumns={2}
           />

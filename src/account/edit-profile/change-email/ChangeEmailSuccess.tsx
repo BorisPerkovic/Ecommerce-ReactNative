@@ -9,6 +9,7 @@ import {useDispatch} from 'react-redux';
 import {logout} from '../../sign-in/signInSlice';
 import {resetChangeEmailFLow} from './changeEmailSlice';
 import {useAppTheme} from '../../../theme';
+import {useTranslation} from 'react-i18next';
 
 export const ChangeEmailSuccess = () => {
   const {
@@ -17,6 +18,7 @@ export const ChangeEmailSuccess = () => {
   } = useAppTheme();
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
+  const {t} = useTranslation('account');
 
   return (
     <View style={[styles.container, {backgroundColor}]}>
@@ -27,14 +29,14 @@ export const ChangeEmailSuccess = () => {
           bold
           fontSize={30}
           textAlign="center">
-          Your e-mail has been successfully changed.
+          {t('emailSuccess')}
         </ECText>
         <ECText
           textColor={primaryTextColor}
           fontSize={25}
           textAlign="center"
           style={{marginTop: 20}}>
-          Now, you need to log in with your new e-mail to proceed shoping.
+          {t('emailSuccesSubtitle')}
         </ECText>
       </View>
       <View style={styles.button}>

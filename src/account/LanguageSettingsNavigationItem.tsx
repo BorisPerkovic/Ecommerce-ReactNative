@@ -19,7 +19,7 @@ export const LanguageSettingsNavigationItem: FunctionComponent<{
         <Ionicons name="ios-flag-outline" size={25} color={sideMenuTextColor} />
       }
       onPress={() => {
-        navigation.navigate('LanguageSettings');
+        navigation.navigate('ChangeLanguage');
       }}>
       {title}
     </AccountNavigationItem>

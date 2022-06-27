@@ -10,12 +10,14 @@ import {clearCart} from '../cart/cartSlice';
 import {useNavigation} from '@react-navigation/native';
 import {createOrderThunk} from './ordersSlice';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const OrderCart: FunctionComponent<{}> = () => {
   const {
     colors: {primaryTextColor},
     buttons: {primaryButtonContained},
   } = useAppTheme();
+  const {t} = useTranslation('order');
   const userOrder = useSelector((state: RootState) => state.order);
   const loggedUser = useSelector((state: RootState) => state.signIn.loggedUser);
   const isLoading = useSelector((state: RootState) => state.order.loading);
@@ -74,13 +76,13 @@ export const OrderCart: FunctionComponent<{}> = () => {
                 fontSize={16}
                 textColor={primaryTextColor}
                 style={styles.text}>
-                Quantity: {item.cartQuantity}
+                {t('quantity')}: {item.cartQuantity}
               </ECText>
               <ECText
                 fontSize={16}
                 textColor={primaryTextColor}
                 style={styles.text}>
-                Price: {(item.price * item.cartQuantity).toFixed(2)}
+                {t('price')}: {(item.price * item.cartQuantity).toFixed(2)}
               </ECText>
             </View>
           </View>
@@ -88,7 +90,7 @@ export const OrderCart: FunctionComponent<{}> = () => {
       })}
       <Divider />
       <ECText fontSize={16} textColor={primaryTextColor} style={styles.text}>
-        Total Price: {totalPrice}$
+        {t('total')} {t('price')}: {totalPrice}$
       </ECText>
       <Divider />
       <View style={styles.buttons}>
@@ -123,7 +125,7 @@ export const OrderCart: FunctionComponent<{}> = () => {
               }),
             );
           }}>
-          Proceed
+          {t('proceed')}
         </ECButton>
       </View>
     </ScrollView>

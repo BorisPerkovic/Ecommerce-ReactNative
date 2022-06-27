@@ -8,11 +8,13 @@ import {useDebouncedCallback} from 'use-debounce';
 import {addPriceToFilter} from './filtersSlice';
 import {useAppTheme} from '../theme';
 import {ECText} from '../components/ECText';
+import {useTranslation} from 'react-i18next';
 
 export const PriceSliderFilter = () => {
   const {
     colors: {priceRangeStrokeColor, priceRangeTextColor, primaryTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('products');
   const filtersPrice = useSelector((state: RootState) => state.filter);
   const dispatch = useDispatch();
 
@@ -26,7 +28,7 @@ export const PriceSliderFilter = () => {
   }, 200);
 
   return (
-    <FiltersSection title="Price Range">
+    <FiltersSection title={t('priceRange')}>
       <View style={styles.wrapper}>
         <View style={styles.sliderValues}>
           <ECText fontSize={15} textColor={primaryTextColor}>

@@ -11,6 +11,7 @@ import {signInThunk} from './signInSlice';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {setSignInEmailSchema} from '../registration/setSchema';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 type FormData = {
   email: string;
@@ -29,6 +30,7 @@ export const SignInForm: FunctionComponent = () => {
     resolver: yupResolver(setSignInEmailSchema),
     mode: 'onTouched',
   });
+  const {t} = useTranslation('account');
 
   const passwordInputRef = useRef<TextInput>(null);
   const dispatch = useDispatch();
@@ -56,8 +58,8 @@ export const SignInForm: FunctionComponent = () => {
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECEmailInputField
-              label="Email"
-              placeholder="Enter Email"
+              label={t('email')}
+              placeholder={t('enterEmail')}
               returnKeyLabel="next"
               returnKeyType="next"
               onChangeText={e => onChange(e)}
@@ -78,8 +80,8 @@ export const SignInForm: FunctionComponent = () => {
           }}
           render={({field: {onChange, onBlur, value}}) => (
             <ECPasswordInputField
-              label="Password"
-              placeholder="Enter Password"
+              label={t('password')}
+              placeholder={t('enterPassword')}
               returnKeyLabel="done"
               returnKeyType="done"
               onChangeText={e => onChange(e)}
@@ -102,7 +104,7 @@ export const SignInForm: FunctionComponent = () => {
           variant={!isValid ? disabledButton : primaryButtonContained}
           onPress={handleSubmit(onSubmitHandler)}
           loading={isLoading === 'pending'}>
-          Next
+          {t('signIn')}
         </ECButton>
       </View>
     </>

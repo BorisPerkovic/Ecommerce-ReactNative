@@ -43,17 +43,14 @@ export const changePasswordSlice = createSlice({
         state.loading = 'succeeded';
 
         if (action.payload !== 'Success') {
-          alertService.alert('warning', action.payload);
+          alertService.alert('warning', action.payload, 'account');
         } else {
           state.error = 'accept';
         }
       })
       .addCase(changePasswordThunk.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          'Something went wrong. Please, try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

@@ -11,6 +11,7 @@ import {changeEmailThunk} from './changeEmailSlice';
 import {RootState} from '../../../store';
 import {useNavigation} from '@react-navigation/native';
 import {useAppTheme} from '../../../theme';
+import {useTranslation} from 'react-i18next';
 
 interface FormData {
   email: string;
@@ -20,10 +21,10 @@ const emailSchema = {
   email: yup
     .string()
     .trim()
-    .required('email is required')
+    .required('emailRequired')
     .matches(
       /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      'email must be in valid format',
+      'mustBeEmail',
     ),
 };
 
@@ -53,6 +54,7 @@ export const ChangeEMailForm = () => {
     resolver: yupResolver(changeEmailSchema),
     mode: 'onTouched',
   });
+  const {t} = useTranslation('account');
 
   const onSubmitHandler = (data: FormData) => {
     const payload = {
@@ -76,8 +78,7 @@ export const ChangeEMailForm = () => {
           textColor={primaryTextColor}
           textAlign="center"
           style={styles.text}>
-          Please enter the e-mail address you would like to use for your
-          E-commerce account in the future.
+          {t('pleaseEnterNewEmail')}
         </ECText>
         <View style={styles.input}>
           <Controller
@@ -87,8 +88,8 @@ export const ChangeEMailForm = () => {
             }}
             render={({field: {onChange, onBlur}}) => (
               <ECEmailInputField
-                label="Set new e-mail address"
-                placeholder="Enter New Email Address"
+                label={t('setNewEmail')}
+                placeholder={t('enterNewEmail')}
                 returnKeyLabel="done"
                 returnKeyType="done"
                 onChangeText={e => onChange(e)}
@@ -109,7 +110,7 @@ export const ChangeEMailForm = () => {
           variant={!isValid ? disabledButton : primaryButtonContained}
           activityIndicatorColor={primaryButtonContained.labelStyle?.color}
           onPress={handleSubmit(onSubmitHandler)}>
-          Save
+          {t('save')}
         </ECButton>
       </View>
     </View>

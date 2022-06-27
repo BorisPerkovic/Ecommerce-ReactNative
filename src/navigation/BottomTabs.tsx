@@ -8,6 +8,7 @@ import {RootStateOrAny, useSelector} from 'react-redux';
 import {Favorites} from '../favorites/Favorites';
 import {MyStatusBar} from '../components/ECStatusBar';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +21,7 @@ export const BottomTabs = () => {
   const {
     colors: {bottomTabsIconColor, backgroundColor, bottomTabsBorderColorl},
   } = useAppTheme();
-
+  const {t} = useTranslation('products');
   return (
     <>
       <MyStatusBar />
@@ -32,9 +33,9 @@ export const BottomTabs = () => {
             let iconName = 'Home';
             let rn = route.name;
 
-            if (rn === 'Home') {
+            if (rn === t('home')) {
               iconName = focused ? 'home' : 'home-outline';
-            } else if (rn === 'Cart') {
+            } else if (rn === t('cart')) {
               iconName = focused ? 'cart' : 'cart-outline';
             } else {
               iconName = focused ? 'heart' : 'heart-outline';
@@ -66,9 +67,9 @@ export const BottomTabs = () => {
             fontFamily: 'Montserrat-Regular',
           },
         }}>
-        <Tab.Screen name="Home" component={ProductsScreen} />
+        <Tab.Screen name={t('home')} component={ProductsScreen} />
         <Tab.Screen
-          name="Favorites"
+          name={t('favorites')}
           component={Favorites}
           options={{
             tabBarBadge: favorites.length,
@@ -76,7 +77,7 @@ export const BottomTabs = () => {
           }}
         />
         <Tab.Screen
-          name="Cart"
+          name={t('cart')}
           component={CartScreen}
           options={{
             tabBarBadge: cart.length,

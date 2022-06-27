@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useState,
 } from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   ReturnKeyTypeOptions,
   TextInput,
@@ -46,6 +47,7 @@ export const ECPasswordInputField = forwardRef<
     onBlur,
     info = false,
   } = props;
+  const {t} = useTranslation('account');
   return (
     <ECTextField
       primaryPlaceholder={placeholder}
@@ -64,7 +66,7 @@ export const ECPasswordInputField = forwardRef<
       onBlur={onBlur}
       info={info}
       ref={ref}
-      error={error}
+      error={error ? t(error) : ''}
     />
   );
 });

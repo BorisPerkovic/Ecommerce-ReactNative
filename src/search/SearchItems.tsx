@@ -6,8 +6,10 @@ import {RootState} from '../store';
 import {ProductsCard} from '../products/ProductsCard';
 import {ProductsSkeleton} from '../products/ProductsSkeleton';
 import {ECText} from '../components/ECText';
+import {useTranslation} from 'react-i18next';
 
 const SearchItems = () => {
+  const {t} = useTranslation('products');
   const products = useSelector(
     (state: RootState) => state.search.searchProducts,
   );
@@ -36,7 +38,7 @@ const SearchItems = () => {
         </View>
       ) : (
         <ECText fontSize={18} textAlign="center" style={{padding: 20}}>
-          Your items will appear here if products met your search term
+          {t('itemsAppear')}
         </ECText>
       )}
     </View>

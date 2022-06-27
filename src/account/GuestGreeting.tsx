@@ -1,4 +1,5 @@
 import React, {FunctionComponent} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 import {ECText} from '../components/ECText';
 import {useAppTheme} from '../theme';
@@ -9,6 +10,7 @@ export const GuestGreeting: FunctionComponent<GuestGreetingProps> = () => {
   const {
     colors: {sideMenuTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   return (
     <>
       <ECText
@@ -16,13 +18,13 @@ export const GuestGreeting: FunctionComponent<GuestGreetingProps> = () => {
         bold
         textColor={sideMenuTextColor}
         style={styles.title}>
-        Hi There!
+        {t('hiThere')}
       </ECText>
       <ECText
         fontSize={15}
         textColor={sideMenuTextColor}
         style={styles.subTitle}>
-        Sign in to start your shopping travel.
+        {t('hiThereSubtitle')}
       </ECText>
     </>
   );

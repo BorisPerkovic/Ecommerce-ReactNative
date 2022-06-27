@@ -25,14 +25,11 @@ export const cartSlice = createSlice({
       );
       if (itemIndex >= 0) {
         state.cartItems[itemIndex].cartQuantity += 1;
-        alertService.alert(
-          'info',
-          `${payload.title}\nincrease product quantity`,
-        );
+        alertService.alert('info', 'increaseQuantity', 'products');
       } else {
         const tempProduct = {...payload, cartQuantity: 1};
         state.cartItems.push(tempProduct);
-        alertService.alert('success', `${payload.title}\nadded to cart`);
+        alertService.alert('success', 'addedToCart', 'products');
       }
 
       const setStorage = async () => {
@@ -44,11 +41,7 @@ export const cartSlice = createSlice({
       setStorage();
     },
     removeFromCart(state, {payload}) {
-      const itemIndex = state.cartItems.findIndex(item => item.id === payload);
-      alertService.alert(
-        'danger',
-        `${state.cartItems[itemIndex].title}\nproduct removed from cart`,
-      );
+      alertService.alert('danger', 'removeFromCart', 'products');
       const nextCartItems = state.cartItems.filter(item => item.id !== payload);
       state.cartItems = nextCartItems;
 
@@ -68,10 +61,7 @@ export const cartSlice = createSlice({
         const nextCartItems = state.cartItems.filter(
           item => item.id !== payload,
         );
-        alertService.alert(
-          'danger',
-          `${state.cartItems[itemIndex].title}\nproduct removed from cart`,
-        );
+        alertService.alert('danger', 'removeFromCart', 'products');
         state.cartItems = nextCartItems;
       }
 

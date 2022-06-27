@@ -2,11 +2,13 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {ECText} from '../../components/ECText';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 export const EditProfilePushNotification = () => {
   const {
     colors: {primaryTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   return (
     <View style={styles.container}>
       <ECText
@@ -14,13 +16,10 @@ export const EditProfilePushNotification = () => {
         textColor={primaryTextColor}
         bold
         style={styles.title}>
-        Push Notifications
+        {t('pushNotifications')}
       </ECText>
       <ECText fontSize={15} textColor={primaryTextColor} style={styles.text}>
-        We will keep you up to date in case of
-      </ECText>
-      <ECText fontSize={15} textColor={primaryTextColor} style={styles.text}>
-        technical issues or new functionalities.
+        {t('pushNotificationsSubtitle')}
       </ECText>
     </View>
   );

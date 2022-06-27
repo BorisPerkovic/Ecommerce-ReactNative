@@ -4,6 +4,7 @@ import React, {FunctionComponent} from 'react';
 import {ECText} from '../components/ECText';
 import {format} from 'date-fns';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 interface MyOrderItemProps {
   orderNumber: number;
@@ -21,6 +22,7 @@ export const MyOrdersItem: FunctionComponent<MyOrderItemProps> = ({
   const {
     colors: {cartImageBackgroundColor, primaryTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('order');
   const orderItems = JSON.parse(items);
 
   const date = created.split(' ').join('T');
@@ -33,7 +35,7 @@ export const MyOrdersItem: FunctionComponent<MyOrderItemProps> = ({
         {timestamp}
       </ECText>
       <ECText fontSize={17} textColor={primaryTextColor}>
-        Order number: #{orderNumber}
+        {t('orderNumber')}: #{orderNumber}
       </ECText>
       {orderItems.map(
         (item: {
@@ -51,11 +53,11 @@ export const MyOrdersItem: FunctionComponent<MyOrderItemProps> = ({
               </ECText>
               <View style={styles.quantity}>
                 <ECText textColor={primaryTextColor} fontSize={15}>
-                  Quantity: {item.cartQuantity}
+                  {t('quantity')}: {item.cartQuantity}
                 </ECText>
                 <ECText textColor={primaryTextColor} fontSize={15}>
-                  Price: {(parseInt(item.cartQuantity) * item.price).toString()}
-                  $
+                  {t('price')}:{' '}
+                  {(parseInt(item.cartQuantity) * item.price).toString()}$
                 </ECText>
               </View>
             </View>
@@ -63,7 +65,7 @@ export const MyOrdersItem: FunctionComponent<MyOrderItemProps> = ({
         },
       )}
       <ECText fontSize={17} textColor={primaryTextColor} style={styles.price}>
-        Total Price: {price}$
+        {t('total')} {t('price')}: {price}$
       </ECText>
     </View>
   );

@@ -5,14 +5,16 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {internal} from './filters';
 import {addInternalToFilter} from './filtersSlice';
+import {useTranslation} from 'react-i18next';
 
 export const InternalStorageFilter = () => {
+  const {t} = useTranslation('products');
   const internalFilters = useSelector(
     (state: RootState) => state.filter.internal,
   );
   const dispatch = useDispatch();
   return (
-    <FiltersSection title="Internal Storage">
+    <FiltersSection title={t('internalStorage')}>
       {internal.map(item => {
         const isSelected = internalFilters.includes(item);
         return (

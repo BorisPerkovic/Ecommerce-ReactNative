@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
@@ -19,6 +20,7 @@ export const CartQuantityItem: FunctionComponent<CartQuantityItemProps> = ({
     colors: {primaryTextColor},
   } = useAppTheme();
   const dispatch = useDispatch();
+
   return (
     <View style={styles.quantityWrapper}>
       <View style={styles.quantity}>

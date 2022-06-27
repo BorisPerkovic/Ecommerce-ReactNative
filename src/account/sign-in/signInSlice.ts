@@ -1,9 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
-import {User} from '../../../util/fakeusers';
 import {alertService} from '../../alertService';
 import config from '../../../config';
+
+interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
 
 interface SignInUser {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
@@ -62,7 +69,7 @@ export const signInSlice = createSlice({
       })
       .addCase(signInThunk.fulfilled, (state, action) => {
         if (action.payload === 'E-mail or password are inccorect!') {
-          alertService.alert('warning', action.payload);
+          alertService.alert('warning', 'emailOrPassword', 'account');
           state.loading = 'idle';
         } else {
           state.loggedUser = {
@@ -88,10 +95,7 @@ export const signInSlice = createSlice({
       })
       .addCase(signInThunk.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'danger',
-          'Something went wrong. Please try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

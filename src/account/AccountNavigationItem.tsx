@@ -24,7 +24,11 @@ export const AccountNavigationItem: FunctionComponent<
         {primaryIcon ? (
           <View style={styles.leftIcon}>{primaryIcon}</View>
         ) : null}
-        <ECText textColor={labelColor} fontSize={15} style={styles.label}>
+        <ECText
+          textColor={labelColor}
+          fontSize={15}
+          style={styles.label}
+          numberOfLines={2}>
           {children}
         </ECText>
       </View>

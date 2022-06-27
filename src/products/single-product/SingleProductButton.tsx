@@ -1,13 +1,14 @@
 import {StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {ECButton} from '../../components/button/ECButton';
-import {SingleProductDTO} from './singleProductsSlice';
+import {SingleProduct} from './singleProductsSlice';
 import {useDispatch} from 'react-redux';
 import {addToCart} from '../../cart/cartSlice';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 interface SingleProductButtonProps {
-  product: SingleProductDTO;
+  product: SingleProduct;
 }
 
 export const SingleProductButton: FunctionComponent<
@@ -17,8 +18,9 @@ export const SingleProductButton: FunctionComponent<
     buttons: {primaryButtonContained},
   } = useAppTheme();
   const dispatch = useDispatch();
+  const {t} = useTranslation('products');
 
-  const handleAddToCart = (item: SingleProductDTO) => {
+  const handleAddToCart = (item: SingleProduct) => {
     dispatch(addToCart(item));
   };
 
@@ -28,7 +30,7 @@ export const SingleProductButton: FunctionComponent<
         mode="contained"
         variant={primaryButtonContained}
         onPress={() => handleAddToCart(product)}>
-        Add To Cart
+        {t('addToCart')}
       </ECButton>
     </View>
   );

@@ -4,6 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Text} from 'react-native';
 import {AccountNavigationItem} from './AccountNavigationItem';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const MyOrdersNavigationItem: FunctionComponent = () => {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ export const MyOrdersNavigationItem: FunctionComponent = () => {
   const {
     colors: {sideMenuTextColor},
   } = useAppTheme();
-
+  const {t} = useTranslation('account');
   return (
     <AccountNavigationItem
       primaryIcon={
@@ -21,7 +22,7 @@ export const MyOrdersNavigationItem: FunctionComponent = () => {
         navigation.dispatch(DrawerActions.closeDrawer());
         navigation.navigate('MyOrders');
       }}>
-      <Text>My Orders</Text>
+      <Text>{t('myOrders')}</Text>
     </AccountNavigationItem>
   );
 };

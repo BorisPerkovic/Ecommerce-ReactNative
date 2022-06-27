@@ -21,6 +21,7 @@ import changePasswordReducer from './account/edit-profile/change-password/change
 import themeReducer from './theme/themeSlice';
 import deleteAccountReducer from './account/edit-profile/deleteAccountSlice';
 import appFeedbackReducer from './app-feedback/appFeedbackSlice';
+import changeLanguageReducer from './account/edit-profile/change-language/changeLanguageSlice';
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   deleteAccount: deleteAccountReducer,
   theme: themeReducer,
   appFeedback: appFeedbackReducer,
+  language: changeLanguageReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -9,44 +9,49 @@ import {EditProfilePushNotification} from './EditProfilePushNotification';
 import {DeleceAccountButton} from './DeleceAccountButton';
 import {ECHeader} from '../../components/Header/ECHeader';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 export const EditProfileScreen = () => {
   const {
     colors: {backgroundColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
   const theme = useSelector((state: RootState) => state.theme.appTheme);
+  const language = useSelector(
+    (state: RootState) => state.language.languageName,
+  );
 
   return (
     <View style={[styles.container, {backgroundColor}]}>
       <MyStatusBar />
-      <ECHeader screenTitle="Edit Profile" />
+      <ECHeader screenTitle={t('editProfile')} />
       <ScrollView
         bounces={false}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.wrapper}>
         <EditProfileAvatar name={user.firstName} lastName={user.lastName} />
         <EditProfileItem
-          label="Email"
+          label={t('email')}
           value={user.email}
           navigateTo="ChangeEmail"
           icon="ios-pencil-outline"
         />
         <EditProfileItem
-          label="Password"
+          label={t('password')}
           value={'******************'}
           navigateTo="ChangePassword"
           icon="ios-pencil-outline"
         />
         <EditProfileItem
-          label="Language"
-          value={'English'}
+          label={t('language')}
+          value={t(language.toLowerCase())}
           navigateTo="ChangeLanguage"
           icon="chevron-forward-outline"
         />
         <EditProfileItem
-          label="Theme"
-          value={theme === 'LIGHT' ? 'Light Theme' : 'Dark Theme'}
+          label={t('theme')}
+          value={theme === 'LIGHT' ? t('lightTheme') : t('darkTheme')}
           navigateTo="ChangeTheme"
           icon="chevron-forward-outline"
         />

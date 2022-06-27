@@ -37,6 +37,7 @@ export const OrderItems = () => {
     <View style={styles.container}>
       <OrderStepper position={position} />
       <ScrollView
+        bounces={false}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.containerContent}>
         {Stepper()}

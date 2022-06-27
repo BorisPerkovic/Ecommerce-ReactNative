@@ -5,28 +5,30 @@ import {ECText} from '../components/ECText';
 import {useNavigation} from '@react-navigation/native';
 import {useAppTheme} from '../theme';
 import {ECButton} from '../components/button/ECButton';
+import {useTranslation} from 'react-i18next';
 
 export const OrderSuccess = () => {
   const {
     colors: {backgroundColor},
     buttons: {primaryButtonContained},
   } = useAppTheme();
+  const {t} = useTranslation('order');
   const {navigate} = useNavigation();
 
   return (
     <View style={[styles.container, {backgroundColor}]}>
       <Ionicons name="checkmark" size={60} color={'lime'} />
       <ECText bold fontSize={30} textAlign="center">
-        Your order has been successfully accepted.
+        {t('orderSuccess')}
       </ECText>
       <ECText fontSize={25} textAlign="center" style={styles.text}>
-        Thank you for using our shop and services.
+        {t('orderSuccesSubtitle')}
       </ECText>
       <ECButton
         mode="outlined"
         variant={primaryButtonContained}
         onPress={() => navigate('Home')}>
-        Done
+        {t('done')}
       </ECButton>
     </View>
   );

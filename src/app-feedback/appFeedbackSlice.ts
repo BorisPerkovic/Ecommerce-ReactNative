@@ -40,7 +40,7 @@ export const appFeedbackSlice = createSlice({
       })
       .addCase(appFeedbackThunk.fulfilled, (state, action) => {
         if (action.payload !== 'Proceed') {
-          alertService.alert('warning', action.payload);
+          alertService.alert('warning', action.payload, 'account');
           state.loading = 'idle';
         } else {
           state.loading = 'succeeded';
@@ -48,10 +48,7 @@ export const appFeedbackSlice = createSlice({
       })
       .addCase(appFeedbackThunk.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          'Something went wrong. Please, try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

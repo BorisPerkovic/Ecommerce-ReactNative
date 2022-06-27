@@ -1,12 +1,21 @@
 import {showMessage, MessageType} from 'react-native-flash-message';
+import {translate} from './i18n/i18';
 
 const alert = (
   alertType: MessageType,
   messageKey: string,
-  duration: number = 6000,
+  namespace: string = 'account',
+  interpolationValue?: string | undefined,
+  duration: number = 3000,
 ) => {
+  const messageWithTranslation = translate(
+    messageKey ? namespace : 'account',
+    messageKey ?? 'serviceError',
+    interpolationValue,
+  );
+
   return showMessage({
-    message: messageKey,
+    message: messageWithTranslation,
     type: alertType,
     duration,
   });

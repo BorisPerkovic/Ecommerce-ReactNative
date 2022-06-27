@@ -6,6 +6,7 @@ import {ECText} from '../components/ECText';
 import {ECButton} from '../components/button/ECButton';
 import {addUserToOrder} from './ordersSlice';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 interface OrderLocationprops {
   position: number;
@@ -20,13 +21,14 @@ export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
     colors: {primaryTextColor},
     buttons: {primaryButtonContained},
   } = useAppTheme();
+  const {t} = useTranslation('order');
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
       <ECText fontSize={16} textColor={primaryTextColor}>
-        Name
+        {t('name')}
       </ECText>
       <ECText
         fontSize={19}
@@ -36,7 +38,7 @@ export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
         {user.firstName}
       </ECText>
       <ECText fontSize={16} textColor={primaryTextColor}>
-        Lastname
+        {t('lastName')}
       </ECText>
       <ECText
         fontSize={19}
@@ -46,7 +48,7 @@ export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
         {user.lastName}
       </ECText>
       <ECText fontSize={16} textColor={primaryTextColor}>
-        E-mail
+        {t('email')}
       </ECText>
       <ECText
         fontSize={19}
@@ -69,7 +71,7 @@ export const OrderUserInfo: FunctionComponent<OrderLocationprops> = ({
             );
             setPosition(position + 1);
           }}>
-          Next
+          {t('next')}
         </ECButton>
       </View>
     </View>

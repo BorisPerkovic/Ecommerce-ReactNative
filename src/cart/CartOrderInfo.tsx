@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {useNavigation} from '@react-navigation/native';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 interface CartOrderInfoProps {
   cartTotal: number;
 }
@@ -17,6 +18,7 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
     buttons: {primaryButtonContained},
   } = useAppTheme();
   const {navigate} = useNavigation();
+  const {t} = useTranslation('products');
   const isLogged = useSelector((state: RootState) => state.signIn.isLoggedIn);
   return (
     <View style={styles.orderInfoContainer}>
@@ -25,14 +27,14 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
         textColor={primaryTextColor}
         fontSize={23}
         style={{marginVertical: 20}}>
-        Order Info
+        {t('orderInfo')}
       </ECText>
       <View style={styles.total}>
         <ECText
           style={styles.textStyle}
           textColor={primaryTextColor}
           fontSize={16}>
-          Subtotal
+          {t('subtotal')}
         </ECText>
         <ECText
           style={styles.textStyle}
@@ -47,7 +49,7 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
           style={styles.textStyle}
           textColor={primaryTextColor}
           fontSize={16}>
-          Shipping Cost
+          {t('shippingCost')}
         </ECText>
         <ECText
           style={styles.textStyle}
@@ -62,7 +64,7 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
           style={styles.textStyle}
           textColor={primaryTextColor}
           fontSize={16}>
-          Total
+          {t('total')}
         </ECText>
         <ECText textColor={primaryTextColor} bold fontSize={20}>
           ${`${(cartTotal + 10).toFixed(2)}`}
@@ -79,7 +81,7 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
                   'Log In',
                   'You need to be logged in to proceed order',
                 );
-          }}>{`Checkout (${(cartTotal + 10).toFixed(2)})`}</ECButton>
+          }}>{`${t('checkout')} (${(cartTotal + 10).toFixed(2)})`}</ECButton>
       </View>
     </View>
   );

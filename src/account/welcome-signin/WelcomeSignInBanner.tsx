@@ -4,6 +4,7 @@ import {ECText} from '../../components/ECText';
 import {useNavigation} from '@react-navigation/core';
 import {IconButton} from 'react-native-paper';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 const imagePath = require('../../../assets/images/overview_intro.png');
 
@@ -12,6 +13,7 @@ export const WelcomeSignInBanner = () => {
     colors: {welcomeBannerBackgroundColor, welcomeBannerTextColor},
   } = useAppTheme();
   const {goBack} = useNavigation();
+  const {t} = useTranslation('account');
 
   return (
     <View style={styles.container}>
@@ -39,13 +41,13 @@ export const WelcomeSignInBanner = () => {
           style={styles.heading}
           fontSize={32}
           bold>
-          Welcome
+          {t('welcome')}
         </ECText>
         <ECText
           style={styles.bannerSmallText}
           textColor={welcomeBannerTextColor}
           fontSize={15}>
-          You are only a few steps away from your Ecommerce account.
+          {t('welcomeSubtitle')}
         </ECText>
       </View>
     </View>

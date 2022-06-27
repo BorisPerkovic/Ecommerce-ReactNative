@@ -6,11 +6,13 @@ import {useNavigation} from '@react-navigation/native';
 import {ECText} from '../components/ECText';
 import {FiltersResetButton} from './FiltersResetButton';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const FiltersHeader = () => {
   const {
     colors: {primaryTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('products');
   const {goBack} = useNavigation();
   return (
     <View style={styles.headerContainer}>
@@ -26,7 +28,7 @@ export const FiltersHeader = () => {
       </View>
       <View style={{width: '50%'}}>
         <ECText bold fontSize={25}>
-          Filters
+          {t('filters')}
         </ECText>
       </View>
       <View style={{width: '30%'}}>

@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ECText} from '../../components/ECText';
 import {ECButton} from '../../components/button/ECButton';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 interface RegisterUserSuccesProps {
   setPosition: (num: number) => void;
@@ -18,6 +19,7 @@ export const RegisterUserSuccess: FunctionComponent<
     colors: {backgroundColor, primaryTextColor},
     buttons: {primaryButtonContained},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   const {navigate} = useNavigation();
 
   return (
@@ -29,14 +31,14 @@ export const RegisterUserSuccess: FunctionComponent<
           bold
           fontSize={30}
           textAlign="center">
-          Your account has been successfully created.
+          {t('accountCreated')}
         </ECText>
         <ECText
           textColor={primaryTextColor}
           fontSize={25}
           textAlign="center"
           style={{marginTop: 20}}>
-          Now, you can log in with your account and proceed to shoping.
+          {t('accountCreatedSubtitle')}
         </ECText>
       </View>
       <View style={styles.button}>

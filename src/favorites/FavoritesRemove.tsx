@@ -16,7 +16,6 @@ export const FavoritesRemove: FunctionComponent<FavoritesRemoveProps> = ({
     colors: {primaryTextColor},
   } = useAppTheme();
   const dispatch = useDispatch();
-
   return (
     <View style={styles.quantityWrapper}>
       <TouchableOpacity

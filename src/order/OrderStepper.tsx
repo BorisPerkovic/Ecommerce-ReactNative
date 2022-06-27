@@ -1,4 +1,5 @@
 import React, {FunctionComponent} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 
@@ -11,6 +12,7 @@ interface OrderStepperProps {
 export const OrderStepper: FunctionComponent<OrderStepperProps> = ({
   position,
 }) => {
+  const {t} = useTranslation('order');
   const customStyles = useCustomStyles();
   return (
     <View style={styles.headerContainer}>
@@ -19,7 +21,7 @@ export const OrderStepper: FunctionComponent<OrderStepperProps> = ({
         // eslint-disable-next-line react-native/no-inline-styles
         customStyles={{...customStyles, labelFontFamily: 'Montserrat-Regular'}}
         currentPosition={position}
-        labels={OrderLabels}
+        labels={OrderLabels.map(label => t(label.toLowerCase()))}
       />
     </View>
   );

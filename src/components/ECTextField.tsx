@@ -1,4 +1,5 @@
 import React, {forwardRef, FunctionComponent, useRef, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   StyleSheet,
   View,
@@ -25,7 +26,6 @@ interface ECTextFieldProps extends TextInputProps {
 }
 
 const deviceHeight = Dimensions.get('screen').height;
-console.log(deviceHeight);
 
 export const ECTextField = forwardRef<TextInput, ECTextFieldProps>(
   (props, ref) => {
@@ -134,12 +134,15 @@ interface ECTextFieldInfoProps {
 export const ECTextFieldInfo: FunctionComponent<ECTextFieldInfoProps> = ({
   color,
 }) => {
+  const {t} = useTranslation('account');
   return (
     <TouchableOpacity
       onPress={() => {
         Alert.alert(
-          'Password requirements',
-          'At least 8 characters\nAt least one lower case letter\nAt least one upper case letter\nAt least one number or special character',
+          t('passwordRequirements'),
+          `${t('8characters')}\n${t('oneLowerCase')}\n${t('oneUpperCase')}\n${t(
+            'numberOrSpecialCahracter',
+          )}`,
         );
       }}>
       <Ionicons name="information-circle-outline" color={color} size={18} />

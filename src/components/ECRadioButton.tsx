@@ -11,7 +11,7 @@ export const ECRadioButton: FunctionComponent<CFRadioButtonProps> = ({
   isSelected = false,
 }) => {
   const {
-    colors: {selectedRadioButton},
+    colors: {selectedRadioButton, divideColor},
   } = useAppTheme();
 
   return (
@@ -19,7 +19,7 @@ export const ECRadioButton: FunctionComponent<CFRadioButtonProps> = ({
       style={[
         styles.radioButton,
         {
-          borderColor: selectedRadioButton,
+          borderColor: isSelected ? selectedRadioButton : divideColor,
           borderWidth: 1,
         },
       ]}>

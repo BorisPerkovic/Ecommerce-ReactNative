@@ -4,11 +4,13 @@ import {useAppTheme} from '../theme';
 import {ECText} from '../components/ECText';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store';
+import {useTranslation} from 'react-i18next';
 
 export const FeedbackTitle = () => {
   const {
     colors: {primaryTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   const user = useSelector((state: RootState) => state.signIn.loggedUser);
   return (
     <View style={styles.container}>
@@ -17,7 +19,7 @@ export const FeedbackTitle = () => {
         textAlign="center"
         textColor={primaryTextColor}
         bold>
-        Hey {user.firstName} {user.lastName}!
+        {t('hey')} {user.firstName} {user.lastName}!
       </ECText>
       <ECText
         fontSize={15}
@@ -31,7 +33,7 @@ export const FeedbackTitle = () => {
         textAlign="center"
         textColor={primaryTextColor}
         style={styles.text}>
-        {'Tell us what you think about\n the Ecommerce App!'}
+        {t('appFeedbackSubtitle')}
       </ECText>
     </View>
   );

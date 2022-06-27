@@ -19,6 +19,7 @@ import {ChangePasswordSuccess} from './account/edit-profile/change-password/Chan
 import {EditProfileChangeTheme} from './account/edit-profile/change-theme/EditProfileChangeTheme';
 import {FeedbackScreen} from './app-feedback/FeedbackScreen';
 import {FeedbackSucces} from './app-feedback/FeedbackSucces';
+import {EditProfileChangeLanguage} from './account/edit-profile/change-language/EditProfileCangeLanguage';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,10 @@ export const RootStack = () => {
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       <Stack.Screen name="ChangeEmail" component={EditProfileChangeEmail} />
       <Stack.Screen name="ChangeTheme" component={EditProfileChangeTheme} />
+      <Stack.Screen
+        name="ChangeLanguage"
+        component={EditProfileChangeLanguage}
+      />
       <Stack.Screen
         name="ChangePassword"
         component={EditProfileChangePassword}

@@ -1,16 +1,19 @@
-import {StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {ECText} from '../components/ECText';
+import {useTranslation} from 'react-i18next';
+
+const deviceHeight = Dimensions.get('screen').height;
 
 export const ProductsReview = () => {
+  const {t} = useTranslation('products');
   return (
     <View>
-      <ECText fontSize={24} style={styles.title}>
-        Ecommerce Shop &amp; Service
+      <ECText fontSize={deviceHeight < 700 ? 20 : 23} style={styles.title}>
+        {t('ecommerceShopServiceTitle')}
       </ECText>
-      <ECText fontSize={14} style={styles.text}>
-        Ecommerce Shop on Rustaveli Ave 57{'\n'}This shop offers both products
-        and services
+      <ECText fontSize={deviceHeight < 700 ? 12 : 14} style={styles.text}>
+        {t('ecommerceShopServiceSubtitle')}
       </ECText>
     </View>
   );
@@ -24,7 +27,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   text: {
-    fontSize: 14,
     fontWeight: '400',
     letterSpacing: 1,
     marginVertical: 5,

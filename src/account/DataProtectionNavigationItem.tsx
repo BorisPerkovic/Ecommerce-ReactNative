@@ -4,6 +4,7 @@ import Inonicons from 'react-native-vector-icons/Ionicons';
 import {Text} from 'react-native';
 import {AccountNavigationItem} from './AccountNavigationItem';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const DataProtectionNavigationItem: FunctionComponent = () => {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ export const DataProtectionNavigationItem: FunctionComponent = () => {
   const {
     colors: {sideMenuTextColor},
   } = useAppTheme();
-
+  const {t} = useTranslation('account');
   return (
     <AccountNavigationItem
       primaryIcon={
@@ -24,7 +25,7 @@ export const DataProtectionNavigationItem: FunctionComponent = () => {
       onPress={() => {
         navigation.navigate('DataProtection');
       }}>
-      <Text>About Ecommerce</Text>
+      <Text>{t('aboutEcommerce')}</Text>
     </AccountNavigationItem>
   );
 };

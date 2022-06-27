@@ -46,10 +46,7 @@ export const myOrdersSlice = createSlice({
       })
       .addCase(myOrdersThunk.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          'Something went wrong. Please, try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

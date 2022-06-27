@@ -1,3 +1,4 @@
+import './src/i18n/i18';
 import 'react-native-gesture-handler';
 import React from 'react';
 import {AppRegistry} from 'react-native';

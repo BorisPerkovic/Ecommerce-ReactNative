@@ -4,6 +4,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
 import {searchProductsThunk} from './searchSlice';
 import {ECEmailInputField} from '../components/ECEmailInputField';
+import {useTranslation} from 'react-i18next';
 
 interface FormData {
   search: string;
@@ -20,6 +21,7 @@ const SearchInputField: FunctionComponent<{}> = () => {
       search: '',
     },
   });
+  const {t} = useTranslation('products');
   const dispatch = useDispatch();
 
   const onSubmitHandler = (param: FormData) => {
@@ -33,14 +35,14 @@ const SearchInputField: FunctionComponent<{}> = () => {
         rules={{
           required: {
             value: true,
-            message: "field can't be empty",
+            message: t('emptyField'),
           },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <ECEmailInputField
-            label="Search Products"
+            label={t('searcProducst')}
             style={styles.searchInput}
-            placeholder="Type Search Term...."
+            placeholder={t('searchTerm')}
             onChangeText={e => onChange(e)}
             returnKeyLabel="search"
             returnKeyType="search"

@@ -5,12 +5,14 @@ import {ram} from './filters';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {addRamFilter} from './filtersSlice';
+import {useTranslation} from 'react-i18next';
 
 export const RamMemoryFilter = () => {
+  const {t} = useTranslation('products');
   const ramFilters = useSelector((state: RootState) => state.filter.ram);
   const dispatch = useDispatch();
   return (
-    <FiltersSection title="RAM Memory">
+    <FiltersSection title={t('ramMemory')}>
       {ram.map(item => {
         const isSelected = ramFilters.includes(item);
         return (

@@ -4,6 +4,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Text} from 'react-native';
 import {AccountNavigationItem} from './AccountNavigationItem';
 import {useAppTheme} from '../theme';
+import {useTranslation} from 'react-i18next';
 
 export const AppFeedbackNavigationItem: FunctionComponent = () => {
   const navigation = useNavigation();
@@ -11,6 +12,7 @@ export const AppFeedbackNavigationItem: FunctionComponent = () => {
   const {
     colors: {sideMenuTextColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
 
   return (
     <AccountNavigationItem
@@ -20,7 +22,7 @@ export const AppFeedbackNavigationItem: FunctionComponent = () => {
       onPress={() => {
         navigation.navigate('Feedback');
       }}>
-      <Text>App Feedback</Text>
+      <Text>{t('appFeedback')}</Text>
     </AccountNavigationItem>
   );
 };

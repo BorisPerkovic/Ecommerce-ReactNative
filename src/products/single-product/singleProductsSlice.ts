@@ -8,7 +8,10 @@ export interface SingleProductDTO {
   products_title: string;
   products_price: string;
   products_category: string;
-  products_description: string;
+  en: string;
+  de: string;
+  it: string;
+  es: string;
   products_image: string;
   products_rate: string;
 }
@@ -18,7 +21,10 @@ export interface SingleProduct {
   title: string;
   price: number;
   category: string;
-  description: string;
+  en: string;
+  de: string;
+  it: string;
+  es: string;
   image: string;
   rate: number;
   cartQuantity: number;
@@ -35,7 +41,10 @@ const initialState: SingleProductsState = {
     title: '',
     price: 0,
     category: '',
-    description: '',
+    en: '',
+    de: '',
+    it: '',
+    es: '',
     image: '',
     rate: 0,
     cartQuantity: 0,
@@ -63,11 +72,14 @@ export const singleProductSlice = createSlice({
       .addCase(singleProduct.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.product = {
-          id: action.payload.data.products_id,
+          id: +action.payload.data.products_id,
           title: action.payload.data.products_title,
           price: +action.payload.data.products_price,
           category: action.payload.data.products_category,
-          description: action.payload.data.products_description,
+          en: action.payload.data.en,
+          de: action.payload.data.de,
+          it: action.payload.data.it,
+          es: action.payload.data.es,
           image: action.payload.data.products_image,
           rate: +action.payload.data.products_rate,
           cartQuantity: 0,
@@ -75,10 +87,7 @@ export const singleProductSlice = createSlice({
       })
       .addCase(singleProduct.rejected, state => {
         state.loading = 'failed';
-        alertService.alert(
-          'warning',
-          'Something went wrong. Please, try again later!',
-        );
+        alertService.alert('warning', 'wentWrong', 'account');
       });
   },
 });

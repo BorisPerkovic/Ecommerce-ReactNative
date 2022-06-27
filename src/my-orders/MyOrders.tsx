@@ -4,15 +4,17 @@ import {MyOrdersItems} from './MyOrdersItems';
 import {useAppTheme} from '../theme';
 import {ECHeader} from '../components/Header/ECHeader';
 import {MyStatusBar} from '../components/ECStatusBar';
+import {useTranslation} from 'react-i18next';
 
 export const MyOrders = () => {
   const {
     colors: {backgroundColor},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <MyStatusBar />
-      <ECHeader screenTitle="My Orders" />
+      <ECHeader screenTitle={t('myOrders')} />
       <MyOrdersItems />
     </View>
   );

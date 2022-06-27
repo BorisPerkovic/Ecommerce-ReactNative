@@ -15,6 +15,7 @@ import config from '../../../config';
 import {emailSchema} from './setSchema';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 interface RegistrationUserInfoprops {
   position: number;
@@ -37,6 +38,7 @@ export const RegistrationUserInfo: FunctionComponent<
   const {
     buttons: {primaryButtonContained, disabledButton},
   } = useAppTheme();
+  const {t} = useTranslation('account');
   const isLoading = useSelector(
     (state: RootState) => state.registration.loading,
   );
@@ -85,8 +87,8 @@ export const RegistrationUserInfo: FunctionComponent<
             }}
             render={({field: {onChange, onBlur}}) => (
               <ECEmailInputField
-                label="First Name"
-                placeholder="Enter First Name"
+                label={t('firstName')}
+                placeholder={t('enterFirstName')}
                 returnKeyLabel="next"
                 returnKeyType="next"
                 onChangeText={e => onChange(e)}
@@ -107,8 +109,8 @@ export const RegistrationUserInfo: FunctionComponent<
             render={({field: {onChange, onBlur}}) => (
               <ECEmailInputField
                 ref={lastnameRef}
-                label="Last Name"
-                placeholder="Enter Last Name"
+                label={t('lastName')}
+                placeholder={t('enterLastName')}
                 returnKeyLabel="next"
                 returnKeyType="next"
                 onChangeText={e => onChange(e)}
@@ -129,8 +131,8 @@ export const RegistrationUserInfo: FunctionComponent<
             render={({field: {onChange, onBlur}}) => (
               <ECEmailInputField
                 ref={emailRef}
-                label="Email Address"
-                placeholder="Enter Email Address"
+                label={t('email')}
+                placeholder={t('enterEmail')}
                 returnKeyLabel="done"
                 returnKeyType="done"
                 onChangeText={e => onChange(e)}
@@ -150,7 +152,7 @@ export const RegistrationUserInfo: FunctionComponent<
             variant={!isValid ? disabledButton : primaryButtonContained}
             activityIndicatorColor={primaryButtonContained.labelStyle?.color}
             onPress={handleSubmit(onSubmitHandler)}>
-            Next
+            {t('next')}
           </ECButton>
         </View>
       </View>

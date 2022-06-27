@@ -3,11 +3,13 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ECText} from '../../components/ECText';
 import {useAppTheme} from '../../theme';
+import {useTranslation} from 'react-i18next';
 
 export const FilterNoResults = () => {
   const {
     colors: {primaryTextColor, backgroundColor},
   } = useAppTheme();
+  const {t} = useTranslation('products');
   return (
     <View style={[styles.container, {backgroundColor}]}>
       <MaterialCommunityIcons
@@ -16,7 +18,7 @@ export const FilterNoResults = () => {
         color={primaryTextColor}
       />
       <ECText textColor={primaryTextColor} fontSize={25} textAlign="center">
-        We were unable to find products that match your filters requirements
+        {t('noFilterResults')}
       </ECText>
     </View>
   );

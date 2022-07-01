@@ -41,5 +41,7 @@
   "itemsAppear": "I tuoi articoli appariranno qui se i prodotti hanno soddisfatto il termine di ricerca",
   "emptyField": "il campo non può essere vuoto",
   "noSelectedFilters": "Non hai filtri selezionati!",
-  "technologies": "Tecnologie"
+  "technologies": "Tecnologie",
+  "logIn": "Accesso Non Effettuato",
+  "logInCheckout": "Devi essere loggato per procedere con l'ordin"
 }

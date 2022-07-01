@@ -74,6 +74,8 @@ export const RegistrationUserInfo: FunctionComponent<
       dispatch(resetIsLoading());
       setPosition(position + 1);
     }
+
+    return () => {};
   }, [dispatch, isLoading, position, registry, setPosition]);
 
   return (

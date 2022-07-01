@@ -33,6 +33,7 @@ export const OrderCart: FunctionComponent<{}> = () => {
       dispatch(clearCart());
       navigate('OrdersSucces');
     }
+    return () => {};
   }, [isLoading, dispatch]);
 
   return (

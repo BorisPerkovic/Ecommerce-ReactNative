@@ -17,6 +17,8 @@ export const Cartitems = () => {
 
   useEffect(() => {
     dispatch(getTotals());
+
+    return () => {};
   }, [dispatch, cartItem]);
 
   return (

@@ -1,10 +1,9 @@
-import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {MyOrdersItem} from './MyOrdersItem';
 import {myOrdersThunk} from './myOrdersSlice';
-import {Loading} from '../components/Loading';
 import {MyOrderNoItem} from './MyOrderNoItem';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -16,6 +15,7 @@ export const MyOrdersItems = () => {
 
   useEffect(() => {
     dispatch(myOrdersThunk({id: +user.id}));
+    return () => {};
   }, [dispatch, user.id]);
 
   if (isLoading === 'succeeded' && myOrders.length <= 0) {
@@ -28,7 +28,11 @@ export const MyOrdersItems = () => {
         contentContainerStyle={styles.wrapper}
         bounces={false}
         showsVerticalScrollIndicator={false}>
-        {isLoading === 'pending' ? <Loading /> : null}
+        {isLoading === 'pending' ? (
+          <View style={styles.loader}>
+            <ActivityIndicator size={'large'} color="#004666" />
+          </View>
+        ) : null}
         {isLoading === 'succeeded'
           ? myOrders.map(myOrder => {
               return (
@@ -58,5 +62,10 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flexGrow: 1,
+  },
+  loader: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

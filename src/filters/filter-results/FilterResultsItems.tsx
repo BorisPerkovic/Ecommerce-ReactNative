@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import {filterProductsThunk} from '../filtersSlice';
@@ -14,19 +14,29 @@ export const FilterResultsItems = () => {
   );
   const isLoading = useSelector((state: RootState) => state.filter.loading);
   const dispatch = useDispatch();
-  const items = {
-    startPrice: filterItems.startPrice,
-    endPrice: filterItems.endPrice,
-    brand: filterItems.brand,
-    ram: filterItems.ram,
-    internal: filterItems.internal,
-    system: filterItems.system,
-  };
+  const items = useMemo(() => {
+    return {
+      startPrice: filterItems.startPrice,
+      endPrice: filterItems.endPrice,
+      brand: filterItems.brand,
+      ram: filterItems.ram,
+      internal: filterItems.internal,
+      system: filterItems.system,
+    };
+  }, [
+    filterItems.brand,
+    filterItems.endPrice,
+    filterItems.internal,
+    filterItems.ram,
+    filterItems.startPrice,
+    filterItems.system,
+  ]);
 
   useEffect(() => {
     dispatch(filterProductsThunk(items));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+    return () => {};
+  }, [dispatch, items]);
 
   if (isLoading === 'succeeded' && filterItemsResults.length === 0) {
     return <FilterNoResults />;
@@ -44,6 +54,7 @@ export const FilterResultsItems = () => {
           <FlatList
             bounces={false}
             scrollEnabled={true}
+            showsVerticalScrollIndicator={false}
             data={filterItemsResults}
             renderItem={itemData => (
               <ProductsCard
@@ -65,10 +76,11 @@ export const FilterResultsItems = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     paddingHorizontal: 20,
+    paddingBottom: 10,
   },
   loader: {
     flex: 1,

@@ -58,7 +58,7 @@ export const ChangeEMailForm = () => {
 
   const onSubmitHandler = (data: FormData) => {
     const payload = {
-      id: user.id,
+      id: +user.id,
       email: data.email,
     };
     dispatch(changeEmailThunk(payload));
@@ -68,6 +68,8 @@ export const ChangeEMailForm = () => {
     if (isLoading === 'succeeded' && success === 'accept') {
       navigate('ChangeEmailSuccess');
     }
+
+    return () => {};
   }, [isLoading, navigate, success]);
 
   return (

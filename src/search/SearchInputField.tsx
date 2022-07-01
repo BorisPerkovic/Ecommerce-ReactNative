@@ -1,4 +1,4 @@
-import {Keyboard, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
@@ -49,7 +49,6 @@ const SearchInputField: FunctionComponent<{}> = () => {
             value={value}
             onBlur={onBlur}
             onSubmitEditing={() => {
-              Keyboard.dismiss();
               handleSubmit(onSubmitHandler)();
             }}
             error={errors.search?.message}

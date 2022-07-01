@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {FavoritesItems} from './FavoritesItems';
 import {ECHeader} from '../components/Header/ECHeader';
@@ -13,7 +13,14 @@ export const Favorites: FunctionComponent<{}> = () => {
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <ECHeader screenTitle={t('myFavorites')} />
-      <FavoritesItems />
+      <View style={styles.content}>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          bounces={false}
+          showsVerticalScrollIndicator={false}>
+          <FavoritesItems />
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -21,5 +28,8 @@ export const Favorites: FunctionComponent<{}> = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+  },
+  content: {
+    flex: 1,
   },
 });

@@ -80,7 +80,9 @@ export const FeedbackForm = () => {
     if (isLoading === 'succeeded') {
       navigate('FeedbackSuccess');
     }
-  });
+
+    return () => {};
+  }, [isLoading, navigate]);
 
   return (
     <>
@@ -171,6 +173,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   textInput: {
+    textAlignVertical: 'top',
     height: 145,
     borderWidth: 1,
     borderRadius: 10,

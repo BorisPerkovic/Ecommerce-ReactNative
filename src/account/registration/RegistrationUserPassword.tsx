@@ -66,6 +66,8 @@ export const RegistrationUserPassword: FunctionComponent<
     if (isLoading === 'succeeded' && registry === 'accept') {
       setPosition(position + 1);
     }
+
+    return () => {};
   }, [isLoading, position, registry, setPosition]);
 
   return (

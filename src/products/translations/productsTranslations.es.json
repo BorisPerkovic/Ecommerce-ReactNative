@@ -41,5 +41,7 @@
   "itemsAppear": "Sus artículos aparecerán aquí si los productos cumplen con su término de búsqueda",
   "emptyField": "el campo no puede estar vacio",
   "noSelectedFilters": "¡No tienes filtros seleccionados!",
-  "technologies": "Tecnologías"
+  "technologies": "Tecnologías",
+  "logIn": "Sin Iniciar Sesión",
+  "logInCheckout": "Debe iniciar sesión para proceder con el pedido"
 }

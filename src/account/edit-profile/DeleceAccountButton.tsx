@@ -26,6 +26,8 @@ export const DeleceAccountButton = () => {
       dispatch(logout());
       navigate('Home');
     }
+
+    return () => {};
   }, [dispatch, isLoading, navigate]);
 
   return (

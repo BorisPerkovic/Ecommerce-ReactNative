@@ -51,7 +51,7 @@ export const ChangePasswordForm = () => {
 
   const onSubmitHandler = (data: FormData) => {
     const payload = {
-      id: user.id,
+      id: +user.id,
       password: data.password,
       repassword: data.repassword,
     };
@@ -63,6 +63,8 @@ export const ChangePasswordForm = () => {
     if (isLoading === 'succeeded' && success === 'accept') {
       navigate('ChangePasswordSuccess');
     }
+
+    return () => {};
   }, [isLoading, navigate, success]);
 
   return (

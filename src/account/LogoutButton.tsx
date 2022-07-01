@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux';
 import {clearUserData} from '../order/ordersSlice';
 import {useAppTheme} from '../theme';
 import {useTranslation} from 'react-i18next';
+import {Alert} from 'react-native';
 
 export const LogoutButton: FunctionComponent<{}> = () => {
   const {
@@ -18,8 +19,21 @@ export const LogoutButton: FunctionComponent<{}> = () => {
       mode="outlined"
       variant={logoutButton}
       onPress={() => {
-        dispatch(clearUserData());
-        dispatch(logout());
+        Alert.alert(t('logOut'), t('logOutMessage'), [
+          {
+            text: t('stay'),
+            onPress: () => null,
+            style: 'cancel',
+          },
+          {
+            text: t('signOut'),
+            style: 'destructive',
+            onPress: () => {
+              dispatch(clearUserData());
+              dispatch(logout());
+            },
+          },
+        ]);
       }}>
       {t('signOut')}
     </ECButton>

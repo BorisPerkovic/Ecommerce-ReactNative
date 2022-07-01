@@ -1,5 +1,4 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {Main} from './navigation/Main';
 import {SingleProductScreen} from './products/single-product/SingleProductScreen';
 import {WelcomeSignInScreen} from './account/welcome-signin/WelcomeSignInScreen';
@@ -22,12 +21,19 @@ import {FeedbackSucces} from './app-feedback/FeedbackSucces';
 import {EditProfileChangeLanguage} from './account/edit-profile/change-language/EditProfileCangeLanguage';
 import {PartnersScreen} from './partners/PartnersScreen';
 import {Terms} from './terms-and-conditions/TermsScreen';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
 export const RootStack = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      mode="card"
+      screenOptions={{
+        headerShown: false,
+        detachPreviousScreen: false,
+        animationEnabled: false,
+      }}>
       <Stack.Screen name="Home" component={Main} />
       <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
       <Stack.Screen name="Welcome" component={WelcomeSignInScreen} />

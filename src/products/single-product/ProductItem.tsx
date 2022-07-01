@@ -29,6 +29,7 @@ export const ProductItem = () => {
 
   useEffect(() => {
     dispatch(singleProduct(`${config.SINGLE_PRODUCT}${params.productId}`));
+    return () => {};
   }, [dispatch, params]);
 
   return (

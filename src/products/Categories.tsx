@@ -13,23 +13,23 @@ const CATEGORIES = [
   },
   {
     name: 'telephones',
-    url: config.TELEPHONES,
+    url: `${config.PRODUCTS_BY_CATEGORY}telephones`,
   },
   {
     name: 'televisions',
-    url: config.TELEVISIONS,
+    url: `${config.PRODUCTS_BY_CATEGORY}televisions`,
   },
   {
     name: 'laptops',
-    url: config.LAPTOPS,
+    url: `${config.PRODUCTS_BY_CATEGORY}laptops`,
   },
   {
     name: 'audio',
-    url: config.AUDIO,
+    url: `${config.PRODUCTS_BY_CATEGORY}audio`,
   },
   {
     name: 'photoCameras',
-    url: config.PHOTO_CAMERAS,
+    url: `${config.PRODUCTS_BY_CATEGORY}photoCameras`,
   },
 ];
 interface CategoriesProps {

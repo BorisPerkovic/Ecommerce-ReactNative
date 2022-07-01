@@ -16,7 +16,6 @@ export const getProducts = createAsyncThunk(
   'products/getProducts',
   async (url: string) => {
     const promise = await axios.get(url);
-
     return promise;
   },
 );

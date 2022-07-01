@@ -15,9 +15,15 @@ export const ProductsItems = () => {
   const productsStatus = useSelector((state: RootStateOrAny) => state.products);
 
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getProducts(url));
+    let mounted = true;
+    if (mounted) {
+      dispatch(getProducts(url));
+    }
+
+    return () => {
+      mounted = false;
+    };
   }, [dispatch, url]);
 
   if (productsStatus.loading === 'succeeded') {

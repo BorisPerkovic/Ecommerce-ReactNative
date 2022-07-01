@@ -41,5 +41,7 @@
   "itemsAppear": "Your items will appear here if products met your search term",
   "emptyField": "field can not be empty",
   "noSelectedFilters": "You have no selected filters!",
-  "technologies": "Technologies"
+  "technologies": "Technologies",
+  "logIn": "Log In",
+  "logInCheckout": "You need to be logged in to proceed order"
 }

@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {FunctionComponent} from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {useAppTheme} from '../../theme';
 import {ECText} from '../ECText';
-import {useTranslation} from 'react-i18next';
+import {usePreventGoBack} from './usePreventGoBack';
 
 export const SCREEN_HEADER_HEIGHT = 50;
 
@@ -18,10 +18,11 @@ export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
   const {
     colors: {backgroundColor, primaryTextColor},
   } = useAppTheme();
-  const {t} = useTranslation('account');
-  const {screenTitle, preventGoBack = false} = props;
+  const {screenTitle, preventGoBack} = props;
 
-  const {goBack, navigate} = useNavigation();
+  const {goBack} = useNavigation();
+
+  usePreventGoBack(preventGoBack);
 
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
@@ -29,24 +30,7 @@ export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
         <IconButton
           icon="chevron-left"
           color={primaryTextColor}
-          onPress={() => {
-            if (preventGoBack) {
-              Alert.alert(t('discardTitle'), t('discardText'), [
-                {
-                  text: t('stay'),
-                  onPress: () => null,
-                  style: 'cancel',
-                },
-                {
-                  text: t('discard'),
-                  style: 'destructive',
-                  onPress: () => navigate('Home'),
-                },
-              ]);
-            } else {
-              goBack();
-            }
-          }}
+          onPress={() => goBack()}
           size={35}
         />
       </View>

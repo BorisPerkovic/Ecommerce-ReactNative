@@ -98,5 +98,7 @@
   "literature": "Usos de la literatura",
   "contact": "Para cualquier información adicional, puede contactarme al correo electrónico borisperkovic89@yahoo.com, o al número de teléfono +381695382477",
   "bestRegards": "Saludos",
-  "terms": "Términos y Condiciones"
+  "terms": "Términos y Condiciones",
+  "logOut": "Cerrar Sesión",
+  "logOutMessage": "Está a punto de cerrar sesión. ¿Está seguro?"
 }

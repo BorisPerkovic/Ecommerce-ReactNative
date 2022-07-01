@@ -77,10 +77,7 @@ const CartOrderInfo: FunctionComponent<CartOrderInfoProps> = ({cartTotal}) => {
           onPress={() => {
             isLogged
               ? navigate('Order')
-              : Alert.alert(
-                  'Log In',
-                  'You need to be logged in to proceed order',
-                );
+              : Alert.alert(t('logIn'), t('logInCheckout'));
           }}>{`${t('checkout')} (${(cartTotal + 10).toFixed(2)})`}</ECButton>
       </View>
     </View>

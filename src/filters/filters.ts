@@ -10,15 +10,14 @@ export const brands = [
   'Acer',
   'HP',
   'Dell',
-  'Vox',
-  'Tesla',
+  'Blaupunkt',
   'Pioneer',
   'Panasonic',
   'Canon',
   'GoPro',
   'NIKON',
-  'Denver',
-  'Propel',
+  'SELLINGZO',
+  'VEZIMON',
 ];
 
 export const ram = ['2gb', '4gb', '6gb', '8gb', '16gb', '32gb'];

@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Account} from '../account/Account';
 import {BottomTabs} from './BottomTabs';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -27,16 +26,7 @@ export const Main = () => {
         {backgroundColor: sideMenuBackgroundColor, paddingTop: top},
       ]}
       drawerContent={() => <Account />}>
-      <Drawer.Screen
-        options={{
-          drawerIcon: () => {
-            return <Ionicons name="home" size={25} color={sideMenuTextColor} />;
-          },
-          unmountOnBlur: true,
-        }}
-        name="Home"
-        component={BottomTabs}
-      />
+      <Drawer.Screen name="Home" component={BottomTabs} />
     </Drawer.Navigator>
   );
 };

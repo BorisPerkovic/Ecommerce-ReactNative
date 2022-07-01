@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.8.3",
     "@react-native-async-storage/async-storage": "^1.17.1",
+    "@react-native-community/netinfo": "^9.3.0",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/bottom-tabs": "^5.2.5",
     "@react-navigation/drawer": "^5.x",
@@ -62,6 +63,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/color": "^3.0.3",
     "@types/jest": "^26.0.23",
+    "@types/lodash-es": "^4.17.6",
     "@types/react-native": "^0.66.15",
     "@types/react-native-vector-icons": "^6.4.10",
     "@types/react-test-renderer": "^17.0.1",

@@ -100,5 +100,7 @@
   "bestRegards": "Mit freundlichen Grüßen",
   "terms": "Geschäftsbedingungen",
   "logOut": "Ausloggen",
-  "logOutMessage": "Sie sind dabei, sich abzumelden. Bist du dir sicher?"
+  "logOutMessage": "Sie sind dabei, sich abzumelden. Bist du dir sicher?",
+  "connError": "Verbindungsfehler",
+  "noInternet": "Ups! Sieht so aus, als wäre Ihr Gerät nicht mit dem Internet verbunden."
 }

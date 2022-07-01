@@ -100,5 +100,7 @@
   "bestRegards": "Distinti saluti",
   "terms": "Termini e condizioni",
   "logOut": "Disconnettersi",
-  "logOutMessage": "Stai per uscire. Sei sicuro?"
+  "logOutMessage": "Stai per uscire. Sei sicuro?",
+  "connError": "Errore di Connessione",
+  "noInternet": "Oops! Sembra che il tuo dispositivo non sia connesso a Internet."
 }

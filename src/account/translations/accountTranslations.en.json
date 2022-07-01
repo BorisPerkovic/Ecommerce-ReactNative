@@ -100,5 +100,7 @@
   "bestRegards": "Best Regards",
   "terms": "Terms And Conditions",
   "logOut": "Log Out",
-  "logOutMessage": "You are about to Sign Out. Are you sure?"
+  "logOutMessage": "You are about to Sign Out. Are you sure?",
+  "connError": "Connection Error",
+  "noInternet": "Oops! Looks like your device is not connected to the Internet."
 }

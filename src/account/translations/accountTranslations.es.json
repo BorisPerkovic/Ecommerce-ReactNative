@@ -100,5 +100,7 @@
   "bestRegards": "Saludos",
   "terms": "Términos y Condiciones",
   "logOut": "Cerrar Sesión",
-  "logOutMessage": "Está a punto de cerrar sesión. ¿Está seguro?"
+  "logOutMessage": "Está a punto de cerrar sesión. ¿Está seguro?",
+  "connError": "Error de Conexión",
+  "noInternet": "¡Vaya! Parece que tu dispositivo no está conectado a Internet"
 }

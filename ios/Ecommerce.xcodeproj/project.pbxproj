@@ -35,7 +35,7 @@
 		00E356F21AD99517003FC87E /* EcommerceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EcommerceTests.m; sourceTree = "<group>"; };
 		06130B917F304CF6AF45FCC5 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		095BE64D40A0430BAFE2A31A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		0C2AAD12AA374ED588F1FA10 = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; sourceTree = "<group>"; };
+		0C2AAD12AA374ED588F1FA10 /*  */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; sourceTree = "<group>"; };
 		1392830910EE18C202E3A488 /* Pods-Ecommerce-EcommerceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ecommerce-EcommerceTests.release.xcconfig"; path = "Target Support Files/Pods-Ecommerce-EcommerceTests/Pods-Ecommerce-EcommerceTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Ecommerce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ecommerce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Ecommerce/AppDelegate.h; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				0C2AAD12AA374ED588F1FA10,
+				0C2AAD12AA374ED588F1FA10 /*  */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";

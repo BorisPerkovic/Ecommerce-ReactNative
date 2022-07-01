@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Platform, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {ECFormLayout} from '../../components/ECFormLayout';
 import {RegistrationStepper} from './RegistrationStepper';
 import {RegistrationUserInfo} from './RegistrationUserInfo';
 import {RegistrationUserPassword} from './RegistrationUserPassword';
@@ -14,37 +14,21 @@ export const RegistrationItems = () => {
     switch (position) {
       case 0:
         return (
-          <KeyboardAwareScrollView
-            enableOnAndroid
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            extraHeight={Platform.OS === 'ios' ? 85 : 0}
-            extraScrollHeight={40}
-            keyboardOpeningTime={0}
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={styles.containerContent}>
+          <ECFormLayout>
             <RegistrationUserInfo
               position={position}
               setPosition={setPosition}
             />
-          </KeyboardAwareScrollView>
+          </ECFormLayout>
         );
       case 1:
         return (
-          <KeyboardAwareScrollView
-            enableOnAndroid
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            extraHeight={Platform.OS === 'ios' ? 85 : 0}
-            extraScrollHeight={40}
-            keyboardOpeningTime={0}
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={styles.containerContent}>
+          <ECFormLayout>
             <RegistrationUserPassword
               position={position}
               setPosition={setPosition}
             />
-          </KeyboardAwareScrollView>
+          </ECFormLayout>
         );
       case 2:
         return <RegisterUserSuccess setPosition={setPosition} />;

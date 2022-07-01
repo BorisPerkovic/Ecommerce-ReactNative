@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Platform, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {ECFormLayout} from '../components/ECFormLayout';
 import {OrderCart} from './OrderCart';
 import {OrderLocation} from './OrderLocation';
 import {OrderStepper} from './OrderStepper';
@@ -16,17 +16,9 @@ export const OrderItems = () => {
         return <OrderUserInfo position={position} setPosition={setPosition} />;
       case 1:
         return (
-          <KeyboardAwareScrollView
-            enableOnAndroid
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            extraHeight={Platform.OS === 'ios' ? 85 : 0}
-            extraScrollHeight={32}
-            keyboardOpeningTime={0}
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={styles.containerContent}>
+          <ECFormLayout>
             <OrderLocation position={position} setPosition={setPosition} />
-          </KeyboardAwareScrollView>
+          </ECFormLayout>
         );
       case 2:
         return <OrderCart />;

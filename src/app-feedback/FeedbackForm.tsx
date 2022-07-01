@@ -1,6 +1,5 @@
-import {Keyboard, Platform, StyleSheet, TextInput, View} from 'react-native';
+import {Dimensions, Keyboard, StyleSheet, TextInput, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {FeedbackTitle} from './FeedbackTitle';
 import {FeedbackRatingStars} from './FeedbackRatingStars';
 import {Controller, useForm} from 'react-hook-form';
@@ -14,6 +13,7 @@ import {RootState} from '../store';
 import {appFeedbackThunk} from './appFeedbackSlice';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
+import {ECFormLayout} from '../components/ECFormLayout';
 
 const commentSchema = {
   comment: yup
@@ -86,15 +86,7 @@ export const FeedbackForm = () => {
 
   return (
     <>
-      <KeyboardAwareScrollView
-        enableOnAndroid
-        showsVerticalScrollIndicator={false}
-        bounces={false}
-        extraScrollHeight={32}
-        extraHeight={Platform.OS === 'ios' ? 130 : 0}
-        keyboardOpeningTime={0}
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={styles.containerContent}>
+      <ECFormLayout extraHeight={135}>
         <FeedbackTitle />
         <FeedbackRatingStars
           onRatingChange={rate => {
@@ -148,7 +140,7 @@ export const FeedbackForm = () => {
             </ECText>
           ) : null}
         </View>
-      </KeyboardAwareScrollView>
+      </ECFormLayout>
       <View style={styles.button}>
         <ECButton
           mode="outlined"
@@ -164,17 +156,13 @@ export const FeedbackForm = () => {
 };
 
 const styles = StyleSheet.create({
-  containerContent: {
-    flexGrow: 1,
-    paddingHorizontal: 5,
-  },
   inputWrapper: {
     paddingHorizontal: 16,
     marginTop: 20,
   },
   textInput: {
     textAlignVertical: 'top',
-    height: 145,
+    height: Dimensions.get('screen').height < 641 ? 120 : 145,
     borderWidth: 1,
     borderRadius: 10,
     padding: 18,

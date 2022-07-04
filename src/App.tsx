@@ -12,6 +12,7 @@ import {ThemeContext, useAppTheme} from './theme/theme';
 import {useTheme} from './theme/useTheme';
 import {ECText} from './components/ECText';
 import {useTranslation} from 'react-i18next';
+import Feather from 'react-native-vector-icons/Feather';
 
 enableScreens();
 
@@ -65,13 +66,14 @@ const NoInternetModal: FunctionComponent<NoInternetModalProps> = ({
   isVisible,
 }) => {
   const {
-    colors: {backgroundColor},
+    colors: {backgroundColor, primaryTextColor},
   } = useAppTheme();
   const {t} = useTranslation('account');
   return (
     <Modal visible={!isVisible} style={styles.modal} dismissable={false}>
       <View style={[styles.modalContainer, {backgroundColor: backgroundColor}]}>
-        <ECText fontSize={22} bold>
+        <Feather name="wifi-off" size={28} color={primaryTextColor} />
+        <ECText fontSize={22} bold style={styles.modalTitle}>
           {t('connError')}
         </ECText>
         <ECText fontSize={18} textAlign="center" style={styles.modalText}>
@@ -93,8 +95,11 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     alignItems: 'center',
   },
+  modalTitle: {
+    marginVertical: 10,
+  },
   modalText: {
     marginTop: 14,
-    marginBottom: 10,
+    marginVertical: 10,
   },
 });

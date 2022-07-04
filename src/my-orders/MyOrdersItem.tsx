@@ -73,7 +73,7 @@ export const MyOrdersItem: FunctionComponent<MyOrderItemProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: 340,
+    width: '98%',
     padding: 10,
     borderRadius: 10,
     marginVertical: 10,

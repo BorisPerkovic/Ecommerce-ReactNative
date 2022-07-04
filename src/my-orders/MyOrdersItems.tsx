@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingBottom: 15,
     paddingHorizontal: 20,
   },
   wrapper: {
     flexGrow: 1,
+    width: '100%',
+    alignItems: 'center',
   },
   loader: {
     flex: 1,

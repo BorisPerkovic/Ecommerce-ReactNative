@@ -22,10 +22,52 @@ import {EditProfileChangeLanguage} from './account/edit-profile/change-language/
 import {PartnersScreen} from './partners/PartnersScreen';
 import {Terms} from './terms-and-conditions/TermsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
+import {useSelector} from 'react-redux';
+import {RootState} from './store';
+import {OnboardingOverviewScreen} from './onboarding/onboarding-overview/OnboardingOverviewScreen';
+import {OnboardingReduxScreen} from './onboarding/OnboardinReduxScreen';
+import {OnboardingHookFormScreen} from './onboarding/OnboardingHookFormScreen';
+import {OnBoardingI18NextScreen} from './onboarding/OnBoardingI18NextScreen';
 
 const Stack = createStackNavigator();
 
 export const RootStack = () => {
+  const onBoarding = useSelector(
+    (state: RootState) => state.onboarding.isOnboardingScreen,
+  );
+  if (onBoarding) {
+    return <OnboardingStack />;
+  }
+  return <AppStack />;
+};
+
+const OnboardingStack = () => {
+  return (
+    <Stack.Navigator
+      mode="card"
+      screenOptions={{
+        headerShown: false,
+        detachPreviousScreen: false,
+        animationEnabled: false,
+      }}>
+      <Stack.Screen
+        name="OnboardingOverview"
+        component={OnboardingOverviewScreen}
+      />
+      <Stack.Screen name="OnboardingRedux" component={OnboardingReduxScreen} />
+      <Stack.Screen
+        name="OnboardingHookForm"
+        component={OnboardingHookFormScreen}
+      />
+      <Stack.Screen
+        name="Onboardingi18Next"
+        component={OnBoardingI18NextScreen}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const AppStack = () => {
   return (
     <Stack.Navigator
       mode="card"

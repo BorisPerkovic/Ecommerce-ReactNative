@@ -48,7 +48,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['cart', 'favorites', 'signIn', 'theme'],
+  whitelist: ['onboarding', 'cart', 'favorites', 'signIn', 'theme'],
 };
 
 const middleware = [

@@ -1,38 +1,48 @@
-import React from 'react';
-import {StyleSheet, View, StatusBar} from 'react-native';
-import {OnboardingOverviewAction} from './OnboardingOverviewAction';
-import {OnboardingOverviewIntro} from './OnboardingOverviewIntro';
+import React, {useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {OnboardingOverviewIntro} from './OnboardingOverviewIntroBanner';
 import {OnboardingOverviewItem} from './OnboardingOverviewItem';
-import {OnboardingOverviewItems} from './OnboardingOverviewItems';
 import {Divider} from '../../components/Divider';
+import {ECButton} from '../../components/button/ECButton';
+import {useAppTheme} from '../../theme';
+import SplashScreen from 'react-native-splash-screen';
+import {MyStatusBar} from '../../components/ECStatusBar';
+import {useNavigation} from '@react-navigation/native';
 
 export const OnboardingOverviewScreen = () => {
+  const {
+    buttons: {primaryButtonContained},
+  } = useAppTheme();
+
+  const {navigate} = useNavigation();
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <View style={styles.root}>
-      <StatusBar
-        translucent
-        backgroundColor="transparent"
-        barStyle="dark-content"
-      />
+      <MyStatusBar />
       <OnboardingOverviewIntro />
       <View style={styles.content}>
-        <OnboardingOverviewItems>
-          <OnboardingOverviewItem itemOverviewCount={18000}>
-            Some New Text
-          </OnboardingOverviewItem>
-          <Divider />
-          <OnboardingOverviewItem itemOverviewCount={5000}>
-            Some New Text
-          </OnboardingOverviewItem>
-          <Divider />
-          <OnboardingOverviewItem itemOverviewCount={2500}>
-            Some New Text
-          </OnboardingOverviewItem>
-        </OnboardingOverviewItems>
-        <OnboardingOverviewAction
-          replaceTo="OnboardingShop"
-          title="Products Overview"
-        />
+        <OnboardingOverviewItem label="Redux Toolkit">
+          state management and data fetching
+        </OnboardingOverviewItem>
+        <Divider />
+        <OnboardingOverviewItem label="React Hook Form">
+          complete form validation
+        </OnboardingOverviewItem>
+        <Divider />
+        <OnboardingOverviewItem label="i18next">
+          translations with JSON
+        </OnboardingOverviewItem>
+        <ECButton
+          mode="outlined"
+          variant={primaryButtonContained}
+          onPress={() => {
+            navigate('OnboardingRedux');
+          }}>
+          Next
+        </ECButton>
       </View>
     </View>
   );

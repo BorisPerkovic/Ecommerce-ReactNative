@@ -1,17 +1,25 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {createSlice} from '@reduxjs/toolkit';
 
 interface OnBoardingState {
-  isOnboardingScreen: boolean | null;
+  isOnboardingScreen: boolean;
 }
 
-const initialState: OnBoardingState = {isOnboardingScreen: null};
+const initialState: OnBoardingState = {isOnboardingScreen: true};
 
 const onboardingSlice = createSlice({
   initialState,
   name: 'onboarding',
   reducers: {
-    setIsOnboardingSeen: (state, {payload}: PayloadAction<boolean>) => {
-      state.isOnboardingScreen = payload;
+    setIsOnboardingSeen: state => {
+      state.isOnboardingScreen = false;
+      const setStorage = async () => {
+        await AsyncStorage.setItem(
+          'cartItems',
+          JSON.stringify(state.isOnboardingScreen),
+        );
+      };
+      setStorage();
     },
   },
 });

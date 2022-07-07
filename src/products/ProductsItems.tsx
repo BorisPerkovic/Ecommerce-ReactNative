@@ -8,10 +8,12 @@ import {getProducts} from './productsSlice';
 import config from '../../config';
 import SplashScreen from 'react-native-splash-screen';
 import {ECText} from '../components/ECText';
+import {useTranslation} from 'react-i18next';
 
 export const ProductsItems = () => {
   const [url, setUrl] = useState(config.BASE_URL);
 
+  const {t} = useTranslation('account');
   const productsStatus = useSelector((state: RootStateOrAny) => state.products);
 
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ export const ProductsItems = () => {
       {productsStatus.loading === 'pending' ? <SkeletonMapped /> : null}
       {productsStatus.loading === 'failed' ? (
         <ECText fontSize={15} textAlign="center">
-          Something Went Wrong!
+          {t('wentWrong')}
         </ECText>
       ) : null}
       {productsStatus.loading === 'succeeded' ? (

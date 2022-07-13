@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   image: {
-    width: 130,
-    height: 130,
+    width: '80%',
+    height: '90%',
+    borderRadius: 10,
   },
 });

@@ -12,7 +12,7 @@ export const CartScreen: FunctionComponent<{}> = () => {
   const {t} = useTranslation('products');
   return (
     <View style={[styles.container, {backgroundColor}]}>
-      <ECHeader screenTitle={t('myCart')} />
+      <ECHeader screenTitle={t('myCart')} goBackIcon={false} />
       <Cartitems />
     </View>
   );

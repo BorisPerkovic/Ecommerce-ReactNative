@@ -39,6 +39,9 @@ export const Terms = () => {
           * React native
         </ECText>
         <ECText fontSize={15} style={styles.text}>
+          * TypeScript
+        </ECText>
+        <ECText fontSize={15} style={styles.text}>
           * Redux Toolkit
         </ECText>
         <ECText fontSize={15} style={styles.text}>

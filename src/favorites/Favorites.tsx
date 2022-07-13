@@ -12,7 +12,7 @@ export const Favorites: FunctionComponent<{}> = () => {
   const {t} = useTranslation('products');
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-      <ECHeader screenTitle={t('myFavorites')} />
+      <ECHeader screenTitle={t('myFavorites')} goBackIcon={false} />
       <View style={styles.content}>
         <ScrollView
           contentContainerStyle={styles.container}

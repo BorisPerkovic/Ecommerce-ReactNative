@@ -12,13 +12,14 @@ export const SCREEN_HEADER_HEIGHT = 50;
 export interface ScreenHeaderProps {
   screenTitle: string;
   preventGoBack?: boolean;
+  goBackIcon?: boolean;
 }
 
 export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
   const {
     colors: {backgroundColor, primaryTextColor},
   } = useAppTheme();
-  const {screenTitle, preventGoBack} = props;
+  const {screenTitle, preventGoBack, goBackIcon = true} = props;
 
   const {goBack} = useNavigation();
 
@@ -27,12 +28,14 @@ export const ECHeader: FunctionComponent<ScreenHeaderProps> = props => {
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <View style={styles.iconContainer}>
-        <IconButton
-          icon="chevron-left"
-          color={primaryTextColor}
-          onPress={() => goBack()}
-          size={35}
-        />
+        {goBackIcon ? (
+          <IconButton
+            icon="chevron-left"
+            color={primaryTextColor}
+            onPress={() => goBack()}
+            size={35}
+          />
+        ) : null}
       </View>
       <View style={styles.screenTitle}>
         <ECText

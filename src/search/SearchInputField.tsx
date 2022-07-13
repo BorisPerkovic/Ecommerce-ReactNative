@@ -1,10 +1,11 @@
-import {StyleSheet, View} from 'react-native';
+import {Keyboard, StyleSheet, View} from 'react-native';
 import React, {FunctionComponent} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
 import {searchProductsThunk} from './searchSlice';
 import {ECEmailInputField} from '../components/ECEmailInputField';
 import {useTranslation} from 'react-i18next';
+import {useDebouncedCallback} from 'use-debounce';
 
 interface FormData {
   search: string;
@@ -12,11 +13,10 @@ interface FormData {
 
 const SearchInputField: FunctionComponent<{}> = () => {
   const {
-    handleSubmit,
     control,
     formState: {errors},
   } = useForm<FormData>({
-    mode: 'onSubmit',
+    mode: 'onChange',
     defaultValues: {
       search: '',
     },
@@ -24,9 +24,13 @@ const SearchInputField: FunctionComponent<{}> = () => {
   const {t} = useTranslation('products');
   const dispatch = useDispatch();
 
-  const onSubmitHandler = (param: FormData) => {
-    dispatch(searchProductsThunk(param.search));
-  };
+  const debounced = useDebouncedCallback(param => {
+    if (param === '') {
+      return;
+    }
+
+    dispatch(searchProductsThunk(param));
+  }, 700);
 
   return (
     <View style={styles.container}>
@@ -43,13 +47,13 @@ const SearchInputField: FunctionComponent<{}> = () => {
             label={t('searcProducst')}
             style={styles.searchInput}
             placeholder={t('searchTerm')}
-            onChangeText={e => onChange(e)}
-            returnKeyLabel="search"
-            returnKeyType="search"
+            onChangeText={e => onChange(() => debounced(e))}
+            returnKeyLabel="done"
+            returnKeyType="done"
             value={value}
             onBlur={onBlur}
             onSubmitEditing={() => {
-              handleSubmit(onSubmitHandler)();
+              Keyboard.dismiss();
             }}
             error={errors.search?.message}
           />
